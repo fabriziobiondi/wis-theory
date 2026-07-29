@@ -105,11 +105,11 @@ wis-theory/
 | **Representation Theorem** | 5 | $E$ universally optimal $\iff n_{mc} = \beta(c)/w(m)$ |
 | **Cycle factorisation** | 4 | Existence of WIS weights $\iff$ cycle product $= 1$ |
 | **Encoder realizability** | 4 | Integrality + balance $B\beta = Kw$ |
-| **Universal Lipschitz bound** | 15 | $|S(P)-S(Q)| \le L\sqrt{\mathcal D(P,Q)}$ |
-| **Universal quadratic bound** | 15 | Local quadratic approximation of $S$ |
-| **Average Hessian Operator** | 16 | $D_\phi(P,Q) = \frac12 \Delta^{\mathsf T} \overline H_\phi \Delta$ |
-| **Three-Level Theorem** | 25 | Critical points of $\mathcal D$ collapse to $3$ values |
-| **Stability** | 12 | $\mathcal D$ is continuous and locally strictly convex |
+| **Universal Lipschitz bound** | 16 | $\|S(P)-S(Q)\| \le L\sqrt{\mathcal D(P,Q)}$ |
+| **Universal quadratic bound** | 16 | $|S(P)-S(Q)| \le C\,\mathcal D(P,Q)$ for small defects |
+| **Average Hessian Operator** | 17 | $D_\phi(P,Q) = \frac12 \Delta^{\mathsf T} \overline H_\phi \Delta$ |
+| **Three-Level Theorem** | 26 | Critical points of $\mathcal D$ collapse to at most $3$ values |
+| **Stability** | 13 | $\mathcal D$ is continuous and locally strictly convex |
 
 ---
 
