@@ -1,0 +1,67 @@
+site_name: Weighted Incidence Structures
+site_description: A mathematical framework for universal optimal encoding — geometry, information, cryptography
+site_url: https://fabriziobiondi.github.io/wis-theory/
+site_author: Fabrizio Biondi
+
+repo_name: fabriziobiondi/wis-theory
+repo_url: https://github.com/fabriziobiondi/wis-theory
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/fabriziobiondi/wis-theory
+    - icon: fontawesome/solid/envelope
+      link: mailto:biondif@gmail.com
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - footnotes
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Home: index.md
+  - Theory:
+      - Overview: theory/overview.md
+      - WIS and Representation: theory/wis.md
+      - Hilbert Geometry: theory/geometry.md
+      - Universal Bounds: theory/bounds.md
+      - Variational Structure: theory/variational.md
+  - Examples: examples.md
+  - Open Problems: open-problems.md
+  - FAQ: faq.md
+  - Bibliography: bibliography.md
+  - Citation: citation.md
