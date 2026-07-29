@@ -9,7 +9,7 @@ version: 1.0.0
 date-released: 2026-07
 url: "https://github.com/fabriziobiondi/wis-theory"
 doi: "10.5281/zenodo.XXXXXXX"
-license: "CC-BY-NC-4.0"
+license: "CC-BY-4.0"
 type: monograph
 preferred-citation:
   type: book
