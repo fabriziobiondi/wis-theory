@@ -105,8 +105,8 @@ wis-theory/
 | **Representation Theorem** | 5 | E universally optimal iff n_mc = beta(c)/w(m) |
 | **Cycle factorisation** | 4 | Existence of WIS weights iff cycle product = 1 |
 | **Encoder realizability** | 4 | Integrality + balance B beta = K w |
-| **Universal Lipschitz bound** | 16 | |S(P)-S(Q)| <= L sqrt(D(P,Q)) |
-| **Universal quadratic bound** | 16 | |S(P)-S(Q)| <= C D(P,Q) for small defects |
+| **Universal Lipschitz bound** | 16 | abs(S(P)-S(Q)) <= L sqrt(D(P,Q)) |
+| **Universal quadratic bound** | 16 | abs(S(P)-S(Q)) <= C D(P,Q) for small defects |
 | **Average Hessian Operator** | 17 | D_phi(P,Q) = 1/2 Delta^T overline(H)_phi Delta |
 | **Three-Level Theorem** | 26 | Critical points of D collapse to at most 3 values |
 | **Stability** | 13 | D is continuous and locally strictly convex |
