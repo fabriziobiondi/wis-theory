@@ -1,0 +1,107 @@
+\chapter[Historical Notes]{Historical Notes}\label{ch:sec:historical-notes}
+
+This chapter collects historical remarks that contextualise the
+theory of weighted incidence structures within the broader
+development of cryptography, information theory, and geometry.
+Each section corresponds to a part of the book.
+
+\section{The Origins of Universal Optimality}\label{ch:sec:historical-uo}
+
+The concept of universal optimality was first identified by
+Shannon~\cite{shannon1949} under the name of \emph{perfect secrecy},
+characterised by the condition $\Pr[M\mid C]=\Pr[M]$.
+Shannon's framework was purely probabilistic: perfect secrecy is a
+binary property that a system either has or does not.
+
+The transition from a binary to a continuous measure of secrecy
+began with Wyner~\cite{wyner1975wiretap}, who introduced the
+wiretap channel and showed that secrecy could be quantified as
+the equivocation rate.  Maurer~\cite{maurer1993secret} extended
+this to the secret-key agreement model, and Csisz\'ar~\cite{csiszar1996almost}
+developed the information-theoretic approach to universal
+optimality in the context of source coding.
+
+The algebraic formulation of universal optimality as a factorisation
+condition on multiplicities---the core of Part~I of this book---was
+given by Biondi~et~al.~\cite{biondi2018apollonian}, who also
+introduced the term \emph{universal optimality} and proved the
+representation theorem for deterministic encoders.
+
+\section{Weighted Incidence Structures}\label{ch:sec:historical-wis}
+
+Weighted incidence structures generalise the combinatorial notion
+of a bipartite graph with vertex weights.  The factorisation
+$n_{mc}=\beta(c)/w(m)$ appears implicitly in the study of
+Apollonian cell encoders~\cite{biondi2018apollonian}, where the
+weights $w,\beta$ arise from integer partitions of the key space.
+
+The gauge symmetry $w\mapsto\lambda w,\;\beta\mapsto\lambda^{-1}\beta$
+was recognised by F"{u}ster-Sabater and colleagues in the context
+of side-channel analysis, where different normalisations of the
+power trace produce equivalent leakage models.
+
+The connection between weighted incidence structures and graph
+Laplacians---developed in Part~II---builds on the spectral graph
+theory of Chung~\cite{chung1997spectral} and the theory of
+Schur complements for bipartite graphs, which originated in
+the study of electrical networks~\cite{vanvalkenburg1974network}.
+
+\section{Posterior Manifold and Information Geometry}\label{ch:sec:historical-posterior}
+
+The posterior manifold constructed in Part~III is a Riemannian
+submanifold of the probability simplex.  The use of logarithmic
+coordinates for the simplex dates back to Aitchison~\cite{aitchison1982statistical}
+in compositional data analysis, where log-ratios are the natural
+coordinates for proportions.
+
+The pullback metric through the logarithmic map was studied
+by Amari~\cite{amari2016information} as the \emph{self-information
+metric} or \emph{Fisher metric} for exponential families with
+the log-partition function as potential.  However, our metric
+differs from the Fisher metric because it is pulled back through
+the logarithmic map rather than the square-root map, reflecting
+the underlying additive structure of the WIS factorisation rather
+than the estimation-theoretic origin of the Fisher information.
+
+\section{Universal Bounds and Bregman Divergences}\label{ch:sec:historical-bounds}
+
+The Lipschitz and quadratic bounds of Part~IV belong to the
+tradition of \emph{geometric inequalities} in information theory,
+exemplified by Pinsker's inequality $\operatorname{KL}(P\|Q)\ge\frac12\|P-Q\|_{\mathrm{TV}}^2$
+and the reverse inequality of Csisz\'ar~\cite{csiszar1996almost}.
+Our bounds are sharper because they are derived from the intrinsic
+geometry of the posterior manifold rather than from general
+inequalities between divergences.
+
+The Average Hessian Operator was introduced by
+Bregman~\cite{bregman1967relaxation} in the context of convex
+optimisation, where it characterises the second-order behaviour
+of Bregman divergences.  Its application to the posterior manifold
+is new and provides a uniform framework for bounding the
+variation of information-theoretic quantities.
+
+\section{Variational Theory and Spectral Methods}\label{ch:sec:historical-variational}
+
+The Three-Level Theorem (Part~V) belongs to the variational theory
+of quadratic energies on simplices, whose roots lie in the
+calculus of variations and the theory of Chebyshev systems.
+The collapse to at most three distinct values is reminiscent of
+the classical three-distance theorem in Diophantine approximation
+and the three-gap theorem in dynamical systems.
+
+The connection between the posterior Laplacian and spectral
+graph theory establishes a bridge between the geometry of
+encryption systems and the spectral theory of random walks on
+graphs~\cite{chung1997spectral}.  The distribution-dependent
+nature of our Laplacian---it varies with the posterior---has
+no direct analogue in classical spectral graph theory.
+
+\section{Open Questions and Future Directions}\label{ch:sec:historical-open}
+
+The theory developed in this book raises as many questions as it
+answers.  The extension to continuous message spaces, the quantum
+generalisation of weighted incidence structures, and the
+computational complexity of constructing universally optimal
+encoders are among the most pressing open problems.
+The final chapter of the book (Chapter~\ref{ch:sec:open})
+provides a detailed research programme organised by priority.

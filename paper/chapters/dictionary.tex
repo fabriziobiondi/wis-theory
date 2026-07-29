@@ -1,0 +1,40 @@
+\chapter[Dictionary]{Cryptography--WIS--Geometry Dictionary}\label{ch:sec:dictionary}
+
+This chapter provides a reference table translating concepts between
+cryptography, weighted incidence structures, and geometry.
+
+\begin{center}
+\begin{tabular}{p{3cm}p{3.5cm}p{3.5cm}c}
+\hline
+\textbf{Cryptography} & \textbf{WIS} & \textbf{Geometry} & \textbf{Ch.} \\
+\hline
+Message $m$ & Vertex $m\in\Mset$ & Coordinate index & \ref{ch:sec:background} \\
+Key $k$ & Incidence edge $mc$ & Edge of bipartite graph & \ref{ch:sec:graphs} \\
+Ciphertext $c$ & Vertex $c\in\Cset$ & Coordinate index & \ref{ch:sec:background} \\
+Encryption $E(m,k)=c$ & Relation $(m,c)\in I$ & Directed edge & \ref{ch:sec:definition} \\
+Prior $\pi(m)$ & Message weight $w(m)$ & Vertex potential & \ref{ch:sec:representation} \\
+Key set $|\Kset|$ & Ciphertext weight $\beta(c)$ & Vertex potential & \ref{ch:sec:representation} \\
+Multiplicity $n_{mc}$ & $\beta(c)/w(m)$ & Edge label & \ref{ch:sec:definition} \\
+Gauge & $w\mapsto\lambda w,\;\beta\mapsto\lambda^{-1}\beta$ & Quotient space & \ref{ch:sec:gauge} \\
+Perfect secrecy & $n_{mc}=1$ & Zero defect $\mathcal D\equiv0$ & \ref{ch:sec:hilbert-geometry} \\
+Universal optimality & $n_{mc}=\beta(c)/w(m)$ & $\delta(P)=0$ & \ref{ch:sec:hilbert-geometry} \\
+Log multiplicity $\log n_{mc}$ & Difference $v(c)-u(m)$ & Edge weight of $L$ & \ref{ch:sec:graphs} \\
+Incognisability & Cloak $\operatorname{cloak}(c)$ & Fiber of the projection & \ref{ch:sec:canonical-projection-and-differential-factorisation} \\
+Posterior $\Pr[M\mid C=c]$ & Normalised $\beta/w$ & Point $P\in\Delta^\circ$ & \ref{ch:sec:the-posterior-manifold} \\
+Log-posterior & Logarithmic map & Coordinate chart $F(\mathcal P)$ & \ref{ch:sec:pullback-riemannian-metric} \\
+Optimality defect $\mathcal D$ & Squared defect $\|\delta(P)\|^2$ & Squared geodesic distance & \ref{ch:sec:hilbert-geometry} \\
+Privacy leakage & $|\mathcal D(P)-\mathcal D(Q)|$ & $\le L\sqrt{\mathcal D(P,Q)}$ & \ref{ch:sec:universal-geometric-bounds} \\
+Laplace mechanism & $\mathcal D=2/\varepsilon^2$ & Lipschitz constant $L$ & \ref{ch:sec:differential-privacy-and-database-queries} \\
+Entropy $H(P)$ & Smooth functional & Scalar field $S:\mathcal P\to\mathbb R$ & \ref{ch:sec:information-functionals-on-the-wis-manifold} \\
+Min-entropy $H_\infty(P)$ & Piecewise-smooth & Piecewise-analytic field & \ref{ch:sec:piecewise-smooth} \\
+Bregman divergence & Average Hessian & Quadratic form & \ref{ch:sec:the-average-hessian-operator-and-universal-bregman-theo} \\
+Stability & Hessian $\operatorname{Hess}_g(\mathcal D)$ & Local quadratic approx & \ref{ch:sec:stability-of-the-universal-optimality-defect} \\
+Three-level structure & $\varphi\in\{\varphi_1,\varphi_2,\varphi_3\}$ & Critical points of $\mathcal D$ & \ref{ch:sec:main-structural-theorem} \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection*{How to use this dictionary}
+Given a cryptographic concept, look up its WIS formulation and geometric
+interpretation.  The chapter reference points to where the translation
+is established and used.

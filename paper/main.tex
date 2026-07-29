@@ -1,0 +1,175 @@
+\documentclass[12pt,a4paper]{book}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,allcolors=blue}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{cite}
+
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\renewenvironment{proof}{{\noindent\bfseries Proof.}\hspace*{1em}}{\hfill$\blacksquare$}
+
+\newcommand{\Mset}{\mathcal{M}}
+\newcommand{\Kset}{\mathcal{K}}
+\newcommand{\Cset}{\mathcal{C}}
+\newcommand{\cloak}{\operatorname{Cloak}}
+\newcommand{\WIS}{\mathrm{WIS}}
+
+\title{Weighted Incidence Structures: Geometry, Information, and Cryptography}
+\author{Fabrizio Biondi}
+
+\begin{document}
+\frontmatter
+\maketitle
+\vfill
+\begin{quote}\small
+\noindent\textbf{Problem.}  A deterministic encryption system is \emph{universally optimal}
+if, after observing the ciphertext, every compatible message is equally likely.
+Despite decades of study, the full set of such systems---and their
+geometric structure---remained unknown.
+
+\medskip
+\noindent\textbf{Main theorem.}  A deterministic encoder is universally optimal if and only
+if its multiplicity matrix admits a factorisation $n_{mc}=\beta(c)/w(m)$ into
+message and ciphertext weights.  Taking logarithms transforms this
+multiplicative factorisation into a linear condition, forcing a canonical
+Hilbert-space geometry on every such system.
+
+\medskip
+\noindent\textbf{Main consequence.}  The distance from any distribution to the set of
+universally optimal ones---the Universal Optimality Defect (UOD)---is the
+squared norm in this forced geometry.  Every information-theoretic quantity
+(Shannon entropy, R\'enyi entropy, min-entropy, Bayes vulnerability,
+guessing entropy) is Lipschitz continuous with respect to the UOD, with
+explicit constants that depend only on the system's incidence structure.
+
+\medskip
+\noindent\textbf{Secondary consequences.}
+\begin{itemize}
+\item Complete classification of all universally optimal deterministic encoders.
+\item Universal Lipschitz and quadratic bounds for arbitrary smooth and
+piecewise-smooth security functionals.
+\item A ``Three-Level Theorem'' showing that interior critical points of
+the UOD collapse to at most three distinct log-likelihood values.
+\item A dictionary translating cryptographic concepts into geometric objects
+(messages become vertices, posteriors become points on a manifold,
+secrecy becomes geodesic distance).
+\end{itemize}
+
+\medskip
+\noindent\textbf{Practical impact.}
+The UOD provides a quantitative tool for evaluating real-world encryption
+systems---side-channel resistance, anonymity set size, privacy--utility
+trade-offs---replacing the binary verdict of perfect secrecy with a
+continuous scale.  The Lipschitz bounds give cryptographers explicit
+margins: ``if two distributions are $\varepsilon$-close in UOD, their
+entropies differ by at most $L\varepsilon$.''  The Three-Level Theorem
+reduces optimisation problems on high-dimensional posterior spaces to
+a finite algebraic system, enabling efficient numerical computation.
+
+\medskip
+\noindent\textbf{Open problem.}  Extend the theory from deterministic to randomised
+encoders, from finite to continuous message spaces, and from classical
+to quantum information.
+\end{quote}
+
+\vfill
+\noindent\small
+\textbf{Weighted Incidence Structures: Geometry, Information, and Cryptography}\\
+Copyright \copyright\ 2026 Fabrizio Biondi.
+
+\medskip
+\noindent This work is licensed under the Creative Commons
+Attribution-NonCommercial-NoDerivatives 4.0 International License
+(CC BY-NC-ND 4.0).  To view a copy, visit
+\url{https://creativecommons.org/licenses/by-nc-nd/4.0/}.
+
+\medskip
+\noindent \textbf{Keywords:} weighted incidence structures; universal optimality;
+information-theoretic cryptography; Hilbert-space geometry; posterior
+manifold; Universal Optimality Defect; R\'enyi entropy; Lipschitz
+bounds; Three-Level Theorem; randomised encoders; differential privacy;
+geo-indistinguishability; browser fingerprinting; side-channel analysis.
+
+\medskip
+\noindent \textbf{Contact:} Comments, corrections, and suggestions are
+welcome at \url{biondif@gmail.com}.
+
+\medskip
+\noindent \textbf{Acknowledgements.} The author thanks the two anonymous
+reviewers whose constructive comments and careful reading significantly
+improved the exposition and rigour of this work.
+
+\newpage
+
+\tableofcontents
+
+\mainmatter
+
+\include{chapters/motivating_examples}
+
+\part{Weighted Incidence Structures}\label{ch:part:wis}
+\include{chapters/introduction}
+\include{chapters/roadmap}
+\include{chapters/basics}
+\include{chapters/wis}
+\include{chapters/representation}
+
+\part{Hilbert Geometry and the Universal Optimality Defect}\label{ch:part:hilbert}
+\include{chapters/linearization}
+\include{chapters/hilbert_geometry}
+
+\part{Geometric Foundations of the Posterior Manifold}\label{ch:part:posterior}
+\include{chapters/posterior_manifold}
+\include{chapters/projection}
+\include{chapters/diffeomorphism_local}
+\include{chapters/pullback_metric}
+\include{chapters/stability}
+
+\part{Information Functionals and Geometric Bounds}\label{ch:part:functionals}
+\include{chapters/entropy_bounds}
+\include{chapters/functionals}
+\include{chapters/universal_bounds}
+\include{chapters/bregman}
+\include{chapters/smooth_functionals}
+\include{chapters/piecewise_smooth}
+\include{chapters/universal_security_bounds}
+
+\part{Variational Structure and Comparative Geometry}\label{ch:part:variational}
+\include{chapters/analytic_theory}
+\include{chapters/algebra_uod}
+\include{chapters/differential_uod}
+\include{chapters/functional_analytic_uod}
+\include{chapters/comparative_geometry}
+\include{chapters/variational}
+
+\include{chapters/conclusions}
+\include{chapters/discussion}
+\include{chapters/applications}
+\include{chapters/open_problems}
+\include{chapters/comparison}
+\include{chapters/dictionary}
+\include{chapters/historical_notes}
+\include{chapters/notation}
+
+\backmatter
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}

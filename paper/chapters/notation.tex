@@ -1,0 +1,122 @@
+\chapter[Notation]{Notation Index}\label{ch:sec:notation}
+
+This appendix lists the principal symbols used in the book,
+grouped by category, with a brief description and the chapter
+where they are introduced.
+
+\section*{Spaces and Sets}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Symbol} & \textbf{Description} & \textbf{Introduced} \\
+\hline
+  $\Mset$ & Message space & Ch.~\ref{ch:sec:background} \\
+  $\Kset$ & Key set & Ch.~\ref{ch:sec:background} \\
+  $\Cset$ & Ciphertext set & Ch.~\ref{ch:sec:background} \\
+  $\mathbb R$ & Real numbers & Ch.~\ref{ch:sec:background} \\
+  $\mathbb Q$ & Rational numbers & Ch.~\ref{ch:sec:background} \\
+  $\mathbb N$ & Natural numbers & Ch.~\ref{ch:sec:background} \\
+  $\Delta_k^\circ$ & Interior of the probability simplex of dimension $k$ & Ch.~\ref{ch:sec:background} \\
+  $\mathcal P$ & Posterior manifold & Ch.~\ref{ch:sec:the-posterior-manifold} \\
+  $\mathcal G$ & Gauge quotient space $V_I/\operatorname{Im}(C)$ & Ch.~\ref{ch:sec:canonical-projection-and-differential-factorisation} \\
+  $V_I$ & Space of incidence vectors & Ch.~\ref{ch:sec:canonical-projection-and-differential-factorisation} \\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{Probability}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Symbol} & \textbf{Description} & \textbf{Introduced} \\
+\hline
+  $\pi$ & Prior distribution on messages $\pi(m)$ & Ch.~\ref{ch:sec:background} \\
+  $\Pr$ & Probability measure & Ch.~\ref{ch:sec:background} \\
+  $\delta$ & Universal Optimality Defect $\delta(P)$ (non-squared) & Ch.~\ref{ch:sec:hilbert-geometry} \\
+  $\mathcal D$ & Universal Optimality Defect $\mathcal D(P)=\|\delta(P)\|^2$ & Ch.~\ref{ch:sec:hilbert-geometry} \\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{Weighted Incidence Structures}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Symbol} & \textbf{Description} & \textbf{Introduced} \\
+\hline
+  $\mathfrak W$ & Weighted Incidence Structure & Ch.~\ref{ch:sec:wis} \\
+  $I$ & Incidence relation $I\subseteq\Mset\times\Cset$ & Ch.~\ref{ch:sec:wis} \\
+  $w$ & Message weight function $w:\Mset\to\mathbb R_{>0}$ & Ch.~\ref{ch:sec:wis} \\
+  $\beta$ & Ciphertext weight function $\beta:\Cset\to\mathbb R_{>0}$ & Ch.~\ref{ch:sec:wis} \\
+  $n_{mc}$ & Multiplicity $n_{mc}=\beta(c)/w(m)$ & Ch.~\ref{ch:sec:wis} \\
+  $\operatorname{Cloak}$ & Cloak of a ciphertext & Ch.~\ref{ch:sec:wis} \\
+  $\operatorname{cloak}$ & Cloak function (lowercase) & Ch.~\ref{ch:sec:wis} \\
+  $A$ & Incidence matrix $A\in\{0,1\}^{|\Mset|\times|I|}$ & Ch.~\ref{ch:sec:representation} \\
+  $C$ & Ciphertext incidence matrix $C\in\{0,1\}^{|\Cset|\times|I|}$ & Ch.~\ref{ch:sec:representation} \\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{Operators}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Symbol} & \textbf{Description} & \textbf{Introduced} \\
+\hline
+  $\Phi$ & Mismatch operator $\Phi=[A\;-C]$ & Ch.~\ref{ch:sec:graphs} \\
+  $L$ & Posterior Laplacian $L=A^{\mathsf T}QA$ & Ch.~\ref{ch:sec:hilbert-geometry} \\
+  $Q$ & Canonical projection $Q:\mathbb R^k\to\mathcal G$ & Ch.~\ref{ch:sec:canonical-projection-and-differential-factorisation} \\
+  $F$ & Logarithmic map $F:\mathcal P\to\mathbb R^k$ & Ch.~\ref{ch:sec:canonical-projection-and-differential-factorisation} \\
+  $g$ & Pullback Riemannian metric $g=F^*g_E$ & Ch.~\ref{ch:sec:pullback-riemannian-metric} \\
+  $g_E$ & Euclidean metric on $\mathbb R^k$ & Ch.~\ref{ch:sec:pullback-riemannian-metric} \\
+  $\operatorname{Im}$ & Image of a linear operator & Ch.~\ref{ch:sec:representation} \\
+  $\operatorname{span}$ & Linear span & Ch.~\ref{ch:sec:hilbert-geometry} \\
+  $\operatorname{diag}$ & Diagonal matrix & Ch.~\ref{ch:sec:hilbert-geometry} \\
+  $\operatorname{Schur}$ & Schur complement & Ch.~\ref{ch:sec:canonical-projection-and-differential-factorisation} \\
+  $\operatorname{Hess}$ & Hessian operator & Ch.~\ref{ch:sec:stability-of-the-universal-optimality-defect} \\
+  $\operatorname{Var}$ & Variance operator & Ch.~\ref{ch:sec:entropy-bounds} \\
+  $\operatorname{Tr}$ & Trace operator & Ch.~\ref{ch:sec:entropy-bounds} \\
+  $W_P$ & Weighted hyperplane $W_P=\{w:\sum_i P_i w_i=0\}$ & Ch.~\ref{ch:sec:the-posterior-manifold} \\
+  $\nabla_g$ & Gradient with respect to the metric $g$ & Ch.~\ref{ch:sec:differential-theory-of-the-universal-optimality-defect} \\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{Information Measures}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Symbol} & \textbf{Description} & \textbf{Introduced} \\
+\hline
+  $H$ & Shannon entropy $H(P)=-\sum_i P_i\log P_i$ & Ch.~\ref{ch:sec:entropy-bounds} \\
+  $H_\infty$ & Min-entropy $H_\infty(P)=-\log\max_i P_i$ & Ch.~\ref{ch:sec:entropy-bounds} \\
+  $H_\alpha$ & R\'enyi entropy of order $\alpha$ & Ch.~\ref{ch:sec:entropy-bounds} \\
+  $\operatorname{KL}$ & Kullback--Leibler divergence & Ch.~\ref{ch:sec:universal-geometric-bounds} \\
+  $\operatorname{TV}$ & Total variation distance & Ch.~\ref{ch:sec:universal-geometric-bounds} \\
+  $\operatorname{JSD}$ & Jensen--Shannon divergence & Ch.~\ref{ch:sec:universal-geometric-bounds} \\
+  $D_\phi$ & Bregman divergence associated with $\phi$ & Ch.~\ref{ch:sec:the-average-hessian-operator-and-universal-bregman-theo} \\
+  $\overline H_\phi$ & Average Hessian Operator of $\phi$ between $P$ and $Q$ & Ch.~\ref{ch:sec:the-average-hessian-operator-and-universal-bregman-theo} \\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{Other}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Symbol} & \textbf{Description} & \textbf{Introduced} \\
+\hline
+  $\WIS$ & Abbreviation for Weighted Incidence Structure & Ch.~\ref{ch:sec:background} \\
+  $\mathrm{red}$ & Reduced energy subscript & Ch.~\ref{ch:sec:variational-uod} \\
+  $\varepsilon$ & Privacy parameter & Ch.~\ref{ch:sec:motivating-examples} \\
+  $\mathsf{BPP}$ & Bounded-error probabilistic polynomial time & Ch.~\ref{ch:sec:discussion} \\
+  $\mathsf{NP}$ & Nondeterministic polynomial time & Ch.~\ref{ch:sec:discussion} \\
+\hline
+\end{tabular}
+\end{center}

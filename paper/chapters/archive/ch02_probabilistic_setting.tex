@@ -1,0 +1,64 @@
+\chapter[Probabilistic Setting]{Probabilistic Setting and Universal Optimality}\label{ch:sec:background}
+This chapter introduces the finite probabilistic model used throughout the book.  The framework is classical: we adopt the finite symmetric-key encryption model introduced by Shannon~\cite{shannon1949}, where messages are distributed according to a prior, the encryption key is uniformly distributed and independent of the message, and the ciphertext is produced by a deterministic encoder.  This provides the standard information-theoretic setting in which posterior distributions and secrecy properties are studied.
+\section{Finite probability spaces and notation}
+Let $\Mset$, $\Kset$, and $\Cset$ be nonempty finite sets, called the message, key, and ciphertext spaces, respectively. We write $M$, $K$, and $C$ for the corresponding random variables. Let
+\[
+  \pi:\Mset\longrightarrow (0,1],\qquad \sum_{m\in\Mset}\pi(m)=1,
+\]
+be a prior of full support. These assumptions are inherited from the Shannon model and are standard in information-theoretic cryptography.
+The full-support convention is harmless for the present purpose: messages of prior probability zero can be removed from the model. It ensures that the support of a ciphertext can be read directly from the encoder multiplicities.
+The key is uniform on $\Kset$ and independent of the message, again following the Shannon model. Thus
+\[
+  \Pr[K=k]=\frac{1}{|\Kset|},\qquad
+  \Pr[M=m,K=k]=\frac{\pi(m)}{|\Kset|}.
+\]
+All probabilities below are taken with respect to this joint distribution.
+\section{Deterministic encoders and the induced channel}
+\begin{definition}\label{ch:def:encoder}
+A \emph{deterministic Shannon encoder} is a map $E:\Mset\times\Kset\longrightarrow\Cset.$ The ciphertext random variable is defined by $C=E(M,K)$.
+\end{definition}
+Although $E$ is deterministic, the random key induces a channel from messages to ciphertexts. For $m\in\Mset$ and $c\in\Cset$, its transition probability is
+\[
+  \Pr[C=c\mid M=m]
+  =\frac{|\{k\in\Kset:E(m,k)=c\}|}{|\Kset|}.
+\]
+The numerator will be formalized as the multiplicity matrix in Section~\ref{ch:sec:multiplicity}.
+\section{Support, incidence, and cloaks}
+\begin{definition}\label{ch:def:cloak}
+For $c\in\Cset$, the \emph{cloak} of $c$ is $\cloak(c)=\{m\in\Mset:\Pr[C=c\mid M=m]>0\}.$ We say that $m$ and $c$ are \emph{incident}, and write $m\sim c$, when $m\in\cloak(c)$.
+\end{definition}
+Because the prior has full support, $m\sim c$ if and only if the encoder sends $m$ to $c$ for at least one key. We call a ciphertext \emph{active} when $\Pr[C=c]>0$. Equivalently, its cloak is nonempty. Ciphertexts outside the active support carry no posterior information and will be ignored.
+The incidence relation is naturally bipartite: it joins message vertices in $\Mset$ to active ciphertext vertices in $\Cset$. Its weighted refinement is the object constructed later in the book.
+\section{Bayes' rule}
+For every active ciphertext $c$ and every message $m$, Bayes' rule gives
+\begin{equation}\label{ch:eq:bayes}
+  \Pr[M=m\mid C=c]
+  =\frac{\pi(m)\Pr[C=c\mid M=m]}{\Pr[C=c]}.
+\end{equation}
+Using the deterministic encoder, this becomes
+\begin{equation}\label{ch:eq:bayes-multiplicity-preview}
+  \Pr[M=m\mid C=c]
+  =\frac{\pi(m)}{|\Kset|\Pr[C=c]}
+    |\{k\in\Kset:E(m,k)=c\}|.
+\end{equation}
+Equation~\eqref{ch:eq:bayes-multiplicity-preview} is the bridge from posterior symmetry to a combinatorial factorization.
+\section{Universal Optimality relative to a prior}
+Shannon's notion of perfect secrecy~\cite{shannon1949} requires the posterior distribution to coincide with the prior for every ciphertext.  In many deterministic systems this condition is unnecessarily restrictive.  The present work studies a weaker---but still highly structured---posterior symmetry: conditional on the observed ciphertext, all messages in its cloak are equiprobable.  Following Biondi, Given-Wilson and Legay~\cite{biondi2018apollonian}, we refer to this property as \emph{universal optimality}.
+Whereas~\cite{biondi2018apollonian} studies a particular family of deterministic encoders (Apollonian Cell Encoders), the present work abstracts the underlying posterior-symmetry property and completely characterizes all deterministic universally optimal encryption systems by weighted incidence structures, together with their canonical operator-theoretic and Hilbert-space geometry.
+\begin{definition}\label{ch:def:universal-optimality}
+A deterministic Shannon encoder is \emph{universally optimal relative to $\pi$} if, for every active ciphertext $c$,
+\[
+  \Pr[M=m\mid C=c]=\frac{1}{|\cloak(c)|}
+  \qquad\text{for every }m\in\cloak(c).
+\]
+\end{definition}
+Thus, after observing $c$, all messages compatible with $c$ are equiprobable. This is a posterior condition; it does not assert that the prior itself is uniform. In particular, the prior and the encoder may compensate for one another through their induced multiplicities.
+\begin{remark}
+Universal optimality should not be confused with Shannon perfect secrecy.  Universal optimality requires $\Pr[M=m\mid C=c]$ to be uniform over the cloak of $c$, whereas perfect secrecy requires $\Pr[M=m\mid C=c]=\pi(m)$ for every message.  The two notions coincide only when the prior is already uniform on every cloak.
+\end{remark}
+A simple example illustrating this posterior symmetry is the one-time pad with uniformly distributed keys: every ciphertext is compatible with all plaintexts, and the posterior distribution remains uniform.  Example~1 in Chapter~\ref{ch:sec:examples} provides a finite instance of the same phenomenon within the framework developed in this book.
+\section{First consequence of posterior uniformity}
+Combining Definition~\ref{ch:def:universal-optimality} with Bayes' rule shows that, for each active $c$, the quantity $\pi(m)\Pr[C=c\mid M=m]$ is independent of $m\in\cloak(c)$. Equivalently, after multiplying by $|\Kset|$, the quantity $\pi(m)n_{mc}$ is constant along every cloak. Chapter~\ref{ch:sec:multiplicity} records this statement in matrix form, and Chapter~\ref{ch:sec:representation} turns it into the representation theorem.
+\section{Scope}
+This book is restricted to finite spaces and deterministic encoders. These assumptions permit an exact counting formulation and avoid measure-theoretic issues. Probabilistic encoders and infinite spaces are important extensions, but are left for future work.
+\endinput

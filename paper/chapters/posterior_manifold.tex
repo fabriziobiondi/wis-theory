@@ -1,0 +1,199 @@
+\chapter[Posterior Manifold]{The Posterior Manifold}\label{ch:sec:the-posterior-manifold}
+
+The Universal Optimality Defect measures distances in a Hilbert space
+$V_I/\operatorname{Im}(C)$.  But that space captures the geometry of
+incidence vectors, not of probability distributions themselves.
+To connect the defect to actual encryption systems we need to embed the
+simplex of posterior distributions into this geometry---to construct a
+Riemannian manifold whose points are probability distributions and whose
+distances coincide with the UOD.  This chapter builds that manifold,
+starting from elementary Euclidean geometry.
+
+
+The posterior manifold constructed in this chapter is the stage on which the entire geometric theory unfolds. Its Riemannian metric (Chapter~11), the stability of the UOD (Chapter~12), and all subsequent bounds on information functionals (Chapters~13--19) live on this manifold.
+
+\section{Euclidean Preliminaries}\label{ch:sec:euclidean-preliminaries}
+Let \(\mathbb{R}^{n}\) denote the Euclidean space endowed with its
+standard inner product.
+Define
+$f(x)=\sum_{i=1}^{n} x_i.$
+\begin{proposition}[Smoothness of the Sum]
+\label{ch:prop:1-1}
+The map \(f\) is smooth.
+\end{proposition}
+\begin{proof} The coordinate projections are linear. Finite sums of linear
+maps are linear, and every linear map between finite-dimensional
+Euclidean spaces is smooth. 
+\end{proof}
+%% Explanatory comment: Smoothness of the sum map establishes the basic differential structure: the coordinate functions are well-behaved, which is the minimal requirement for any subsequent geometric construction on the posterior manifold.
+\begin{proposition}[Differential of the Sum]
+\label{ch:prop:1-2}
+For every \(x\),
+$Df_x(v)=\sum_i v_i.$
+\end{proposition}
+\begin{proof} Since \(f\) is linear, its derivative at any point equals
+the map itself: \(Df_x(v)=f(v)=\sum_i v_i\).
+\end{proof}
+%% Explanatory comment: The differential of the sum map is simply the sum of the components, confirming that the derivative of a linear functional is the functional itself. This triviality is actually essential: it guarantees that the level sets of the sum are regular.
+\begin{proposition}[Surjectivity]
+\label{ch:prop:1-3}
+The differential \(Df_x\) is surjective.
+\end{proposition}
+\begin{proof} For any \(t\in\mathbb R\) take \(v=(t,0,\dots,0)\).
+Then \(Df_x(v)=t\), so the image of \(Df_x\) is all of \(\mathbb R\).
+\end{proof}
+%% Explanatory comment: Surjectivity of the differential ensures that the sum map is a submersion, which is the technical condition needed to apply the Regular Level Set Theorem. Without this property, the probability simplex would not be a smooth submanifold.
+\section{Interior Probability Simplex}\label{ch:sec:interior-probability-simplex}
+Define
+\[ \Delta_n^\circ=
+\{p\in\mathbb R^{n}:p_i>0,\;\sum_i p_i=1\}. \]
+\begin{theorem}[Smooth Manifold Structure]
+\label{ch:thm:1-4}
+The interior simplex is a smooth manifold of dimension \(n-1\).
+\end{theorem}
+\begin{proof} The affine hyperplane \[ \Delta_n^\circ=
+\{p\in\mathbb R^{n}:p_i>0,\;\sum_i p_i=1\}. \] is an embedded manifold by
+the Regular Level Set Theorem because \[ T_p\Delta_n^\circ=
+\{v\in\mathbb R^{n}:\sum_i v_i=0\}. \] is surjective everywhere.
+Since $\mathcal P=\prod_{c\in\mathcal C}\Delta_c^\circ.$ is an open subset of this
+hyperplane, it inherits a smooth manifold structure. 
+\end{proof}
+%% Explanatory comment: The interior probability simplex is a smooth manifold of dimension n-1, which is the natural geometric setting for the subsequent analysis. This smooth structure is the foundation upon which the logarithmic embedding, the gauge quotient, and the pullback metric are built.
+\begin{theorem}[Tangent Space of the Simplex]\label{ch:thm:1-5}
+
+For every \(p\in\Delta_n^\circ\),
+\[ T_p\Delta_n^\circ=
+\{v\in\mathbb R^{n}:\sum_i v_i=0\}. \]
+\end{theorem}
+\begin{proof} The tangent space of a regular level set equals the kernel of
+its differential. Since \[ T_P\mathcal P=
+\prod_c T_{P_c}\Delta_c^\circ. \], the claim
+follows. 
+\end{proof}
+
+\begin{proposition}[Gauge Geometry of the Logarithmic Space]\label{ch:prop:2-1}
+Define
+
+\[
+x\sim y \iff \exists\lambda\in\mathbb R,\; y=x+\lambda\mathbf1.
+\]
+
+This is an equivalence relation.  The quotient space
+
+\[
+\mathcal G = \mathbb R^{k}/\operatorname{span}\{\mathbf1\}
+\]
+
+inherits the canonical vector-space structure.
+\end{proposition}
+
+\begin{proposition}\label{ch:prop:2-1-dim}
+\(\dim(\mathcal G)=k-1.\)
+\end{proposition}
+\begin{proof} Apply the dimension formula for quotient spaces.
+\end{proof}
+
+
+\section{Canonical Projection}\label{ch:sec:canonical-projection}
+
+Define the quotient map
+
+\[
+Q:\mathbb R^{k}\to\mathcal G,\qquad Q(x)=[x].
+\]
+
+\begin{proposition}
+\label{ch:prop:2-2}
+The map \(Q\) is linear.
+\end{proposition}
+%% Explanatory comment: Linearity of the quotient map Q means that the passage to the gauge-reduced space is a linear operation. This ensures that all subsequent geometric constructions (differential, metric, etc.) remain compatible with the linear structure of the quotient.
+
+\begin{proposition}
+\label{ch:prop:2-3}
+\[ \ker(Q)=\operatorname{span}\{\mathbf1\}. \]
+\end{proposition}
+%% Explanatory comment: The kernel of Q is exactly the line spanned by the constant vector, confirming that the quotient map identifies exactly those logarithmic coordinates that differ by an additive constant. This is the precise mathematical expression of the gauge redundancy.
+\begin{corollary}
+\label{ch:cor:2-4}
+\[ \operatorname{rank}(Q)=k-1. \]
+\end{corollary}
+%% Explanatory comment: The quotient map has rank k-1, matching the dimension of the reduced space. This numerical agreement is the algebraic verification that the gauge reduction has eliminated exactly one degree of freedom, which is the fundamental step for ensuring uniqueness in the logarithmic representation.
+
+\section{Hyperplane Representation}\label{ch:sec:hyperplane-representation}
+
+Define
+
+\[
+H=\{x:\sum_i x_i=0\}.
+\]
+
+\begin{proposition}
+\label{ch:prop:2-5}
+The restriction \(Q|_H:H\to\mathcal G\) is a linear isomorphism.
+\end{proposition}
+%% Explanatory comment: This linear isomorphism confirms that the gauge quotient and the zero-sum hyperplane are equivalent representations of the same space. The hyperplane representation is often more convenient for concrete computations, while the quotient captures the geometric essence of the gauge reduction.
+
+Thus the quotient and hyperplane realizations are equivalent.
+
+\paragraph{Logarithmic Coordinates.}
+Define the logarithmic embedding
+
+\[
+L(P)=(\log P_1,\ldots,\log P_k).
+\]
+
+The map is smooth.  Its differential is
+
+\[
+DL_P(v)=\left(\frac{v_i}{P_i}\right)_i.
+\]
+
+\section{Weighted Hyperplane}\label{ch:sec:weighted-hyperplane}
+
+Define
+
+\[
+W_P = \left\{ w:\sum_iP_iw_i=0 \right\}.
+\]
+
+\begin{proposition}[Weighted Hyperplane]
+\label{ch:prop:3-1}
+\(W_P\) is a vector subspace of dimension \(k-1\).
+\end{proposition}
+
+\paragraph{Interpretation.}
+The posterior simplex $\Delta_k^\circ$ is the space of all possible posterior distributions.  Endowing it with a Riemannian metric turns probabilistic statements into geometric ones: distances become indistinguishability, geodesics become optimal interpolation, and curvature becomes sensitivity.  This geometric recasting is what makes the universal bounds of Part~IV possible.
+
+\begin{quote}
+\textbf{Mathematical intuition.}
+The weighted hyperplane $W_P=\{w:\sum_i P_i w_i=0\}$ removes the degree of freedom that corresponds to multiplying all probabilities by the same factor.
+This is the logarithmic analogue of normalising a probability distribution to sum to~1, but done in the tangent space rather than on the simplex itself.
+\end{quote}
+%% Explanatory comment: The weighted hyperplane W_P has dimension k-1, matching the dimension of the tangent space. This is not a coincidence: W_P is precisely the image of the tangent space under the logarithmic differential, providing the link between probability geometry and the gauge quotient.
+
+\begin{theorem}[Image of the Differential]
+\label{ch:thm:3-2}
+\[ DL_P(T_P\Delta)=W_P. \]
+\end{theorem}
+
+\begin{proof}
+If \(v\in T_P\Delta\) then \(\sum_i v_i=0\).  Hence
+\(\sum_i P_i(v_i/P_i)=\sum_i v_i=0\), so \(DL_P(v)\in W_P\).
+Conversely, given \(w\in W_P\), define \(v_i=P_iw_i\).  Then
+\(\sum_i v_i=\sum_i P_iw_i=0\), so \(v\in T_P\Delta\) and
+\(DL_P(v)=w\). \(\)
+\end{proof}
+%% Explanatory comment: The image of the logarithmic differential is exactly the weighted hyperplane W_P. This is the key structural fact: the logarithmic derivative maps tangent vectors of the simplex into the weighted hyperplane, establishing the bridge between probability geometry and the quotient gauge space. This result is fundamental for constructing the canonical logarithmic map F = Q ∘ L.
+
+\begin{corollary}[Linear Isomorphism]
+\label{ch:cor:3-3}
+\(DL_P:T_P\Delta\to W_P\) is a linear isomorphism.
+\end{corollary}
+%% Explanatory comment: The logarithmic differential is a linear isomorphism between the tangent space of the simplex and the weighted hyperplane. This invertibility is fundamental: it guarantees that the logarithmic coordinate map is a local diffeomorphism and that the induced pullback metric is well-defined and non-degenerate.
+
+\paragraph{Running example: differential privacy.}
+In differential privacy (Section~\ref{ch:sec:differential-privacy-and-database-queries}), the posterior manifold is the set of all output distributions induced by neighbouring databases.  The logarithmic map $L(P)=\log P$ sends the simplex to a hyperplane in $\mathbb R^n$, and the differential $DL_P$ gives the linearised effect of a database change.  For the Laplace mechanism with $n$ possible outputs, the weighted hyperplane $W_P=\{x\in\mathbb R^n:\sum_i\pi_i x_i=0\}$ has dimension $n-1$, and $\dim(\operatorname{Im}(DL_P))=k-1$ by Theorem~\ref{ch:thm:1-5}---every privacy variation is captured by a unique logarithmic direction.
+
+This weighted hyperplane is the natural codomain of the logarithmic
+differential and provides the key structural ingredient for the
+subsequent geometry.

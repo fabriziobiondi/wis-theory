@@ -1,0 +1,26 @@
+﻿\chapter[Uniqueness and Gauge]{Uniqueness and Gauge Equivalence}\label{ch:sec:gauge}
+The representation theorem gives a factorization. We next show that its only ambiguity is componentwise scaling.
+\begin{lemma}[Edge ratios]\label{ch:lem:edge-ratios}
+Suppose a multiplicity matrix satisfies $n_{mc}=\frac{\beta(c)}{w(m)}=\frac{\beta'(c)}{w'(m)}$ on every incidence. Then, for each edge $mc$,
+$\frac{w'(m)}{w(m)}=\frac{\beta'(c)}{\beta(c)}.$
+\end{lemma}
+\begin{proof}
+Cross-multiplication of the two factorizations gives the asserted equality.
+\end{proof}
+
+\begin{theorem}[Uniqueness of the WIS weights]\label{ch:thm:uniqueness}
+Let $\mathfrak W$ and $\mathfrak W'$ be two weighted incidence structures with the same incidence relation $I$ and the same induced multiplicity ratios $n_{mc}=\beta(c)/w(m)=\beta'(c)/w'(m)$. On every connected component $H$ of their incidence graph, there is a constant $\lambda_H>0$ such that
+\[
+ w'(m)=\lambda_Hw(m),\qquad
+ \beta'(c)=\lambda_H\beta(c)
+\]
+for every vertex of $H$.
+\end{theorem}
+\begin{proof}
+By Lemma~\ref{ch:lem:edge-ratios}, the ratio $w'/w$ at a message endpoint equals the ratio $\beta'/\beta$ at the adjacent ciphertext endpoint. Along a path in a connected component, successive edge equalities propagate one common positive value. Denote it by $\lambda_H$.
+\end{proof}
+
+\begin{corollary}[Gauge equivalence]\label{ch:cor:gauge}
+On a connected incidence graph, two WIS factorizations of the same multiplicity matrix differ by one global positive scaling. On a disconnected graph, the scaling is independent on distinct connected components.
+\end{corollary}
+Thus the intrinsic datum is a gauge class of weights, not a preferred normalization. The choice $w=\pi$ made in Definition~\ref{ch:def:induced-wis} is a convenient representative supplied by the probabilistic model.

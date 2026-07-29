@@ -1,0 +1,197 @@
+﻿\chapter[Introduction]{Introduction}\label{ch:sec:introduction}
+
+A side-channel analyst measures the power consumption of a chip and
+obtains a distribution over possible secret keys.  A location-privacy
+researcher reports a noisy GPS coordinate and wants to guarantee that
+an adversary cannot distinguish nearby locations.  A cryptographer
+designs an encryption scheme and needs to know whether any ciphertext
+leaks information about the plaintext.
+
+All three problems share the same mathematical core: given an encoder
+that produces outputs from secret inputs, how far is the resulting
+distribution from being independent of the input?  This book develops
+a unified geometric framework that answers this question for any
+deterministic encoder.
+
+The answer is the \emph{Universal Optimality Defect} (UOD), a single
+number that measures the distance from a distribution to the ideal of
+perfect secrecy.  The framework that produces this number---weighted
+incidence structures, their forced Hilbert-space geometry, and the
+canonical operator calculus---is the subject of this book.
+
+\section{Main Contributions}\label{ch:sec:main-contributions}
+
+The book makes twelve principal contributions.
+
+\paragraph{1. Complete classification of universally optimal encoders.}
+Before this work, only one family of universally optimal deterministic
+encoders was known---the Apollonian Cell Encoders (ACE)
+\cite{biondi2018apollonian}.  The present book closes the problem.  A
+weighted incidence structure is realised by a deterministic encoder if
+and only if its induced multiplicities are integers and its weights
+satisfy the linear balance equation $B\beta = Kw$ on the incidence
+graph (Theorem~\ref{ch:thm:realizability}).  This is a complete,
+checkable characterisation.
+
+\paragraph{2. The WIS as an intrinsic invariant.}
+The WIS is not a modelling convenience.  It emerges inevitably from the
+probabilistic data of any universally optimal encoder.  The
+representation theorem (Theorem~\ref{ch:thm:representation}) shows that
+every such encoder induces a unique WIS, the only ambiguity being a
+componentwise positive scaling---a gauge symmetry (Theorem~\ref{ch:thm:uniqueness}).
+
+\paragraph{3. A forced Hilbert-space geometry.}
+The logarithmic factorisation $\log n_{mc}=v_c-u_m$ is not a rewriting:
+it forces the definition of a canonical linear operator $\Phi$, and
+from this operator every subsequent analytic construction follows
+inexorably---the least-squares principle, the incidence Laplacian,
+convexity modulo gauge, stability, the quotient geometry, and the UOD.
+None of these is chosen; each is the unique consequence of the
+logarithmic representation together with elementary Hilbert-space
+theory.
+
+\paragraph{4. The UOD as a canonical distance.}
+The Universal Optimality Defect $\mathcal D(P,Q)$ is not another
+divergence: it is the squared Euclidean distance in the quotient space
+of logarithmic coordinates.  All smooth information functionals become
+scalar fields on this geometry, and all inherit universal stability
+bounds from two general theorems.
+
+\paragraph{5. Universal Lipschitz and quadratic bounds.}
+For any $C^1$ functional $S$ on a compact subset,
+$|S(P)-S(Q)|\le L_S\sqrt{\mathcal D(P,Q)}$ (Theorem~\ref{ch:thm:14-1}).  For any
+$C^2$ functional with a stationary point,
+$|S(P)-S(P^\star)|\le C_S\,\mathcal D(P,P^\star)$ (Theorem~\ref{ch:thm:14-2}).
+These bounds apply uniformly to Shannon entropy, R\'enyi entropy (all
+$\alpha>0$), Tsallis entropy, min-entropy, KL divergence, $\chi^2$
+divergence, Hellinger distance, $\alpha$-divergences, $\beta$-divergences,
+Jensen--Shannon divergence, and R\'enyi divergence.
+
+\paragraph{6. Lower bounds for convex and concave functionals.}
+For geodesically convex functionals (KL, Jensen--Shannon),
+$(\mu/2)\mathcal D(P,Q)\le S(P)-S(Q)\le (M/2)\mathcal D(P,Q)$
+(Theorem~\ref{ch:thm:15-3}).  For geodesically concave functionals (R\'enyi
+$\alpha<1$, min-entropy), the inequality is reversed.  This brackets
+every major information functional between two multiples of the UOD.
+
+\paragraph{7. A unified g-entropy framework.}
+All classical entropies---Shannon, R\'enyi, Tsallis,
+min-entropy---are special cases of a single functional
+$H_g(P)=g(\sum_i g^{-1}(-\log P_i))$, whose Lipschitz constant is
+given in closed form (Corollary~\ref{ch:cor:g-entropy-lipschitz}).  The bounds for each entropy are
+consequences of one common structure.
+
+\paragraph{8. Piecewise-smooth security measures.}
+Rank-based measures (Bayes vulnerability, guessing entropy, max
+leakage) are not globally smooth but become smooth on regularity
+intervals where the posterior ranking is constant.  On each interval
+the universal bounds apply, with explicit crossing times at interval
+boundaries (Chapter~\ref{ch:sec:piecewise-smooth}).
+
+\paragraph{9. Empirical validation of bound tightness.}
+A computational discovery campaign on one-heavy distributions
+$P_\varepsilon=(1-(n-1)\varepsilon,\varepsilon,\dots,\varepsilon)$
+confirms that the Lipschitz bound is always satisfied but
+$60$--$400\,000\times$ wider than the actual gap.  The quadratic bound
+is $2$--$42\times$ wider than the exact R\'enyi identity.  The bounds
+are structural---they show that all smooth functionals obey the same
+geometric principle---not replacements for specialised inequalities.
+
+\paragraph{10. The Three-Level Theorem.}
+Every interior regular constrained critical point of the variational
+problem $\max\mathcal D(P,U_n)$ subject to
+$D_{\mathrm{KL}}(P\|U_n)=K$ collapses to at most three distinct
+log-likelihood values, independently of $n$ (Theorem~\ref{ch:thm:29-3}).  The
+critical points form a two-parameter family, and the transition from
+one level (uniform) to two levels to three levels as $K$ increases is
+a pitchfork bifurcation.
+
+\paragraph{11. Randomised encoders and rational WIS.}
+Every rational WIS is realisable by a randomised encoder with finite
+seed set (Theorem~\ref{ch:thm:randomised-uod}).  Every real WIS weight is approximable with
+error $O(1/|\mathcal S|)$.  The deterministic ACE are the integral
+extremal points of the rational convex hull.
+
+\paragraph{12. Eight concrete applications.}
+The framework is demonstrated on AES S-box, browser fingerprinting,
+geo-indistinguishability, differential privacy (both central and local
+models), anonymous communication (mix networks), network routing, and
+side-channel analysis.  Each follows the pattern
+\textbf{problem} $\to$ \textbf{WIS} $\to$ \textbf{UOD}
+$\to$ \textbf{interpretation}.
+
+\section{Comparison with the State of the Art}\label{ch:sec:comparison-with-the-state-of-the-art}
+
+\begin{center}
+\begin{tabular}{lll}
+\textbf{Aspect} & \textbf{Previous literature} & \textbf{This book} \\ \hline
+Universally optimal encoders & ACE family only \cite{biondi2018apollonian} & Complete characterisation \\
+WIS as invariant & Not identified & Intrinsic invariant \\
+Geometry & Metric from divergence & Geometry from linearisation \\
+Stability bounds & Separate per functional & Universal Lipschitz+quadratic \\
+R\'enyi bounds & Exact via divergence \cite{vanerven2014renyi} & Independent UOD estimate \\
+Security measures & Case-by-case & Unified piecewise-smooth theory \\
+Lower bounds & Bregman only & All convex/concave functionals \\
+Three-Level Structure & Does not exist & New variational result \\
+Randomised encoders & Not studied & Rational approximation \\
+\end{tabular}
+\end{center}
+
+The contribution is not a sharper inequality for a particular quantity,
+but a structural unification: the same geometry---the WIS manifold with
+its pullback metric and the UOD---simultaneously classifies ciphers,
+bounds entropy, estimates security, and reveals the variational
+collapse of the uniform observer divergence.
+
+\section{Organisation of the Book}\label{ch:sec:organisation-of-the-book}
+
+The book is organised in five parts, preceded by a chapter of
+motivating examples (Chapter~\ref{ch:sec:motivating-examples}) and the present introduction
+(Chapter~\ref{ch:sec:introduction}).
+
+\paragraph{Part~\ref{ch:part:wis}---Weighted Incidence Structures (Chapters~\ref{ch:sec:background}--\ref{ch:sec:representation}).}
+Develops the probabilistic setting, multiplicity matrices, the
+cycle-factorisation criterion, weighted incidence structures, the
+classification theorem, and gauge uniqueness.
+
+\paragraph{Part~\ref{ch:part:hilbert}---Hilbert Geometry and the Universal Optimality
+Defect (Chapters~\ref{ch:sec:graphs}--\ref{ch:sec:hilbert-geometry}).}
+Constructs the logarithmic linearisation, the mismatch operator, the
+least-squares variational principle, convexity, stability, and the
+Universal Optimality Defect, with worked examples.
+
+\paragraph{Part~\ref{ch:part:posterior}---Geometric Foundations of the Posterior Manifold
+(Chapters~\ref{ch:sec:the-posterior-manifold}--\ref{ch:sec:stability-of-the-universal-optimality-defect}).}
+Constructs a Riemannian manifold on the interior of the probability
+simplex via the pullback of the Euclidean metric.  The UOD becomes the
+squared distance; its stability, local quadratic approximation, and
+relation with Fisher geometry are developed.
+
+\paragraph{Part~\ref{ch:part:functionals}---Information Functionals and Geometric Bounds
+(Chapters~\ref{ch:sec:entropy-bounds}--\ref{ch:sec:universal-security-bounds}).}
+Applies the manifold geometry to information-theoretic and security
+functionals.  Universal Lipschitz and quadratic bounds are established
+for all classical entropies, divergences, and security measures.
+Bregman divergences are analysed through the Average Hessian Operator.
+Lower bounds for convex and concave functionals complete the bracketing.
+
+\paragraph{Part~\ref{ch:part:variational}---Variational Structure and Comparative Geometry
+(Chapters~\ref{ch:sec:analytic-uod}--\ref{ch:sec:open}).}
+Develops the algebraic and differential theory of the UOD, establishes
+local and global comparisons with classical statistical divergences,
+and proves the Three-Level Theorem.  The final four chapters of this part
+present conclusions, a discussion of related work, eight extended
+applications (AES S-box, browser fingerprinting, geo-indistinguishability,
+differential privacy, mix networks, routing, side channels, local DP),
+and open problems including randomised encoders, quantum WIS,
+computational complexity, and gradient flows.
+
+\paragraph{Relation to the ACE literature.}
+The present work is not an extension of the Apollonian Cell Encoder
+construction \cite{biondi2018apollonian}.  ACE provides one explicit
+family of universally optimal encoders.  This book asks the converse
+structural question: which deterministic encoders are universally
+optimal, and what mathematical structure do they all share?  The answer
+is the weighted incidence structure and its forced Hilbert-space
+geometry, which subsume the ACE construction as a special case.
+\endinput

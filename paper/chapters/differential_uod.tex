@@ -1,0 +1,194 @@
+\chapter[Differential Theory of the UOD]{Differential Theory of the Universal Optimality Defect}\label{ch:sec:differential-theory-of-the-universal-optimality-defect}
+
+\section{Introduction}\label{ch:sec:introduction-analytic_uod-3}
+
+The preceding chapters established an exact algebraic formula for the Universal
+Optimality Defect (UOD). The present chapter develops its differential
+theory.
+
+Throughout, let
+
+\[
+F=Q\circ L:\mathcal P\rightarrow F(\mathcal P)
+\]
+
+be the global logarithmic embedding of Part~\ref{ch:part:posterior} and
+
+\[
+\mathcal D(P,Q)=\|F(P)-F(Q)\|^{2}.
+\]
+
+Since \(F\) is a global diffeomorphism and the pullback metric is defined
+by \(g=F^{*}g_E\), all differential properties of the UOD can be derived
+directly from Euclidean calculus.
+
+\section{Differential of the Logarithmic Embedding}\label{ch:sec:differential-of-the-logarithmic-embedding}
+
+For \(P\in\mathcal P\),
+
+\[
+DF_P=Q\circ DL_P.
+\]
+
+By Part~\ref{ch:part:posterior}, \(DF_P\) is a linear isomorphism on every tangent space.
+Consequently,
+
+\[
+g_P(u,v)=\langle DF_Pu,DF_Pv\rangle.
+\]
+
+\section{First Variation}\label{ch:sec:first-variation}
+
+\begin{theorem}[First Variation of the UOD]
+\label{ch:thm:22-1}
+For every smooth curve \(P(t)\),
+
+\[
+\frac{d}{dt}\mathcal D(P(t),Q)=
+2\langle DF_{P(t)}P'(t),F(P(t))-F(Q)\rangle.
+\]
+\end{theorem}
+
+\begin{proof}
+Differentiate the Euclidean squared norm and apply the chain rule.
+\end{proof}
+
+\section{Characterization of Critical Points}\label{ch:sec:characterisation-of-critical-points}
+
+\begin{theorem}[Unique Critical Point]
+\label{ch:thm:22-2}
+The only critical point of
+
+\[
+P\mapsto\mathcal D(P,Q)
+\]
+
+is \(P=Q\).
+\end{theorem}
+
+\begin{proof}
+If \(P\) is critical then \(d\mathcal D_P(v)=0\) for every tangent
+vector \(v\). By Theorem~\ref{ch:thm:22-1},
+
+\[
+\langle DF_Pv,F(P)-F(Q)\rangle=0
+\]
+
+for every \(v\). Since \(DF_P\) is an isomorphism, its image is the
+whole tangent space of \(F(\mathcal P)\). Hence \(F(P)-F(Q)=0\).
+The injectivity of \(F\) (Part~\ref{ch:part:posterior}) implies \(P=Q\). 
+\end{proof}
+
+\section{Gradient}\label{ch:sec:gradient}
+
+\begin{corollary}[Riemannian Gradient]
+\label{ch:cor:22-3}
+The Riemannian gradient is uniquely determined by
+
+\[
+g_P(\nabla_g\mathcal D,v)=2\langle DF_Pv,F(P)-F(Q)\rangle.
+\]
+
+Equivalently,
+
+\[
+\nabla_g\mathcal D = 2\,DF_P^{-1}(F(P)-F(Q)).
+\]
+\end{corollary}
+
+\begin{proof}
+Using the pullback metric \(g_P(u,v)=\langle DF_Pu,DF_Pv\rangle\), the
+defining identity of the Riemannian gradient gives
+
+\[
+DF_P(\nabla_g\mathcal D)=2(F(P)-F(Q)).
+\]
+
+Invertibility of \(DF_P\) completes the proof. 
+\end{proof}
+
+\section{Hessian at the Reference Posterior}\label{ch:sec:hessian-at-the-reference-posterior}
+
+\begin{theorem}[Hessian at the Optimum]
+\label{ch:thm:22-4}
+At the reference point \(P=Q\),
+
+\[
+\operatorname{Hess}_g(\mathcal D)_P = 2I.
+\]
+\end{theorem}
+
+\begin{proof}
+Near \(P\),
+
+\[
+F(P+\delta) = F(P)+DF_P\delta+o(\|\delta\|).
+\]
+
+Therefore,
+
+\[
+\mathcal D(P+\delta,P) = \|DF_P\delta\|^{2}+o(\|\delta\|^{2}).
+\]
+
+Using the definition of the pullback metric,
+\(\|DF_P\delta\|^{2}=g_P(\delta,\delta)\), so
+
+\[
+\mathcal D(P+\delta,P) = g_P(\delta,\delta)+o(\|\delta\|^{2}).
+\]
+
+Hence the quadratic term is represented by the identity bilinear form,
+whose Hessian is \(2I\). 
+\end{proof}
+
+\section{Strict Convexity Near the Optimum}\label{ch:sec:strict-convexity-near-the-optimum}
+
+\begin{corollary}[Local Convexity]
+\label{ch:cor:22-5}
+The reference posterior is a strict local minimizer of the UOD.
+\end{corollary}
+
+\begin{proof}
+The Hessian at \(P\) equals \(2I\), which is positive definite.
+\end{proof}
+
+\section{Local Quadratic Model}\label{ch:sec:local-quadratic-model}
+
+Combining the previous results,
+
+\[
+\boxed{
+\mathcal D(P+\delta,P)
+=
+\|\delta\|_g^2
++
+o(\|\delta\|_g^2).
+}
+\]
+
+Thus the UOD is locally identical to the squared Riemannian distance
+induced by the pullback metric.
+
+\section{Consequences}\label{ch:sec:consequences}
+
+The differential theory establishes:
+\begin{itemize}
+\item smoothness of the UOD;
+\item uniqueness of its critical point;
+\item explicit gradient;
+\item exact Hessian at the optimum;
+\item strict local convexity;
+\item local quadratic approximation.
+\end{itemize}
+
+These properties are intrinsic consequences of the logarithmic embedding
+and require no additional probabilistic assumptions.
+
+\section{Outlook}\label{ch:sec:outlook-analytic_uod}
+
+The next chapter compares this local quadratic structure with the
+classical Fisher information metric, identifying the precise
+relationship between the WIS geometry and standard information geometry.
+
+

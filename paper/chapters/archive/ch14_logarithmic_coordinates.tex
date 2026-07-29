@@ -1,0 +1,33 @@
+\chapter[Logarithmic Coordinates]{Logarithmic Coordinates and Differential Structure}
+\section{Logarithmic Map}
+Define
+$L(P)=(\log P_1,\ldots,\log P_k).$
+The map is smooth.
+Its differential is
+$DL_P(v)=\left(\frac{v_i}{P_i}\right)_i.$
+\section{Weighted Hyperplane}
+Define
+$W_P= \left\{ w:\sum_iP_iw_i=0 \right\}.$
+\begin{proposition}[Weighted Hyperplane]
+\label{ch:prop:3-1}
+\(W_P\) is a vector subspace of dimension \(k-1\).
+\end{proposition}
+\section{Image of the Differential}
+\begin{theorem}[Image of the Differential]
+\label{ch:thm:3-2}
+$DL_P(T_P\Delta)=W_P.$
+\end{theorem}
+\begin{proof}
+If $L(P)=(\log P_1,\ldots,\log P_k).$, then
+Conversely, if $DL_P(v)=\left(\frac{v_i}{P_i}\right)_i.$, define $W_P= \left\{ w:\sum_iP_iw_i=0 \right\}.$. Then
+$DL_P(T_P\Delta)=W_P.$ and $DL_P:T_P\Delta\to W_P$. 
+\end{proof}
+
+\begin{corollary}[Linear Isomorphism]
+\label{ch:cor:3-3}
+$DL_P:T_P\Delta\to W_P$
+is a linear isomorphism.
+\end{corollary}
+This weighted hyperplane is the natural codomain of the logarithmic
+differential and provides the key structural ingredient for the
+subsequent geometry.

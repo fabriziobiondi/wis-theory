@@ -1,0 +1,37 @@
+﻿\chapter[Open Problems]{Open Problems}\label{ch:sec:open}
+The deterministic realization problem is completely characterized in this book.  Several natural extensions remain open.
+\paragraph{Part I--Weighted Incidence Structures.}
+\begin{itemize}
+\item \textbf{Probabilistic encoders.}  Allowing randomized encoding strategies may relax the integrality condition on the multiplicity ratios.  A characterization of probabilistically realizable WIS would be a natural next step.
+\item \textbf{Infinite message spaces.}  Extending the WIS framework to countable or continuous message spaces requires measure-theoretic formulations of the quotient geometry and the universal optimality defect.
+\item \textbf{Continuous weighted incidence structures.}  When the incidence graph is replaced by a continuous bipartite structure (e.g.\ a kernel), the balance equation \(B\beta = Kw\) becomes an integral equation.  The existence of solutions and their interpretation as encoding strategies is unexplored.
+\item \textbf{Optimization of the universal optimality defect.}  The defect \(\delta(Y)\) defines a cost function on the space of WIS weights.  Minimizing \(\delta\) over admissible weights, subject to integrality constraints, may yield approximate encoders for systems where exact universal optimality is unattainable.
+\item \textbf{Approximation theory for irrational weights.}  When the induced multiplicity ratios are irrational, no exact finite encoder exists.  Rational approximation of the weights and the resulting trade-off between approximation quality and key length merit investigation.
+\item \textbf{Categorical formulations.}  The WIS construction, the gauge quotient, and the Hilbert-space structure may admit a unified description in terms of category-theoretic fibrations, providing a bridge to the theory of information algebras.
+\end{itemize}
+\paragraph{Part II--Hilbert Geometry.}
+\begin{itemize}
+\item \textbf{Spectral geometry of the posterior Laplacian.}  The reduced Hessian derived in Chapter~8 is a graph Laplacian on the incidence graph.  The relationship between its spectrum and the combinatorial properties of the original encoding system (key length, message entropy, equivocation) is largely unexplored.
+\item \textbf{Non-quadratic variational principles.}  The least-squares formulation of Chapter~8 is forced by the logarithmic linearization.  Higher-order Taylor expansions of the WIS factorization may give rise to non-quadratic variational problems whose analysis requires methods from non-linear functional analysis.
+\end{itemize}
+\paragraph{Part III--Posterior Manifold Geometry.}
+\begin{itemize}
+\item \textbf{Global curvature.}  The pullback metric defined in Part~III is flat because it is pulled back from Euclidean space.  Replacing the Euclidean target with a curved space (e.g.\ the Fisher--Rao metric on the codomain) would yield a non-flat geometry whose curvature encodes additional information about the encoding system.
+\item \textbf{Boundary behaviour of entropy bounds.}  The Lipschitz and quadratic bounds of Part~IV break down near the boundary of the probability simplex.  A refined analysis for distributions with small but non-zero probabilities---the regime relevant to practical side-channel analysis---remains open.
+\end{itemize}
+\paragraph{Part IV--Information Functionals and Security.}
+\begin{itemize}
+\item \textbf{Tightness of the Lipschitz constants.}  The constants \(L_S\) and \(C_S\) in the universal bounds of Part~IV are obtained from supremum bounds on the WIS gradient.  Determining the optimal (smallest) constants for specific functionals---Shannon entropy, R\'enyi entropy, min-entropy---would sharpen the estimates and clarify the limits of the geometric approach.
+\item \textbf{Beyond smooth functionals.}  The piecewise-smooth theory of Chapter~17 covers rank-based security measures.  Extending the analysis to functionals with more complex singularities (e.g.\ the guessing entropy for non-uniform distributions) would broaden the applicability of the framework.
+\end{itemize}
+\paragraph{Part V--Variational Structure.}
+\begin{itemize}
+\item \textbf{Multiplicity of critical points.}  Theorem~49 (Three-Level Structure) shows that interior critical points of the uniform observer divergence collapse to at most three distinct log-likelihood values.  Whether analogous collapse phenomena occur for non-uniform reference measures is an open question.
+\item \textbf{Convergence of gradient flows.}  The variational formulation of the UOD suggests a natural gradient flow on the posterior manifold.  Establishing convergence guarantees for this flow would connect the geometric theory to practical optimization algorithms for approximate universal optimality.
+\end{itemize}
+\paragraph{Cross-cutting directions.}
+\begin{itemize}
+\item \textbf{Quantum WIS.}  Generalizing weighted incidence structures to non-commutative probability spaces would yield a quantum analogue of the universal optimality defect, with potential applications to quantum key distribution and quantum side-channel analysis.
+\item \textbf{Computational complexity.}  The cycle-factorization criterion (Theorem~4.1), the balance-equation test for realizability (Theorem~5.2), and the computation of the universal optimality defect all have polynomial-time algorithms.  A systematic complexity-theoretic study of the associated decision and optimization problems is lacking.
+\end{itemize}
+\endinput

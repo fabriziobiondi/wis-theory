@@ -1,0 +1,189 @@
+\chapter[Comparison with Existing Frameworks]{Comparison with Existing Frameworks}\label{ch:sec:comparison-with-existing-frameworks}
+
+This chapter situates the theory of weighted incidence structures,
+their forced Hilbert-space geometry, and the Universal Optimality
+Defect within the broader landscape of cryptography, information
+theory, and geometric data analysis.  The goal is not to argue that
+other frameworks are wrong, but to clarify what is recovered,
+what is generalised, and what is genuinely new.
+
+\section{Shannon's Perfect Secrecy}\label{ch:sec:shannon-perfect-secrecy}
+
+Shannon's definition of perfect secrecy requires that the ciphertext
+be independent of the message: $\Pr[M=m\mid C=c]=\Pr[M=m]$.
+In the language of weighted incidence structures, this is precisely
+the condition that the posterior distribution be uniform on the set of
+messages compatible with the observed ciphertext.  Equivalently, the
+Universal Optimality Defect $\mathcal D(P)$ vanishes for every
+posterior distribution $P$.
+
+\textbf{What we recover.}
+Perfect secrecy is the zero of our geometric scale: $\mathcal D\equiv0$.
+The AES S-box, our main running example, satisfies this condition
+exactly---every message-ciphertext pair is unique, and every posterior
+is a Dirac mass.
+
+\textbf{What we generalise.}
+Shannon's theory provides a binary classification (perfect secrecy
+or not).  Our framework replaces the binary with a continuous measure:
+the UOD quantifies \emph{how far} a system is from perfect secrecy,
+not just whether it achieves it.
+
+\textbf{What is new.}
+The geometric structure---the Riemannian metric, the Lipschitz bounds,
+the Three-Level Theorem---exists only when the defect is non-zero.
+Shannon's framework, being purely probabilistic, has no access to this
+geometry.
+
+\section{Universal Optimality}\label{ch:sec:comparison-universal-optimality}
+
+The concept of universal optimality was introduced by
+Biondi~et~al.~\cite{biondi2018apollonian} to unify several security
+notions under a single algebraic condition.  A deterministic encoder
+is universally optimal if, after observing the ciphertext, every
+compatible message is equally likely---a condition that coincides with
+perfect secrecy when the key is uniform.
+
+\textbf{What we recover.}
+The characterisation of universal optimality as the condition that the
+induced multiplicities factor as $n_{mc}=\beta(c)/w(m)$ is restated
+and proved in this book (Theorem~\ref{ch:thm:representation}).
+
+\textbf{What we generalise.}
+The original theory treated universal optimality as an algebraic
+property of multiplicities.  Our framework embeds it in a continuous
+geometry, showing that every encoder---optimal or not---defines a point
+in a Riemannian manifold whose distance from the optimal set is the
+UOD.
+
+\textbf{What is new.}
+The geometric bounds (Lipschitz, quadratic, Bregman), the stability
+theory, and the Three-Level variational characterisation are entirely
+new and have no counterpart in the algebraic theory.
+
+\section{Information Geometry and the Fisher Metric}\label{ch:sec:comparison-fisher}
+
+Classical information geometry~\cite{amari2016information} studies the
+space of probability distributions endowed with the Fisher--Rao metric.
+The posterior manifold constructed in this book is a submanifold of the
+simplex, but its metric is the pullback of the Euclidean metric through
+the logarithmic map, not the Fisher metric.
+
+\textbf{What we recover.}
+Both geometries share the same underlying manifold---the interior of
+the simplex---and both produce quadratic approximations for
+information-theoretic quantities.  In the limit of small
+perturbations, the pullback metric and the Fisher metric coincide up
+to a factor of~2, because $\log(1+\delta)\approx\delta$ and the
+Fisher metric is the pullback of the Euclidean metric through the
+square-root map.
+
+\textbf{What is different.}
+The Fisher metric is invariant under sufficient statistics and arises
+from the Cram\'er--Rao lower bound.  Our pullback metric arises from
+the algebraic structure of the WIS factorisation, not from estimation
+theory.  The two metrics differ globally: the UOD is a squared norm
+in a Hilbert space, while the Fisher--Rao distance is geodesic
+distance on the sphere (in the square-root representation).
+
+\textbf{What is new.}
+Our geometry is not chosen by the analyst; it is forced by the
+representation condition $n_{mc}=\beta(c)/w(m)$.  This gives every
+geometric statement---every bound, every stability result---a
+cryptographic interpretation that information geometry alone cannot
+provide.
+
+\section{Optimal Transport and Wasserstein Distance}\label{ch:sec:comparison-optimal-transport}
+
+Optimal transport theory~\cite{villani2009optimal} defines distances
+between probability distributions as the minimum cost of moving mass
+from one to another.  The Wasserstein distance $W_p(P,Q)$ has become
+a standard tool in machine learning and statistics.
+
+\textbf{What is different.}
+The Wasserstein distance measures the \emph{effort} of transforming
+one distribution into another, while the UOD measures the
+\emph{distance from a structural condition}.  They are fundamentally
+different objects: the UOD is a function of a single distribution
+$\mathcal D(P)$ (or of a pair $(P,Q)$ through the defect), while
+the Wasserstein distance is always a function of two distributions.
+
+\textbf{What we recover.}
+In the special case where $P$ is the uniform distribution,
+$\mathcal D(P)=\|P-U_n\|^2$ recovers the $L^2$ distance, which is
+related to the Wasserstein-2 distance through the Poincar\'e
+inequality on the simplex.
+
+\textbf{What is new.}
+The UOD satisfies Lipschitz bounds with respect to the manifold metric,
+not the Wasserstein metric.  Our bounds are stronger because the
+manifold metric is adapted to the cryptographic structure, not to the
+geometry of optimal transport.
+
+\section{Graph Laplacians and Spectral Graph Theory}\label{ch:sec:comparison-graph-laplacians}
+
+The posterior Laplacian $L=A^{\mathsf T}QA=D_M-HD_C^{-1}H^{\mathsf T}$
+is the Schur complement~\cite{zhang2005schur} of the normal operator associated with the
+incidence graph.  This operator is a generalised Laplacian on a
+bipartite graph with vertex weights.
+
+\textbf{What we recover.}
+For an unweighted, regular bipartite graph, $L$ reduces to the
+combinatorial Laplacian of the graph, whose spectral properties are
+well studied~\cite{chung1997spectral}.  The least eigenvalue of $L$
+determines the optimal Lipschitz constant for quadratic functionals.
+
+\textbf{What generalises.}
+Classical spectral graph theory studies a fixed graph with uniform
+weights.  Our Laplacian depends on the posterior distribution $P$
+through the weights $\pi_i$ and $P_i$, making it a function on the
+manifold rather than a fixed operator.  This distribution-dependent
+Laplacian is what produces the non-trivial geometry of the posterior
+manifold.
+
+\textbf{What is new.}
+The connection between the normal operator, the Schur complement,
+and the posterior Laplacian reveals that the UOD is the reduced
+energy of a least-squares problem on the incidence graph---a
+perspective that has no analogue in spectral graph theory.
+
+\section{Convex Analysis and Bregman Divergences}\label{ch:sec:comparison-bregman}
+
+Bregman divergences~\cite{bregman1967relaxation} are defined by
+$D_\phi(x,y)=\phi(x)-\phi(y)-\langle\nabla\phi(y),x-y\rangle$ for
+a strictly convex function $\phi$.  They are widely used in
+optimisation, information theory, and machine learning.
+
+\textbf{What we recover.}
+The Average Hessian Operator (Chapter~\ref{ch:sec:the-average-hessian-operator-and-universal-bregman-theo})
+recovers the exact integral representation
+$D_\phi(P,Q)=\frac{1}{2}\Delta^{\mathsf T}\overline H_\phi\Delta$,
+which is the Bregman identity expressed through the manifold geometry.
+
+\textbf{What is new.}
+The UOD bounds the spectral norm of the Average Hessian uniformly
+across all smooth functionals.  This gives a universal estimate for
+the curvature of arbitrary Bregman divergences on the posterior
+manifold---a result that does not follow from classical convex
+analysis because it depends on the specific geometry of the WIS
+factorisation.
+
+\section{Summary: What Is New}\label{ch:sec:comparison-summary}
+
+The following table summarises the relationship between existing
+frameworks and the theory developed in this book.
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Framework} & \textbf{Recovered} & \textbf{New} \\
+\hline
+Shannon perfect secrecy & $\mathcal D\equiv0$ & Continuous measure, geometry \\
+Universal optimality & $n_{mc}=\beta/w$ & Riemannian structure, bounds \\
+Information geometry & Simplex, quadratic approx & Forced metric, cryptographic meaning \\
+Optimal transport & $L^2$ distance special case & Structural distance, Lipschitz bounds \\
+Spectral graph theory & Combinatorial Laplacian & Distribution-dependent operator \\
+Bregman divergences & Integral representation & Universal spectral bounds \\
+\hline
+\end{tabular}
+\end{center}

@@ -1,0 +1,114 @@
+\chapter[Probabilistic Setting]{Probabilistic Setting and Universal Optimality}\label{ch:sec:background}
+
+To study encryption systems geometrically we first need a precise
+probabilistic model of what an encryption system is.  What are the
+ingredients?  Messages, keys, ciphertexts---each with a probability
+distribution---and a deterministic rule that, given a message and a key,
+produces a ciphertext.  This chapter formalises these ingredients and
+introduces the central notion of \emph{universal optimality}: the
+requirement that, after observing the ciphertext, every compatible
+message be equally likely.
+
+The probabilistic model of this chapter underpins every subsequent construction: the WIS factorisation, the gauge quotient, the posterior manifold, and the UOD all depend on the prior $\pi$, the message space $\Mset$, and the ciphertext space $\Cset$ introduced here.
+
+
+\section{Finite probability spaces and notation}\label{ch:sec:finite-probability-spaces-and-notation}
+
+Let $\Mset$, $\Kset$, and $\Cset$ be nonempty finite sets, called the
+message, key, and ciphertext spaces, respectively.  Let
+$\pi:\Mset\to(0,1]$, $\sum_m\pi(m)=1$, be a prior of full support.
+The key is uniform on $\Kset$ and independent of the message:
+\[
+\Pr[K=k]=\frac1{|\Kset|},\qquad
+\Pr[M=m,K=k]=\frac{\pi(m)}{|\Kset|}.
+\]
+
+\subsection{Deterministic encoders and the induced channel}\label{ch:sec:deterministic-encoders-and-the-induced-channel}
+
+\begin{definition}\label{ch:def:encoder-basics}
+A \emph{deterministic Shannon encoder} is a map
+$E:\Mset\times\Kset\longrightarrow\Cset.$
+The ciphertext random variable is $C=E(M,K)$.
+\end{definition}
+
+For $m\in\Mset$ and $c\in\Cset$,
+\[
+\Pr[C=c\mid M=m]
+=\frac{|\{k\in\Kset:E(m,k)=c\}|}{|\Kset|}.
+\]
+The numerator will be formalised as the multiplicity matrix
+$n_{mc}=|\{k:E(m,k)=c\}|$ in Section~\ref{ch:sec:wis}.
+
+\section{Support, incidence, and cloaks}\label{ch:sec:support-incidence-and-cloaks}
+
+\begin{definition}\label{ch:def:cloak-basics}
+For $c\in\Cset$, the \emph{cloak} of $c$ is
+$\cloak(c)=\{m\in\Mset:\Pr[C=c\mid M=m]>0\}.$
+We say $m$ and $c$ are \emph{incident} ($m\sim c$) when $m\in\cloak(c)$.
+\end{definition}
+
+A ciphertext is \emph{active} when $\Pr[C=c]>0$ (its cloak is nonempty).
+
+\subsection{Bayes' rule}\label{ch:sec:bayes-rule}
+
+For every active ciphertext $c$ and every message $m$,
+\begin{equation}\label{ch:eq:bayes-multiplicity-preview}
+\Pr[M=m\mid C=c]
+=\frac{\pi(m)}{|\Kset|\,\Pr[C=c]}\,
+|\{k\in\Kset:E(m,k)=c\}|.
+\end{equation}
+Equation~\eqref{ch:eq:bayes-multiplicity-preview} is the bridge from
+posterior symmetry to a combinatorial factorisation.
+
+\section{Universal optimality relative to a prior}\label{ch:sec:universal-optimality-relative-to-a-prior}
+
+Shannon's perfect secrecy~\cite{shannon1949} requires the posterior to
+coincide with the prior for every ciphertext.  The present work studies
+a weaker---but still highly structured---posterior symmetry: conditional
+on the observed ciphertext, all messages in its cloak are equiprobable.
+Following Biondi, Given-Wilson and
+Legay~\cite{biondi2018apollonian}, we refer to this property as
+\emph{universal optimality}.
+
+\begin{definition}\label{ch:def:universal-optimality-basics}
+A deterministic Shannon encoder is \emph{universally optimal relative
+to $\pi$} if, for every active ciphertext $c$,
+\[
+\Pr[M=m\mid C=c]=\frac1{|\cloak(c)|}
+\qquad\text{for every }m\in\cloak(c).
+\]
+\end{definition}
+
+This is a posterior condition: after observing $c$, all compatible
+messages are equiprobable.  It does not assert that the prior itself is
+uniform.
+
+\begin{remark}
+Universal optimality is weaker than Shannon perfect secrecy: the former
+requires $\Pr[M=m\mid C=c]$ to be uniform over the cloak, whereas the
+latter requires $\Pr[M=m\mid C=c]=\pi(m)$ for every message.  The two
+notions coincide only when the prior is uniform on every cloak.
+\end{remark}
+
+A simple example is the one-time pad with uniformly distributed keys:
+every ciphertext is compatible with all plaintexts, and the posterior
+remains uniform.  Example~1 in Section~\ref{ch:sec:worked-examples}
+provides a finite instance.
+
+\section{First consequence of posterior uniformity}\label{ch:sec:first-consequence-of-posterior-uniformity}
+
+Combining Definition~\ref{ch:def:universal-optimality-basics} with
+Bayes' rule shows that, for each active $c$, the quantity
+$\pi(m)\Pr[C=c\mid M=m]$ is independent of $m\in\cloak(c)$.
+Equivalently, $\pi(m)n_{mc}$ is constant along every cloak.
+Section~\ref{ch:sec:wis} records this in matrix form, and
+Chapter~\ref{ch:sec:representation} turns it into the representation
+theorem.
+
+\paragraph{Running example: AES.}
+Our main running example, the AES S-box (Section~\ref{ch:sec:aes-and-perfect-secrecy}), illustrates this simplest case.  The message and ciphertext spaces coincide ($|\Mset|=|\Cset|=2^{128}$), the incidence is complete ($I=\Mset\times\Cset$), and every ciphertext has a single pre-image: $n_{mc}=1$ for all $(m,c)$.  The posterior is a Dirac mass at each ciphertext, $\Pr[M=m\mid C=c]=\delta_{mc}$, trivially satisfying universal optimality with $\mathcal D\equiv0$.
+
+\paragraph{Scope.}
+This book is restricted to finite spaces and deterministic encoders.
+Probabilistic encoders and infinite spaces are left for future work.
+\endinput

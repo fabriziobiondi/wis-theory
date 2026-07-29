@@ -1,0 +1,157 @@
+\chapter[Stability of the UOD]{Stability of the Universal Optimality Defect}\label{ch:sec:stability-of-the-universal-optimality-defect}
+
+
+We have a Riemannian manifold of posterior distributions and a function
+$\mathcal D(P)$ that measures the distance of $P$ from universal
+optimality.  But is this function well-behaved?  Does a small change in
+the distribution produce a small change in the defect?  Does the defect
+have a unique minimiser, and is that minimiser stable?  This chapter
+answers these questions, establishing the continuity, local quadratic
+approximation, and strict convexity of the UOD.
+
+The purpose of this chapter is to establish the basic stability properties of the Universal Optimality Defect under perturbations of the posterior distribution.
+
+The stability results of this chapter---continuity, local quadratic approximation, strict convexity of the UOD---are the foundation for the quantitative bounds that follow. The Lipschitz and quadratic estimates of Chapters~14--16 all rely on the quadratic approximation established here.
+
+\section{Continuity}\label{ch:sec:continuity-stability}
+\begin{proposition}[Continuity]
+\label{ch:prop:9-1}
+The Universal Optimality Defect
+$\mathcal D$
+is continuous on the posterior manifold.
+\end{proposition}
+\begin{proof}
+The canonical logarithmic coordinate map
+$F$
+is smooth by Proposition~\ref{ch:prop:5-1}.
+The deviation map
+$P\longmapsto F(P)-F(P^\star)$
+is therefore smooth.
+The pullback metric is smooth by Theorem~\ref{ch:thm:7-6}.
+Hence
+\[
+\mathcal D(P)
+=
+g_{P^\star}(\delta(P),\delta(P))
+\]
+is obtained by composing smooth maps.
+Therefore
+$\mathcal D$
+is continuous. 
+\end{proof}
+%% Explanatory comment: Continuity of the UOD guarantees that the functional does not exhibit jumps or discontinuities under small perturbations of the posterior distribution. This is the minimal regularity required for any meaningful optimization or sensitivity analysis.
+\begin{proposition}[Smoothness]\label{ch:prop:9-2}
+
+The Universal Optimality Defect is a smooth function on
+$\mathcal P.$
+\end{proposition}
+\begin{proof}
+The pullback metric is a smooth tensor field.
+The deviation vector depends smoothly on the posterior point.
+Since tensor contraction preserves smoothness,
+$\mathcal D$
+is smooth. 
+\end{proof}
+
+
+
+
+\section{Local Quadratic Stability}\label{ch:sec:local-quadratic-stability}
+\begin{theorem}[Local Quadratic Approximation]
+\label{ch:thm:9-3}
+Let
+$P^\star$
+be the reference posterior.
+Then
+\[
+\mathcal D(P)
+=
+O(\|P-P^\star\|^2)
+\]
+as
+$P\rightarrow P^\star.$
+\end{theorem}
+
+\begin{quote}
+\textbf{Mathematical intuition.}
+The UOD is locally quadratic near the optimal distribution: $\mathcal D(P)\approx\|P-P^\star\|_g^2$.
+This means that near perfect secrecy, small perturbations of the posterior produce squared---not linear---changes in the defect.
+\end{quote}
+
+\begin{proof}
+From Theorem~\ref{ch:thm:9-3},
+\[
+\delta(P)
+=
+J_{P^\star}(P-P^\star)
++
+O(\|P-P^\star\|^2),
+\]
+where
+$J_{P^\star}=DF_{P^\star}.$
+Therefore,
+\[
+\mathcal D(P)
+=
+g_{P^\star}(\delta(P),\delta(P)).
+\]
+Substituting the Taylor expansion yields
+\[
+\mathcal D(P)
+=
+(P-P^\star)^T
+J_{P^\star}^{\,T}
+J_{P^\star}
+(P-P^\star)
++
+O(\|P-P^\star\|^3).
+\]
+Hence the leading term is quadratic. 
+\end{proof}
+%% Explanatory comment: The UOD behaves quadratically near the reference posterior, with no linear term in the expansion. This means that the optimality defect is a second-order quantity: small deviations from the optimal posterior produce deviations in the UOD that scale as the square of the perturbation size.
+\section{Strict Local Minimum}\label{ch:sec:strict-local-minimum}
+\begin{theorem}[Strict Local Minimum]
+\label{ch:thm:9-4}
+The reference posterior
+$P^\star$
+is a strict local minimizer of the Universal Optimality Defect.
+\end{theorem}
+\begin{proof}
+Since $P^\star$ is the reference posterior, $\mathcal D(P^\star)=0$ by definition.
+By Theorem~\ref{ch:thm:9-3},
+$\mathcal D(P)\ge0$
+for every posterior point.
+The quadratic approximation obtained in Theorem~\ref{ch:thm:9-3} is positive definite because
+$J_{P^\star}^{\,T}J_{P^\star}$
+is positive definite (Corollary~\ref{ch:cor:7-7}).
+Therefore
+$\mathcal D(P)>0$
+for every sufficiently small nonzero perturbation.
+Hence
+$P^\star$
+is a strict local minimum. 
+\end{proof}
+%% Explanatory comment: The reference posterior is a strict local minimizer of the UOD, meaning that any sufficiently small nonzero perturbation increases the defect value. This establishes the posterior as a locally unique optimum, confirming that the UOD is a reliable measure of deviation.
+\begin{corollary}[Stability Under Small Perturbations]\label{ch:cor:9-5}
+
+Small perturbations of the posterior distribution produce second-order variations of the Universal Optimality Defect.
+\end{corollary}
+\begin{proof}
+Immediate from Theorem~\ref{ch:thm:9-3}. 
+\end{proof}
+
+\section{Geometric Interpretation}
+The previous results show that the Universal Optimality Defect is not only an intrinsic geometric quantity but also a stable one.
+Its behavior near the optimal posterior is governed by the pullback Riemannian metric, implying that infinitesimal deviations are measured by a positive-definite quadratic form.
+Consequently, the Universal Optimality Defect behaves locally as a squared Riemannian distance, providing robustness against sufficiently small perturbations of the posterior distribution.
+\paragraph{Outlook.}
+\paragraph{Running example: AES.}
+The stability properties are vacuous for the AES example (Section~\ref{ch:sec:aes-and-perfect-secrecy}): the UOD is identically zero, so every perturbation---no matter how large---produces $\Delta\mathcal D=0$, and the Hessian $\operatorname{Hess}_g(\mathcal D)_{P^\star}=0$.  This degenerate case confirms that stability is a non-trivial phenomenon that arises only in non-ideal systems.
+
+Having established the intrinsic stability properties of the Universal Optimality Defect, the next chapter investigates its relationship with classical Information Geometry and, in particular, with the Fisher information metric.
+
+
+\paragraph{Running example: AES.}
+The stability properties are vacuous for the AES example (Section~\ref{ch:sec:aes-and-perfect-secrecy}): the UOD is identically zero, so every perturbation---no matter how large---produces $\Delta\mathcal D=0$, and the Hessian $\operatorname{Hess}_g(\mathcal D)_{P^\star}=0$.  This degenerate case confirms that stability is a non-trivial phenomenon that arises only in non-ideal systems.
+
+Having established the intrinsic stability properties of the Universal Optimality Defect, the next chapter investigates its relationship with classical Information Geometry and, in particular, with the Fisher information metric.

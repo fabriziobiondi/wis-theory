@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this work in your research, please cite it as below."
+authors:
+  - family-names: "Biondi"
+    given-names: "Fabrizio"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+title: "Weighted Incidence Structures: Geometry, Information, and Cryptography"
+version: 1.0
+date-released: 2026-07
+url: "https://github.com/fabriziobiondi/wis-theory"
+license: "MIT"
+type: monograph

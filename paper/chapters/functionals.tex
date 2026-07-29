@@ -1,0 +1,154 @@
+\chapter[Information Functionals]{Information Functionals on the WIS Manifold}\label{ch:sec:information-functionals-on-the-wis-manifold}
+
+This chapter provides the unified classification of security functionals---smooth, piecewise-smooth, and rank-based---that organises the remainder of Part~IV. The Lipschitz bounds of Chapters~15--16 apply uniformly across this classification, and the piecewise-smooth theory of Chapters~17--18 extends them to non-differentiable measures.
+
+
+\section{Introduction}\label{ch:sec:introduction-functionals}
+We have established that the UOD provides a canonical geometric distance
+on the posterior manifold.  But cryptography and information theory use
+many different measures---Shannon entropy, R\'enyi entropy, min-entropy,
+Bayes vulnerability, guessing entropy.  Do we need a separate geometric
+theory for each?  Or do they all fit into a single framework?  This
+chapter shows that every information or security functional---whether
+smooth or piecewise-smooth---is a scalar field on the same WIS manifold,
+and the UOD bounds their variations universally.
+
+The purpose of this chapter is to develop a unified geometric framework
+for information-theoretic and security functionals on the Weighted
+Incidence Structure (WIS) manifold introduced in Part~\ref{ch:part:posterior}.
+Rather than studying Shannon entropy, R\'enyi entropy, Kullback--Leibler
+divergence, or security measures independently, we regard them as scalar
+functionals defined on the same posterior manifold
+$\mathcal P.$
+The WIS construction provides a global coordinate system
+$F:\mathcal P\rightarrow\mathbb R^n,$
+together with the pullback Euclidean metric
+$g=F^*g_E.$
+This common geometric structure allows universal analytical results that
+are independent of the particular functional under consideration.
+\paragraph{Information Functionals.}
+An \textbf{information functional} is any mapping
+$S:\mathcal P\rightarrow\mathbb R.$
+Throughout this chapter we distinguish two broad classes.
+
+
+An \textbf{information functional} is any mapping
+$S:\mathcal P\rightarrow\mathbb R.$
+Throughout this chapter we distinguish two broad classes.
+\subsection{Smooth information functionals}\label{ch:sec:smooth-information-functionals}
+A functional is called \textit{smooth} if
+$S\in C^1(\mathcal P),$
+or \(C^{2}\) whenever second-order results are required.
+Examples include:
+\begin{itemize}
+\item Shannon entropy
+\item Cross entropy
+\item Kullback--Leibler divergence
+\item R\'enyi entropy
+\item Tsallis entropy
+\item Collision entropy
+\item Jensen--Shannon divergence
+\item Differentiable (f)-divergences
+\item Mutual information (when represented as a smooth functional on the
+    posterior manifold)
+\end{itemize}
+These functionals admit gradients and Hessians with respect to the WIS
+metric.
+
+\subsection{Rank-based information functionals}\label{ch:sec:rank-based-information-functionals}
+Rank-based functionals depend on the ordering of posterior probabilities rather than on their exact values.  Typical examples include min-entropy $H_\infty(P)=-\log\max_i P_i$, guessing entropy, Bayes vulnerability, and success probability.  These functionals are piecewise-smooth (see Section~\ref{ch:sec:piecewise-smooth-security-functionals}): they are differentiable on regions where the ranking is fixed, but their gradient changes discontinuously at boundaries where two probabilities cross.
+\section{Piecewise-smooth security functionals}\label{ch:sec:piecewise-smooth-security-functionals}
+Many security measures are not globally differentiable because they
+depend on maxima or rankings.
+Typical examples are:
+\begin{itemize}
+\item Min-Entropy
+\item Bayes Vulnerability
+\item Guessing Entropy
+\item Success Probability
+\item Top-(k) Success Probability
+\item Rank-based leakage measures
+\end{itemize}
+Although not globally smooth, these functionals are smooth on regions
+where the ordering of probabilities remains unchanged.
+\paragraph{WIS Coordinates.}
+
+
+
+Part~\ref{ch:part:posterior} established that every posterior distribution admits global
+coordinates
+$x=F(P).$
+Consequently every information functional can be rewritten as
+$\widetilde S(x)=S(F^{-1}(x)).$
+All subsequent analysis is therefore performed in Euclidean coordinates
+while remaining intrinsically defined on the posterior manifold.
+\paragraph{Universal Optimality Defect.}
+For two posterior distributions (P,Q), define the two-point Universal
+Optimality Defect
+$\mathcal D(P,Q) = \|F(P)-F(Q)\|^2.$
+When one endpoint corresponds to a distinguished optimal posterior
+\(P^{\star}\),
+$\mathcal D(P) = \mathcal D(P,P^\star).$
+The Universal Optimality Defect provides the canonical quadratic
+geometric quantity used throughout the remainder of this chapter.
+
+
+
+\paragraph{Two Classes of Universal Results.}
+The geometric theory naturally separates into two families.
+
+
+
+\paragraph{Smooth theory.}
+
+
+
+For differentiable functionals:
+\begin{itemize}
+\item gradient bounds;
+\item Hessian bounds;
+\item Bregman representations;
+\item curvature estimates;
+\item quadratic approximations.
+\end{itemize}
+\paragraph{Piecewise-smooth theory.}
+
+
+
+For ranking-based functionals:
+\begin{itemize}
+\item regularity intervals;
+\item ranking transitions;
+\item piecewise differentiability;
+\item universal geometric bounds on each smooth region.
+\end{itemize}
+This separation allows a single geometric framework to accommodate
+essentially all classical information-theoretic and security measures.
+\subsection{Roadmap}\label{ch:sec:roadmap}
+Part~\ref{ch:part:functionals} develops this theory as follows.
+\begin{itemize}
+\item \textbf{Chapter~\ref{ch:sec:universal-geometric-bounds}} establishes universal geometric bounds for smooth
+    functionals.
+\item \textbf{Chapter~\ref{ch:sec:the-average-hessian-operator-and-universal-bregman-theo}} develops the general Bregman framework and curvature
+    theory.
+\item \textbf{Chapter~\ref{ch:sec:classical-smooth-information-functionals}} applies the universal results to classical smooth
+    information measures.
+\item \textbf{Chapter~\ref{ch:sec:piecewise-smooth}} extends the theory to piecewise-smooth security
+    functionals.
+\item \textbf{Chapter~\ref{ch:sec:universal-security-bounds}} derives unified security bounds from the
+    piecewise-smooth structure.
+\end{itemize}
+\subsection{Perspective}\label{ch:sec:perspective}
+The classical approach to information geometry starts from a divergence
+and derives a metric.
+The WIS construction reverses this philosophy.
+A single global geometric structure is established first, after which
+information and security functionals appear as scalar fields defined on
+the same manifold.
+This viewpoint transforms apparently unrelated quantities into different
+manifestations of a common geometric framework, preparing the universal
+results developed in the subsequent chapters.
+
+\paragraph{Running examples.}
+The additional examples illustrate the two regularity classes.  In differential privacy (Section~\ref{ch:sec:differential-privacy-and-database-queries}), the Laplace mechanism produces a smooth functional: the privacy loss $\mathcal L(P\|Q)=\|F(P)-F(Q)\|^2$ is $C^\infty$ on the interior of the simplex, and the Lipschitz bounds of Chapter~\ref{ch:sec:universal-geometric-bounds} apply with constant $L\le 1/\min_i\pi_i$.  Browser fingerprinting (Section~\ref{ch:sec:browser-fingerprinting-and-anonymity}) falls into the piecewise-smooth class: $H_\infty(P)$ depends on the most probable browser and changes discontinuously when the ranking shifts.  Our main running example, the AES S-box, is trivially smooth because $\mathcal D\equiv0$ makes every functional constant.
+

@@ -1,0 +1,122 @@
+\chapter[Universal Geometric Bounds]{Universal Geometric Bounds}\label{ch:sec:universal-geometric-bounds}
+
+The two universal theorems of this chapter---the Lipschitz bound and the quadratic bound---apply to every sufficiently regular functional on the WIS manifold. They are the technical core of Part~IV and will be specialised to Bregman divergences in Chapter~16 and to piecewise-smooth functionals in Chapters~17--18.
+
+
+\section{Introduction}\label{ch:sec:introduction-universal_bounds}
+
+We have seen that the UOD bounds the variation of individual entropies.
+But the pattern is always the same: $|S(P)-S(Q)|\le L\sqrt{\mathcal
+D(P,Q)}$.  This is not a coincidence.  The inequality follows from the
+geometry of the manifold, not from the specific functional.  This
+chapter extracts the common geometric core: two universal theorems that
+apply to \emph{every} sufficiently regular functional on the WIS
+manifold, establishing Lipschitz and quadratic bounds purely in terms
+of the UOD.
+Throughout this chapter, let $(\mathcal P,g)$ denote the posterior
+manifold constructed in Part~\ref{ch:part:posterior}, let
+$F:\mathcal P\rightarrow\mathbb R^{n}$ be the global WIS coordinate map,
+and let $\mathcal D(P,Q)=\|F(P)-F(Q)\|^{2}$ be the two-point Universal
+Optimality Defect.  Under the identification established in Part~\ref{ch:part:posterior},
+this coincides with the squared geodesic distance,
+$\mathcal D(P,Q)=d_g(P,Q)^{2}$.
+\paragraph{Smooth Functionals.}
+Let \(S:\mathcal P\rightarrow\mathbb R\) be a continuously differentiable
+functional.  Its Riemannian gradient is denoted \(\nabla_g S\).
+We assume \(\|\nabla_g S(P)\|_g\le L\) for every point of the region under consideration.
+
+\begin{theorem}[Universal Lipschitz Bound]\label{ch:thm:14-1}
+
+Let \(S\in C^{1}(\mathcal P)\) satisfy
+\(\|\nabla_gS\|_g\le L.\)
+Then, for every pair of posterior distributions \(P,Q\),
+\(\|S(P)-S(Q)\| \le L\,d_g(P,Q).\)
+Consequently,
+\[ \boxed{
+|S(P)-S(Q)|
+\le
+L\sqrt{\mathcal D(P,Q)}.
+} \]
+\end{theorem}
+
+\begin{quote}
+\textbf{Mathematical intuition.}
+The Lipschitz bound $|S(P)-S(Q)|\le L\sqrt{\mathcal D(P,Q)}$ says that functionals cannot vary faster than the square root of the UOD.
+Since $\sqrt{\mathcal D}$ is the geodesic distance on the manifold, this is exactly the definition of Lipschitz continuity with respect to the manifold metric.
+\end{quote}
+
+\begin{proof}
+Let \(\gamma(t)\) be a minimizing geodesic joining \(P\) to \(Q\) in the
+pullback metric, parametrized so that \(\gamma(0)=P\) and \(\gamma(1)=Q\).
+By the fundamental theorem of calculus,
+\[
+S(Q)-S(P)=\int_0^1 \langle\nabla_g S(\gamma(t)),\dot\gamma(t)\rangle_g\,dt.
+\]
+Applying the Cauchy--Schwarz inequality and the bound on the gradient,
+\[
+|S(Q)-S(P)|
+\le \int_0^1 \|\nabla_g S(\gamma(t))\|_g\,\|\dot\gamma(t)\|_g\,dt
+\le L\int_0^1 \|\dot\gamma(t)\|_g\,dt
+= L\,d_g(P,Q).
+\]
+Since \(d_g(P,Q)=\sqrt{\mathcal D(P,Q)}\) by construction, the
+claimed inequality follows.
+\end{proof}
+
+\section{Local Quadratic Bound}\label{ch:sec:local-quadratic-bound}
+The previous theorem only requires first-order regularity.
+Second-order information yields stronger local estimates.
+\begin{theorem}[Local Quadratic Bound]
+\label{ch:thm:14-2}
+Let
+$S\in C^{2}(\mathcal P),$
+and suppose
+$\nabla_gS(P^{\star})=0.$
+Then there exists a neighborhood of \(P^{\star}\) and a constant
+\(C>0\) such that
+\[ \boxed{
+|S(P)-S(P^\star)|
+\le
+C\,\mathcal D(P,P^\star).
+} \]
+\end{theorem}
+\begin{proof}[Sketch]
+Let \(\gamma(t)\) be the geodesic joining \(P^{\star}\) to \(P\) in the
+pullback metric, parametrized so that \(\gamma(0)=P^{\star}\) and
+\(\gamma(1)=P\).  Taylor's theorem applied to the composition
+\(S\circ\gamma\) gives
+\[
+S(P)=S(P^{\star})+\langle\nabla_g S(P^{\star}),\dot\gamma(0)\rangle_g
++\frac12\,\ddot\gamma(0)^T\operatorname{Hess}_g S(P^{\star})\dot\gamma(0)
++O\bigl(\mathcal D(P,P^{\star})^{3/2}\bigr).
+\]
+Since \(\nabla_g S(P^{\star})=0\) by hypothesis, the linear term vanishes.
+The quadratic term is bounded by \(\frac12\|\operatorname{Hess}_g S\|\,
+\mathcal D(P,P^{\star})\).  The estimate follows from boundedness of the
+Hessian on the compact region under consideration. \(\)
+\end{proof}
+\paragraph{Interpretation.}
+The previous two theorems establish two universal regimes.
+First-order regularity produces
+\(O(\sqrt{\mathcal D}),\)
+while second-order regularity around stationary points improves the
+estimate to
+\(O(\mathcal D).\)
+These results depend only on the geometry of the WIS manifold and not on
+the specific functional.
+\section{Consequences}\label{ch:sec:consequences-universal_bounds}
+Any information functional satisfying the hypotheses of Theorem~\ref{ch:thm:14-1}
+immediately inherits a geometric stability estimate.
+Likewise, every twice continuously differentiable functional having a
+stationary point satisfies the quadratic estimate of Theorem~\ref{ch:thm:14-2}.
+Therefore no functional-specific argument is required to establish
+continuity or local stability.
+Only verification of the regularity assumptions remains.
+\paragraph{Transition to Chapter~\ref{ch:sec:universal-geometric-bounds}.}
+\paragraph{Running example: differential privacy.}
+In differential privacy (Section~\ref{ch:sec:differential-privacy-and-database-queries}), the Laplace mechanism produces a smooth privacy loss $\mathcal L$.  Theorem~\ref{ch:thm:14-1} applies with Lipschitz constant $L\le 1/\min_i\pi_i$, providing an explicit uniform bound on how much the privacy loss can change across the posterior manifold.  The geo-indistinguishability example (Section~\ref{ch:sec:geo-indistinguishability-and-location-privacy}) satisfies the same hypotheses, and Theorem~\ref{ch:thm:14-2} sharpens the estimate near optimal posteriors.
+The results of this chapter apply to arbitrary smooth scalar fields.
+The next chapter specializes these universal estimates to Bregman
+divergences, introducing curvature operators and a geometric comparison
+theory that encompasses a broad class of information-theoretic
+divergences within the WIS framework.

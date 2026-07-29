@@ -1,0 +1,273 @@
+﻿\chapter[Open Problems and Research Programme]{Open Problems and Research Programme}\label{ch:sec:open}
+
+The deterministic realization problem is completely characterized in this book.  Several natural extensions remain open.  This chapter organises them into four categories: structural problems concerning the WIS representation itself, geometric problems arising from the posterior manifold, algorithmic and computational problems, and applications to concrete security domains.
+
+\section*{Structural Problems}
+
+Problems concerning the WIS representation, its factorisation theory, and the classification of encoders.
+
+\section{Probabilistic Encoders and Randomised WIS}\label{ch:sec:probabilistic-encoders-and-randomised-wis}
+
+The entire book has assumed a deterministic encoder
+$E:\mathcal M\times\mathcal K\to\mathcal C$.  Allowing the encoder
+to depend on an additional random seed---or, equivalently, replacing
+the deterministic map by a row-stochastic matrix---relaxes the
+integrality condition that is the main obstruction to closed-form
+construction.
+
+\subsection{The Randomised WIS}\label{ch:sec:the-randomised-wis}
+
+Let $\mathcal S$ be a finite set of seeds, and let
+$p(s)$ be a probability distribution on $\mathcal S$.
+A randomised encoder is a family of deterministic encoders
+$\{E_s\}_{s\in\mathcal S}$ indexed by the seed, applied with
+probability $p(s)$.  The resulting multiplicity matrix is the
+convex combination
+\[
+n_{mc} = \sum_{s\in\mathcal S} p(s)\,n_{mc}^{(s)},
+\]
+where $n_{mc}^{(s)}$ are the multiplicities of the deterministic
+encoder $E_s$.  Since each $n_{mc}^{(s)}$ is integral, the
+randomised multiplicity $n_{mc}$ is a rational number with
+denominator dividing the least common multiple of the seed
+probabilities.
+
+The universal optimality condition
+$|\mathrm{Cloak}(c,\cdot)| = |\mathcal K|\cdot\Pr[M=m\mid C=c]$
+depends only on the averaged multiplicities, not on the individual
+encoders.  Therefore a randomised encoder is universally optimal
+if and only if the averaged WIS $n_{mc}$ admits a
+$(\mathbb Q_{>0},\mathbb Q_{>0})$ factorisation---i.e., the
+factorisation exists with rational weights.
+
+\begin{theorem}[Randomised Universal Optimality]
+\label{ch:thm:randomised-uod}
+Let $\{E_s\}_{s\in\mathcal S}$ be a finite family of deterministic
+encoders with multiplicities $n_{mc}^{(s)}$, and let
+$p(s)>0$ be rational probabilities.  The randomised encoder
+obtained by sampling $s\sim p$ and applying $E_s$ is universally
+optimal if and only if the averaged multiplicities
+\[
+\overline n_{mc} = \sum_s p(s)\,n_{mc}^{(s)}
+\]
+admit a $(\mathbb Q_{>0},\mathbb Q_{>0})$ WIS factorisation.
+In particular, every universally optimal rational WIS can be
+realised by a randomised encoder with finite seed set.
+\end{theorem}
+
+\begin{proof}
+The averaged multiplicity is rational by construction.  The
+universal optimality condition is linear in the multiplicities,
+so the condition reduces to factorisability of $\overline n_{mc}$.
+Conversely, given a rational factorisation, the Apollonian
+construction~\cite{biondi2018apollonian} produces a deterministic
+encoder for each integer scaling; the randomised encoder is
+obtained by mixing these with appropriate probabilities.
+\end{proof}
+
+\begin{corollary}[Rational Approximation]\label{ch:cor:rational-approx}
+Every real WIS weight that is not realisable by a deterministic
+encoder can be approximated arbitrarily well by a randomised
+encoder whose seed set size grows with the desired precision.
+The approximation error (measured by the Universal Optimality
+Defect) decays as $O(1/|\mathcal S|)$.
+\end{corollary}
+
+\begin{proof}
+Approximate the real weights by rational numbers and apply
+Theorem~\ref{ch:thm:randomised-uod}.  The $O(1/|\mathcal S|)$
+rate follows from standard rational approximation bounds.
+\end{proof}
+
+\paragraph{Open problems.}
+\begin{itemize}
+\item \textbf{Optimal seed distribution.}  Given a target WIS
+weight, what is the minimal seed set size $|\mathcal S|$
+required to realise it within a given approximation tolerance?
+\item \textbf{Integrality gap.}  Given rational weights, what is
+the minimal integer scaling factor $T$ such that $T\cdot w$ and
+$T\cdot\beta$ are integral?
+\end{itemize}
+
+\section{Continuous Weighted Incidence Structures}\label{ch:sec:open-continuous-wis}
+
+Extend the WIS framework from finite to continuous message and
+ciphertext spaces.  When the incidence graph is replaced by a
+continuous bipartite structure (e.g. a kernel), the balance equation
+$B\beta = Kw$ becomes an integral equation.
+
+\paragraph{Open problems.}
+\begin{itemize}
+\item \textbf{Infinite message spaces.}  Extending the WIS framework to
+countable or continuous message spaces requires measure-theoretic
+formulations of the quotient geometry and the UOD.
+\item \textbf{Continuous WIS.}  When the incidence is continuous, the
+balance equation becomes an integral equation.  Existence of solutions
+and their interpretation as encoding strategies is unexplored.
+\item \textbf{Approximation theory.}  When induced multiplicity ratios
+are irrational, no exact finite encoder exists.  Rational approximation
+and the trade-off between quality and key length merit investigation.
+\end{itemize}
+
+\section{Random WIS and Average-Case Analysis}\label{ch:sec:open-random-wis}
+
+What does a typical WIS look like?  For random incidence relations,
+the UOD is typically large.  Understanding its distribution provides
+a baseline for evaluating real-world encryption systems.
+
+\paragraph{Open problems.}
+\begin{itemize}
+\item \textbf{Typical UOD.}  Expected value of $\mathcal D$ for a
+random WIS with fixed $|\mathcal M|,|\mathcal C|$?
+\item \textbf{Phase transitions.}  Density threshold below which
+universal optimality is impossible with high probability?
+\item \textbf{Random graph models.}  Do the spectral properties of the
+posterior Laplacian for random WIS match those of random graphs?
+\end{itemize}
+
+\section{Categorical Formulations}\label{ch:sec:open-categorical}
+
+The WIS construction, the gauge quotient, and the Hilbert-space
+structure admit a unified description in terms of category-theoretic
+fibrations.
+
+\paragraph{Open problems.}
+\begin{itemize}
+\item \textbf{Universal property.}  Is the WIS construction the free
+Hilbert space generated by the incidence relation?
+\item \textbf{Monoidal structure.}  Do WIS admit a tensor product
+corresponding to the composition of encryption systems?
+\end{itemize}
+
+\section*{Geometric Problems}
+
+Problems concerning the geometry of the posterior manifold, the
+UOD, and its relation to existing geometric frameworks.
+
+\section{Curvature and Non-Flat Geometry}\label{ch:sec:open-curvature}
+
+The pullback metric on the posterior manifold is flat because it is
+pulled back from Euclidean space.  Replacing the Euclidean target with
+a curved space would yield a non-flat geometry whose curvature encodes
+additional information about the encoding system.
+
+\paragraph{Open problems.}
+\begin{itemize}
+\item \textbf{Ricci curvature.}  Does non-negative Ricci curvature of
+the posterior manifold imply stronger Lipschitz bounds?
+\item \textbf{Comparison geometry.}  How does the UOD behave under
+Ricci curvature bounds?
+\item \textbf{Spectral geometry.}  Relationship between the spectrum of
+the posterior Laplacian and the combinatorial expansion of the
+incidence graph?
+\end{itemize}
+
+\section{Spectral Theory of the Posterior Laplacian}\label{ch:sec:open-spectral}
+
+The posterior Laplacian $L=A^{\mathsf T}QA$ depends on the
+distribution $P$ through the prior weights.  Its spectrum is therefore
+a function on the posterior manifold.
+
+\paragraph{Open problems.}
+\begin{itemize}
+\item \textbf{Eigenvalue bounds.}  What is the range of the smallest
+eigenvalue of $L$ as $P$ varies over the simplex?
+\item \textbf{Eigenvectors and incognisability.}  Do the eigenvectors
+of $L$ correspond to natural partitions of the message space?
+\item \textbf{Isoperimetric inequalities.}  Does the spectral gap of
+$L$ satisfy a Cheeger-type inequality?
+\end{itemize}
+
+\section{Continuous Limits and PDEs}\label{ch:sec:open-continuous-limits}
+
+As message and ciphertext spaces grow large, the discrete WIS
+converges to a continuous structure.  The UOD becomes a functional on
+probability measures.  Understanding this limit is essential for
+applications to location privacy and differential privacy.
+
+\paragraph{Open problems.}
+\begin{itemize}
+\item \textbf{Well-posedness.}  Does the UOD have a unique minimiser
+in the continuous limit?
+\item \textbf{Gamma-convergence.}  Do discrete critical points converge
+to solutions of the continuous Euler--Lagrange equations?
+\item \textbf{Relation to optimal transport.}  Does the UOD gradient
+flow converge to a Wasserstein gradient flow?
+\end{itemize}
+
+\section{Quantum Extensions}\label{ch:sec:open-quantum}
+
+Generalise WIS to non-commutative probability spaces.  The universal
+optimality defect becomes a quantum divergence:
+\[
+\mathcal D_Q(\rho,\sigma) = \operatorname{Tr}\rho(\log\rho-\log\sigma)^2
+- \bigl(\operatorname{Tr}\rho(\log\rho-\log\sigma)\bigr)^2.
+\]
+
+\paragraph{Open problems.}
+\begin{itemize}
+\item \textbf{Quantum Lipschitz bounds.}  Does the quantum UOD satisfy
+the same bounds as its classical counterpart?
+\item \textbf{Quantum Three-Level Theorem.}  Does the quantum UOD
+collapse to finitely many distinct eigenvalues?
+\item \textbf{Quantum Apollonian construction.}  Do quantum cell
+encoders exist?
+\end{itemize}
+
+\section*{Algorithmic Problems}
+
+Problems concerning the computation, optimisation, and numerical
+treatment of the UOD and related quantities.
+
+\section{Optimisation of the Universal Optimality Defect}\label{ch:sec:open-optimisation-uod}
+
+The defect $\delta(Y)$ defines a cost function on the space of WIS
+weights.  Minimising $\delta$ over admissible weights, subject to
+integrality constraints, may yield approximate encoders for systems
+where exact universal optimality is unattainable.
+
+\paragraph{Open problems.}
+\begin{itemize}
+\item \textbf{Algorithmic minimisation.}  Develop efficient algorithms
+for minimising the UOD over weight spaces with integrality constraints.
+\item \textbf{Trade-off curves.}  Characterise the Pareto frontier
+between UOD and key length for families of incidence structures.
+\item \textbf{Finite-dimensional reduction.}  Can the three-level
+structure be exploited for numerical computation in high dimensions?
+\end{itemize}
+
+\section{Gradient Flows and Numerical Optimisation}\label{ch:sec:open-gradient-flows}
+
+The variational formulation of Part~V suggests a natural gradient flow
+for the UOD on the posterior manifold:
+\[
+\frac{dP_t}{dt} = -\nabla_g \mathcal D(P_t, U_n), \qquad
+P_0 = P_{\mathrm{init}}.
+\]
+In WIS coordinates this becomes a system of ODEs whose stationary
+points are the critical points of the UOD.  The Three-Level Theorem
+implies that any convergent trajectory ends at a configuration with at
+most three distinct log-likelihood values.
+
+\paragraph{Open problems.}
+\begin{itemize}
+\item \textbf{Convergence.}  Does the gradient flow converge for every
+initial condition?  The flat metric suggests linear convergence for
+convex functionals, but the UOD is not globally convex.
+\item \textbf{Bifurcation analysis.}  The pitchfork bifurcations
+described in Section~25.9.1 should mark qualitative changes in the
+flow landscape.
+\item \textbf{Finite-dimensional reduction.}  Can the three-level
+structure be exploited for numerical computation in high dimensions?
+\end{itemize}
+
+\section*{Applications}
+
+Problems concerning the practical use of the WIS framework in
+cryptography, privacy, and information theory.
+
+\paragraph{Privacy--utility trade-offs.}
+The UOD is a continuous measure of privacy leakage.  Understanding how
+it interacts with utility---the usefulness of the released data---is
+essential for practical deployment.  Does every privacy mechanism
+admit an optimal trade-off curve parameterised by the UOD?

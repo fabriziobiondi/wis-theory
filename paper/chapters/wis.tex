@@ -1,0 +1,350 @@
+﻿\chapter[WIS]{Weighted Incidence Structures}\label{ch:sec:wis}
+We have seen that the multiplicity matrix $n_{mc}$ captures how many keys
+map a given message to a given ciphertext.  But multiplicities alone
+are too fine-grained: they depend on the specific key set $\Kset$.
+Two encoders with different key spaces may produce the same pattern of
+posterior uniformity.  What structure survives when we abstract away the
+key-counting?  The answer is a \emph{weighted incidence structure}:
+the normalised ratio $n_{mc}=w(m)/\beta(c)$ that factors out the key
+set size.
+
+This chapter defines the primary object of the book. The WIS factorisation $n_{mc}=\beta(c)/w(m)$ is the algebraic backbone from which all geometric structure---the mismatch operator, the posterior Laplacian, the Universal Optimality Defect---will be derived in subsequent chapters.
+
+
+\section{Definition}\label{ch:sec:definition}
+\begin{definition}[Weighted incidence structure]\label{ch:def:wis}
+A \emph{weighted incidence structure} (WIS) is a tuple $\mathfrak W=(\Mset,\Cset,I,w,\beta),$ where $\Mset$ and $\Cset$ are finite nonempty sets, $I\subseteq\Mset\times\Cset$ is an incidence relation, and
+\[
+ w:\Mset\to\mathbb R_{>0},\qquad
+ \beta:\Cset\to\mathbb R_{>0}
+\]
+are weight functions.
+The \emph{induced multiplicities} are defined by
+\[
+ n_{mc}=\frac{\beta(c)}{w(m)} \qquad\bigl((m,c)\in I\bigr), \label{ch:eq:wis-factorisation}
+\]
+and $n_{mc}=0$ otherwise.  These quantities are not assumed to be integers: integrality is an additional property of a weighted incidence structure.
+\end{definition}
+
+\paragraph{Why this definition.}
+The WIS captures everything that matters about an encryption system after removing the size of the key set.  The two weight functions encode the message prior and the ciphertext distribution.  Every geometric object in this book derives from these two functions.
+
+\begin{quote}
+\textbf{Mathematical intuition.}
+The WIS factorisation $n_{mc}=\beta(c)/w(m)$ separates the contribution of each endpoint of the edge $(m,c)$.
+The message weight $w(m)$ measures how ``heavy'' the message is across all ciphertexts, while the ciphertext weight $\beta(c)$ measures how attractive the ciphertext is across all messages.
+The ratio determines the multiplicity---a single number that captures the entire encoding structure.
+\end{quote}
+The multiplicity matrix $N=(n_{mc})$ is therefore completely determined by the incidence relation and the weight functions.  It is a derived object rather than part of the definition of a weighted incidence structure.  Its integrality---the condition that every ratio $\beta(c)/w(m)$ be an integer for $(m,c)\in I$---is a property of the WIS, not an axiom.
+\section{Factorization of edge multiplicities}\label{ch:subsec:cycle-factorisation}
+Before returning to encoders, we solve the intrinsic factorisation
+problem underlying Definition~\ref{ch:def:wis}.  Let $G=(\Mset,\Cset,I)$
+be a finite connected bipartite graph and attach an arbitrary number
+$n_{mc}>0$ to every edge $mc\in I$.  We ask when these edge labels can
+be written as $n_{mc}=\beta(c)/w(m)$ with positive vertex weights.
+Orient every edge from its message endpoint to its ciphertext endpoint.
+Index the vertices by listing the elements of $\Mset$ first and those of
+$\Cset$ second, and index the columns by the edges of $I$.  The oriented
+incidence matrix is
+\[
+ D\in\mathbb R^{(\Mset\sqcup\Cset)\times I},\qquad
+ D_{v,(m,c)}=
+ \begin{cases}
+ -1,&v=m,\\
+ +1,&v=c,\\
+ 0,&\text{otherwise}.
+ \end{cases}
+\]
+Thus, if $z=(x,y)\in\mathbb R^{\Mset}\oplus\mathbb R^{\Cset}$, then
+\begin{equation}\label{ch:eq:incidence-transpose}
+ (D^{\mathsf T}z)_{(m,c)}=y_c-x_m.
+\end{equation}
+The relevant system is therefore $D^{\mathsf T}z=a$, not $Dz=a$.
+We use the following standard form of the incidence--cycle-space
+theorem; see, for example, Godsil and Royle~\cite[Sec.~8.2]{godsil2001algebraic}
+and Diestel~\cite[Sec.~1.9]{diestel2017}.
+\begin{lemma}[Incidence and cycle spaces]\label{ch:lem:incidence-cycle-space}
+Let $G$ be a finite connected graph with an arbitrary orientation and
+oriented incidence matrix $D$.  Then
+\[
+ \operatorname{rank}D=|V(G)|-1,
+ \qquad
+ \operatorname{Im}(D^{\mathsf T})=(\ker D)^\perp.
+\]
+Moreover, if $T$ is a spanning tree, the signed incidence vectors of
+the fundamental cycles determined by the edges in $E(G)\setminus E(T)$
+form a basis of $\ker D$ over $\mathbb R$.  Consequently, $\ker D$ is
+spanned by signed incidence vectors of simple cycles.
+\end{lemma}
+\begin{proof}
+The equality $\operatorname{Im}(D^{\mathsf T})=(\ker D)^\perp$ is the
+fundamental theorem of linear algebra.  For completeness, connectedness
+implies $\ker D^{\mathsf T}=\operatorname{span}\{\mathbf1\}$: indeed,
+$D^{\mathsf T}z=0$ says that the values of $z$ agree at the endpoints
+of every edge, and hence at all vertices.  Rank--nullity gives
+$\operatorname{rank}D=|V(G)|-1$, so
+$\dim\ker D=|E(G)|-|V(G)|+1.$
+Fix a spanning tree $T$.  Each chord $e\notin E(T)$ determines a unique
+simple cycle in $T+e$.  Give that cycle either cyclic orientation and
+let $\gamma_e\in\mathbb R^{E(G)}$ have coordinate $+1$ on edges whose
+fixed orientation agrees with the traversal, $-1$ on edges whose
+orientation disagrees, and $0$ elsewhere.  Flow conservation at every
+vertex gives $D\gamma_e=0$.  The coordinate of $\gamma_e$ at its chord
+$e$ is nonzero, whereas every other fundamental-cycle vector has zero
+in that chord coordinate.  Hence the vectors $\gamma_e$ are linearly
+independent.  Their number is
+$|E(G)|-|E(T)|=|E(G)|-|V(G)|+1=\dim\ker D$, so they form a basis.
+Every fundamental cycle is simple, proving the final assertion.
+\end{proof}
+
+\paragraph{What this theorem proves.}
+We have defined WIS and shown that universal optimality implies a factorisation.  The natural question is the converse: given a candidate WIS, how can we tell whether it corresponds to an actual encoder?  This theorem provides a necessary and sufficient condition expressed purely in terms of the incidence graph: the product of multiplicities around every cycle must equal $1$.
+
+\begin{theorem}[Cycle factorisation criterion]\label{ch:thm:cycle-factorisation}
+Let $G=(\Mset,\Cset,I)$ be a finite connected bipartite graph and let
+$n_{mc}>0$ for every $mc\in I$.  There exist positive functions
+$w:\Mset\to\mathbb R_{>0}$ and $\beta:\Cset\to\mathbb R_{>0}$ such that $n_{mc}=\beta(c)/w(m)$ for every $(m,c)\in I$, if and only if every simple cycle $m_0-c_1-m_1-c_2-\cdots-c_r-m_0$ satisfies
+\begin{equation}\label{ch:eq:cycle-product}
+ \prod_{i=1}^{r}n_{m_{i-1}c_i}
+ =
+ \prod_{i=1}^{r}n_{m_i c_i},
+ \qquad m_r:=m_0.
+\end{equation}
+It is enough to verify~\eqref{ch:eq:cycle-product} on the fundamental
+cycles associated with any spanning tree.
+\end{theorem}
+\begin{proof}
+Set
+\[
+ x_m=\log w(m),\qquad y_c=\log\beta(c),\qquad
+ a_{mc}=\log n_{mc}.
+\]
+Because all labels and weights are positive, these quantities are
+well defined, and the multiplicative equations are equivalent to
+\begin{equation}\label{ch:eq:log-factorisation-system}
+ y_c-x_m=a_{mc}\qquad(mc\in I).
+\end{equation}
+With the orientation and indexing fixed above, equation
+~\eqref{ch:eq:log-factorisation-system} is exactly
+$D^{\mathsf T}z=a$ for $z=(x,y)$.
+By Lemma~\ref{ch:lem:incidence-cycle-space}, this system is solvable iff
+$a\perp\ker D$.  Consider the displayed simple cycle, traversed in the
+displayed order.  Its signed incidence vector has coefficient $+1$ on
+the edge $m_{i-1}c_i$, whose traversal agrees with the fixed orientation
+from $\Mset$ to $\Cset$, and coefficient $-1$ on $m_ic_i$, whose
+traversal runs from $\Cset$ to $\Mset$.  Orthogonality therefore reads
+\[
+ 0=\sum_{i=1}^{r}
+ \bigl(a_{m_{i-1}c_i}-a_{m_ic_i}\bigr)
+ =\log\!\left(
+ \frac{\prod_{i=1}^{r}n_{m_{i-1}c_i}}
+      {\prod_{i=1}^{r}n_{m_ic_i}}
+ \right),
+\]
+which is equivalent to~\eqref{ch:eq:cycle-product}.  Since the fundamental
+cycle vectors form a basis of $\ker D$, checking their equations is
+sufficient; checking all simple cycles is equivalent.
+If the cycle equations hold, choose a solution $z=(x,y)$ of
+$D^{\mathsf T}z=a$ and define $w(m)=e^{x_m},\qquad \beta(c)=e^{y_c}.$ These weights are strictly positive, and exponentiating
+$y_c-x_m=a_{mc}$ gives $\beta(c)=n_{mc}w(m)$.  Conversely, any positive
+factorisation yields a solution of the logarithmic system, and hence
+the orthogonality and cycle equations above.
+\end{proof}
+
+\begin{remark}\label{ch:rem:cycle-factorisation-representation}
+Theorem~\ref{ch:thm:cycle-factorisation} characterizes an
+\emph{abstract WIS factorisation} of positive edge labels.  It neither
+imposes the balance equation nor fixes a prior.  Universal optimality
+relative to $\pi$ additionally requires the recovered message weights to
+satisfy $w\propto\pi$.  Thus the theorem is independent preliminary
+structure, not a converse to the Representation Theorem.
+\end{remark}
+\begin{definition}[Incidence graph]\label{ch:def:incidence-graph}
+The \emph{incidence graph} $G(\mathfrak W)$ is the bipartite graph with vertex set $\Mset\sqcup\Cset$ and an edge $mc$ for each $(m,c)\in I$.
+\end{definition}
+
+\paragraph{Why this object.}
+The incidence graph encodes which keys connect which messages to which ciphertexts.  Its bipartite structure is what makes the factorisation possible.
+
+Let $B$ denote the bipartite incidence matrix of $G(\mathfrak W)$, i.e.\ $B_{mc}=1$ if $(m,c)\in I$ and $0$ otherwise.
+\subsection{Encoder-induced structures}\label{ch:def:induced-wis}
+\begin{definition}
+Let $E$ be universally optimal relative to $\pi$, and let $\Cset^+=\{c\in\Cset:\Pr[C=c]>0\}$.  Its \emph{induced WIS} has ciphertext vertex set $\Cset^+$, incidence relation $I=\{(m,c)\in\Mset\times\Cset^+:n_{mc}>0\}$, message weights $w(m)=\pi(m)$, and ciphertext weights
+\[
+ \beta(c)=\pi(m)n_{mc}\quad\text{for any }m\in\cloak(c).
+\]
+\end{definition}
+Proposition~\ref{ch:prop:factorisation-criterion} guarantees that the last expression is well defined.  The normalization $w=\pi$ is a choice of representative; Section~\ref{ch:sec:gauge} explains its residual freedom.
+
+\section{Encoder realizability}
+A weighted incidence structure determines a multiplicity matrix $N$.
+A deterministic Shannon encoder, in turn, is completely described by
+its multiplicity matrix.  The realizability problem therefore asks:
+which weighted incidence structures produce multiplicity matrices that
+can arise from a deterministic encoder?
+\begin{definition}[Realizability]\label{ch:def:realizable}
+A WIS $\mathfrak W$ is \emph{encoder-realizable} if there exists a deterministic Shannon encoder $E$ whose multiplicities satisfy $n_{mc} = \frac{\beta(c)}{w(m)}$ for every incidence $(m,c)\in I$, and are zero otherwise.
+It is \emph{$\pi$-compatible} when $w$ is proportional to the prior $\pi$.
+\end{definition}
+\begin{proof}
+For a fixed message $m$, each key $k\in\mathcal K$ produces exactly one
+ciphertext $c=E(m,k)$.  Hence the sum over $c$ of the number of keys
+mapping $m$ to $c$ is precisely $|\mathcal K|$.
+\end{proof}
+
+The following proposition shows that, conversely, any nonnegative
+integer matrix with constant row sums is realizable by some encoder.
+The construction is elementary but decisive.
+\begin{proposition}[Matrix realization]\label{ch:prop:matrix-realization}
+Let $N=(n_{mc})$ be a nonnegative integer matrix such that for some $K>0$,
+\[
+\sum_{c} n_{mc}=K \qquad\text{for every } m\in\Mset.
+\]
+Then there exists a deterministic Shannon encoder $E$ with $|\Kset|=K$ and
+multiplicity matrix $N(E)=N$.
+\end{proposition}
+\begin{proof}
+For each message $m$, construct a list consisting of $n_{m1}$ copies of
+$c_1$, $n_{m2}$ copies of $c_2$, and so on.  The length of this list is
+$K$ by the row-sum condition.  Order the list arbitrarily.  Define
+$E(m,k)$ to be the $k$-th entry.  Each ciphertext appears exactly
+$n_{mc}$ times in the list for message $m$, hence $N(E)=N$ and
+$|\Kset|=K$ because every row sums to $K$.
+\end{proof}
+
+The construction is independent across messages; no further compatibility
+conditions are required.
+We now translate the row-sum condition into an intrinsic condition on
+the WIS weights.
+\begin{lemma}[Balance equation]\label{ch:lem:balance-equivalence}
+Let $\mathfrak W=(\Mset,\Cset,I,w,\beta)$ with induced multiplicity matrix
+$N$.  The following are equivalent:
+\begin{enumerate}
+\item $B\beta = K w$ for some integer $K>0$;
+\item $\displaystyle\sum_{c} n_{mc}=K$ for every $m\in\Mset$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+For any message $m$, sum the induced multiplicities over all ciphertexts:
+\[
+\sum_{c} n_{mc}
+= \frac{1}{w(m)}\sum_{c\sim m} \beta(c)
+= \frac{(B\beta)(m)}{w(m)}.
+\]
+Hence $\sum_c n_{mc}=K$ for all $m$ iff $(B\beta)(m)=K w(m)$ for all $m$.
+\end{proof}
+
+The balance equation $B\beta=Kw$ is therefore the intrinsic expression
+of the single structural constraint that deterministic encoders impose
+on multiplicity matrices: constant row sums.  With this equivalence,
+encoder realizability reduces to exactly two intrinsic requirements.
+\begin{theorem}[Characterization of encoder-realizable WIS]\label{ch:thm:realizability}
+A weighted incidence structure $\mathfrak W=(\Mset,\Cset,I,w,\beta)$ is
+encoder-realizable if and only if the following two conditions hold:
+\begin{enumerate}
+\item \emph{(Integrality)} For every incidence $(m,c)\in I$,
+      $\frac{\beta(c)}{w(m)}\in\mathbb N.$
+\item \emph{(Balance)} There exists an integer $K>0$ such that
+      $B\beta = K w.$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\emph{Necessity.}  If $\mathfrak W$ is encoder-realizable, then the
+induced multiplicities $n_{mc}=\beta(c)/w(m)$ are the entries of some
+encoder's multiplicity matrix.  Integrality follows because
+multiplicities are nonnegative integers.  Lemma~\ref{ch:lem:row-sum}
+gives $\sum_c n_{mc}=K$ for every $m$, and Lemma~\ref{ch:lem:balance-equivalence}
+translates this to $B\beta=K w$.
+\emph{Sufficiency.}  Define
+\[
+n_{mc}=
+\begin{cases}
+\beta(c)/w(m), & (m,c)\in I,\\
+0, & (m,c)\notin I.
+\end{cases}
+\]
+By Definition~\ref{ch:def:wis} and Condition~(1), the induced multiplicity
+matrix $N=(n_{mc})$ is a nonnegative integer matrix.  By Lemma~\ref{ch:lem:balance-equivalence},
+Condition~(2) implies $\sum_c n_{mc}=K$ for every $m$.  Proposition~\ref{ch:prop:matrix-realization}
+then guarantees an encoder $E$ with multiplicity matrix $N$, and by
+construction the multiplicities of $E$ satisfy $n_{mc}=\beta(c)/w(m)$ on
+every incidence.  Hence $\mathfrak W$ is encoder-realizable.
+\end{proof}
+
+The proof is a composition of results already established in this
+section: integrality guarantees the matrix is integer; the balance
+lemma converts the row-sum condition to intrinsic WIS form; the matrix
+realization proposition constructs the encoder.  No additional ideas
+are required.
+Together, these results provide a complete classification.
+The Representation Theorem (Theorem~
+\ref{ch:thm:representation}) shows
+how every universally optimal encoder induces a weighted incidence
+structure.  The Characterization Theorem (Theorem~
+\ref{ch:thm:realizability})
+proves the converse: every weighted incidence structure satisfying the
+intrinsic integrality and balance conditions is realized by a
+deterministic encoder.  Consequently, universally optimal deterministic
+encryption systems are completely classified by weighted incidence
+structures satisfying these two intrinsic conditions.
+
+
+\paragraph{Multiplicity Matrices.}
+﻿We now pass from an encoder to the integer data that will carry the representation.
+
+
+﻿
+\section{Definition and elementary identities}\label{ch:sec:definition-and-elementary-identities}
+\begin{definition}[Multiplicity matrix]\label{ch:def:multiplicity}
+Let $E:\Mset\times\Kset\to\Cset$ be a deterministic Shannon encoder. Its \emph{multiplicity matrix} is the matrix $N=(n_{mc})_{m\in\Mset,c\in\Cset}$ defined by
+$n_{mc}=\bigl|\{k\in\Kset:E(m,k)=c\}\bigr|.$
+\end{definition}
+\begin{lemma}[Row-sum condition]\label{ch:lem:row-sum}
+For every deterministic Shannon encoder $E$ with multiplicity matrix $N$,
+\[
+\sum_{c\in\Cset} n_{mc}=|\Kset|\qquad\text{for every } m\in\Mset.
+\]
+\end{lemma}
+\begin{proof}
+For fixed $m$, every key has exactly one image under $k\mapsto E(m,k)$, so the sets counted by the entries in the $m$th row partition $\Kset$. Dividing by $|\Kset|$ gives the transition probability. The last assertion follows from Definition~\ref{ch:def:cloak-basics} and the full support of $\pi$.
+\end{proof}
+
+\begin{lemma}[Posterior formula]\label{ch:lem:posterior-formula}
+For every active ciphertext $c$ and $m\in\Mset$,
+\[
+ \Pr[M=m\mid C=c]
+ =\frac{\pi(m)n_{mc}}{\sum_{m'\in\Mset}\pi(m')n_{m'c}}.
+\]
+\end{lemma}
+\begin{proof}
+Substitute the second identity of Lemma~\ref{ch:lem:row-sum} into Bayes' formula~\eqref{ch:eq:bayes-multiplicity-preview}. The factor $|\Kset|^{-1}$ cancels from numerator and denominator.
+\end{proof}
+\section{The factorisation criterion}\label{ch:sec:the-factorisation-criterion}
+\begin{proposition}\label{ch:prop:factorisation-criterion}
+For an active ciphertext $c$, the posterior distribution on $\cloak(c)$ is uniform if and only if there exists a number $\beta(c)>0$ such that
+\[
+ \pi(m)n_{mc}=\beta(c)
+ \qquad(m\in\cloak(c)).
+\]
+In that case,
+\[
+ \beta(c)=\frac{1}{|\cloak(c)|}\sum_{m\in\Mset}\pi(m)n_{mc}
+ =\frac{|\Kset|\Pr[C=c]}{|\cloak(c)|}.
+\]
+\end{proposition}
+\begin{proof}
+By Lemma~\ref{ch:lem:posterior-formula}, the posterior is uniform on $\cloak(c)$ precisely when the numerator $\pi(m)n_{mc}$ is independent of $m$ on that set. Summing the resulting identity over the cloak gives the first formula for $\beta(c)$. The second follows from the law of total probability.
+\end{proof}
+
+\begin{corollary}\label{ch:cor:uo-factorisation}
+An encoder is universally optimal relative to $\pi$ if and only if there is a function $\beta$ on the active ciphertexts such that
+\[
+ \pi(m)n_{mc}=\beta(c)
+ \qquad\text{whenever }n_{mc}>0.
+\]
+\end{corollary}
+The corollary is the precise point at which a posterior condition becomes a combinatorial identity.
+
+\paragraph{Our running examples as WIS.}
+In the AES example (Section~\ref{ch:sec:aes-and-perfect-secrecy}), the incidence structure is the complete bipartite graph $K_{2^{128},2^{128}}$ with $n_{mc}=1$ for every pair---the simplest possible WIS.  Every ciphertext is its own cloak, and weights are constant: $w(m)=\beta(c)=1$ (up to gauge).  The browser fingerprinting example (Section~\ref{ch:sec:browser-fingerprinting-and-anonymity}) illustrates the opposite extreme: $|{\Mset}|\gg|{\Cset}|$, with highly irregular incidence---some browsers produce unique fingerprints (cloak of size~1), while others share identical fingerprints (large cloaks).  The resulting WIS is dense and strongly identifies messages.  The geo-indistinguishability and differential privacy examples involve continuous message spaces and therefore require the generalised WIS framework of Section~\ref{ch:sec:applications-of-the-wis-framework}.
+\endinput

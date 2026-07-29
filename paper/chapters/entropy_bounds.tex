@@ -1,0 +1,88 @@
+\chapter[Entropy Bounds]{Entropy Bounds}\label{ch:sec:entropy-bounds}
+
+
+This chapter bridges geometry and information theory. Its Lipschitz bounds for Shannon, R\'enyi, and min-entropy are the first application of the geometric framework to concrete information measures, and they motivate the universal theory of Chapters~15--16.
+
+
+\section{Introduction}\label{ch:sec:introduction-entropy_bounds}
+The UOD measures distance from optimality in geometric terms.  But what
+does this geometric distance mean for information-theoretic quantities?
+If two distributions are close in UOD, are their entropies close?
+Conversely, if we know the entropy of a distribution, what can we infer
+about its UOD?  This chapter bridges geometry and information theory,
+establishing that all classical entropies---Shannon, R\'enyi,
+min-entropy---are Lipschitz with respect to the UOD, and conversely the
+UOD provides lower bounds on their deviations.
+
+Throughout this chapter let $(\mathcal P,g)$ denote the posterior
+manifold endowed with the pullback Riemannian metric introduced in
+Chapter~\ref{ch:sec:stability-of-the-universal-optimality-defect}
+
+The purpose of this chapter is to relate entropy-based quantities to the
+differential-geometric structure developed in the preceding chapters.
+
+\subsection{Shannon Entropy}\label{ch:sec:shannon-entropy}
+
+For a posterior distribution $P\in\Delta_k^\circ$, define the Shannon entropy
+$H(P)=-\sum_i P_i\log P_i$.
+The entropy is smooth on the interior simplex.
+
+\begin{proposition}[Smoothness of Shannon Entropy]
+\label{ch:prop:11-1}
+The Shannon entropy is smooth on $\Delta_k^\circ$.
+\end{proposition}
+
+\begin{proof}
+Each coordinate map $x\mapsto -x\log x$ is smooth on $(0,\infty)$.
+Finite sums of smooth functions are smooth.\end{proof}
+
+\subsection{Total Posterior Entropy}\label{ch:sec:total-posterior-entropy}
+
+For the posterior manifold $\mathcal P=\prod_c\Delta_c^\circ$,
+define $\mathcal H(P)=\sum_c H(P_c)$.
+
+\begin{proposition}[Smoothness of Total Posterior Entropy]
+\label{ch:prop:11-2}
+The total posterior entropy is smooth on $\mathcal P$.
+\end{proposition}
+
+\begin{proof}
+Each component entropy is smooth by Proposition~\ref{ch:prop:11-1}.
+Finite sums preserve smoothness.\end{proof}
+
+\subsection{Geometric Estimate}\label{ch:sec:geometric-estimate}
+
+\begin{theorem}[Geometric Entropy Estimate]
+\label{ch:thm:11-3}
+There exists a neighborhood of $P^\star$ and a constant $C>0$ such that
+$|\mathcal H(P)-\mathcal H(P^\star)|\le C\,\|P-P^\star\|_g^2$.
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{ch:prop:11-2} the entropy variation is quadratic.
+By Theorem~\ref{ch:thm:7-6} the pullback metric induces a norm equivalent to the
+Euclidean norm on every finite-dimensional tangent space.
+Hence the quadratic remainder is bounded by a constant multiple of the
+squared Riemannian norm.\end{proof}
+
+\subsection{Relation with the UOD}\label{ch:sec:relation-with-the-uod}
+
+\begin{corollary}[Entropy--UOD Relation]
+\label{ch:cor:11-4}
+In a sufficiently small neighborhood of the reference posterior,
+$|\mathcal H(P)-\mathcal H(P^\star)| = O(\mathcal D(P))$.
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{ch:thm:9-3}, $\mathcal D(P)=\|P-P^\star\|_g^2$ locally.
+The claim follows immediately from Theorem~\ref{ch:thm:11-3}.\end{proof}
+
+\paragraph{Running example: browser fingerprinting.}
+The entropy bounds of Theorem~\ref{ch:thm:11-3} have a concrete interpretation for the browser fingerprinting example (Section~\ref{ch:sec:browser-fingerprinting-and-anonymity}).  The min-entropy $H_\infty(P)=-\log\max_i P_i$ of the fingerprint distribution---the quantity that directly measures re-identification risk---satisfies $|H_\infty(P)-H_\infty(Q)|\le L\sqrt{\mathcal D(P,Q)}$ with Lipschitz constant $L=1/\min_i\pi_i$.  For the uniform prior $\pi_i=1/n$, this gives $L=n$, so a high UOD guarantees $H_\infty(P)\le\log n - \frac12\mathcal D(P,U_n)+o(\mathcal D)$ and therefore high identifiability.
+
+\subsection{Discussion}\label{ch:sec:discussion-entropy_bounds}
+The results establish a local relationship between entropy variations
+and the intrinsic geometry of the posterior manifold.
+The estimates rely only on smoothness and finite-dimensional Riemannian
+geometry, and therefore apply to any posterior manifold satisfying the
+hypotheses developed in Part~\ref{ch:part:posterior}.

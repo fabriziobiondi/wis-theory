@@ -1,0 +1,267 @@
+\chapter[Canonical Projection]{Canonical Projection and Differential Factorization}\label{ch:sec:canonical-projection-and-differential-factorisation}
+
+We have a manifold whose points are distributions and whose geometry is
+determined by the pullback of the Euclidean metric through the
+logarithmic map.  To compute distances---the UOD---we need to understand
+how infinitesimal variations in the distribution translate into
+tangent vectors on the manifold.  This chapter obtains the fundamental
+differential factorisation: the differential of the logarithmic
+coordinate map projects each tangent vector onto a weighted hyperplane,
+and the UOD becomes the squared norm of this projection.
+
+Throughout this chapter let
+$P\in\Delta_k^\circ$
+and let
+\[
+W_P=
+\left\{
+w\in\mathbb R^k:
+\sum_i P_i w_i=0
+\right\}.
+\]
+The purpose of this chapter is to establish the fundamental factorisation underlying the differential geometry induced by Weighted Incidence Structures.
+
+The differential factorisation of this chapter is the fundamental technical tool for computing the UOD. It will be used in every subsequent chapter that involves the gradient or Hessian of information functionals---notably the Lipschitz bounds of Chapter~15 and the Bregman theory of Chapter~16.
+
+\section{Canonical Projection}\label{ch:sec:canonical-projection-projection}
+Recall the quotient space (Section~\ref{ch:sec:canonical-projection-and-differential-factorisation})
+\[
+\mathcal G
+=
+\mathbb R^k
+/
+\operatorname{span}\{\mathbf1\}.
+\]
+The canonical projection is
+\[
+Q:\mathbb R^k
+\longrightarrow
+\mathcal G,
+\qquad
+Q(x)=[x].
+\]
+
+\paragraph{Why the projection $Q$?}
+The logarithmic differential $DL_P$ maps tangent vectors to the weighted hyperplane $W_P$.
+But $W_P$ contains both meaningful variations (those that change the posterior) and gauge variations (those that correspond to rescaling weights).
+The projection $Q$ removes the gauge component, selecting only the part that affects the UOD.
+Without this projection, two encoders that differ only by a gauge rescaling would appear geometrically distinct; with $Q$, they are correctly identified as equivalent.
+
+By Chapter~\ref{ch:sec:the-posterior-manifold},
+\[
+\ker(Q)
+=
+\operatorname{span}\{\mathbf1\}.
+\]
+\begin{proposition}[Injectivity of the Restricted Projection]
+\label{ch:prop:4-1}
+The restriction
+\[
+Q|_{W_P}
+:
+W_P
+\longrightarrow
+\operatorname{Im}(Q)
+\]
+is injective.
+\end{proposition}
+\begin{proof}
+Suppose
+$w\in W_P$
+and
+$Q(w)=0.$
+Since
+\[
+\ker(Q)
+=
+\operatorname{span}\{\mathbf1\},
+\]
+there exists a scalar
+$\lambda\in\mathbb R$
+such that
+$w=\lambda\mathbf1.$
+Because
+$w\in W_P,$
+we obtain
+\[
+0
+=
+\sum_i P_iw_i
+=
+\lambda\sum_iP_i.
+\]
+Since
+$\sum_iP_i=1,$
+it follows that
+$\lambda=0.$
+Hence
+$w=0.$
+Therefore
+$Q|_{W_P}$
+is injective. 
+\end{proof}
+%% Explanatory comment: Injectivity means that no non-zero vector in the weighted hyperplane W_P projects to the zero element in the quotient. Consequently, the gauge symmetry has been completely eliminated: the only direction that could collapse to zero is the constant vector, which is already removed from W_P.
+\begin{proposition}[Surjectivity of the Restricted Projection]
+\label{ch:prop:4-2}
+The restriction
+$Q|_{W_P}$
+is surjective.
+\end{proposition}
+\begin{proof}
+By Corollary~\ref{ch:cor:2-4},
+\[
+\dim(\operatorname{Im}(Q))
+=
+k-1.
+\]
+By Proposition~\ref{ch:prop:3-1},
+\[
+\dim(W_P)
+=
+k-1.
+\]
+Proposition~\ref{ch:prop:4-1} proves that
+$Q|_{W_P}$
+is injective.
+An injective linear map between finite-dimensional vector spaces having the same dimension is necessarily surjective.
+Therefore
+$Q|_{W_P}$
+is surjective. 
+\end{proof}
+%% Explanatory comment: Surjectivity combined with injectivity shows that the restricted projection is a bijection. This means that every element of the quotient space can be represented uniquely by a vector in the weighted hyperplane, establishing a canonical identification between the two spaces.
+\begin{corollary}[Linear Isomorphism]
+\label{ch:cor:4-3}
+The restriction
+\[
+Q|_{W_P}
+:
+W_P
+\longrightarrow
+\operatorname{Im}(Q)
+\]
+is a linear isomorphism.
+\end{corollary}
+\begin{proof}
+Immediate from Propositions~\ref{ch:prop:4-1} and~\ref{ch:prop:4-2}. 
+\end{proof}
+%% Explanatory comment: The weighted hyperplane W_P and the quotient space are linearly isomorphic. This means that the weighted hyperplane provides an explicit model for the quotient, allowing concrete computations while retaining the gauge-invariant geometric structure.
+\section{Fundamental Differential Factorization}\label{ch:sec:fundamental-differential-factorisation}
+The following theorem constitutes the central structural result of the differential geometry associated with Weighted Incidence Structures.
+\begin{theorem}[Fundamental Differential Factorization]
+\label{ch:thm:4-4}
+For every posterior distribution
+$P\in\Delta_k^\circ,$
+the differential of the logarithmic coordinate map factors as
+\[
+T_P\Delta
+\xrightarrow{\;DL_P\;}
+W_P
+\xrightarrow{\;Q\;}
+\operatorname{Im}(Q),
+\]
+where both arrows are linear isomorphisms.
+\end{theorem}
+
+\begin{quote}
+\textbf{Mathematical intuition.}
+The fundamental differential factorisation $DF_P = Q\circ DL_P$ separates the logarithmic derivative (which captures the raw sensitivity) from the projection (which removes the gauge ambiguity).
+The UOD is the norm of the projected derivative---the part that actually affects posterior distinguishability.
+\end{quote}
+\begin{proof}
+By Corollary~\ref{ch:cor:3-3},
+\[
+DL_P
+:
+T_P\Delta
+\longrightarrow
+W_P
+\]
+is a linear isomorphism.
+By Corollary~\ref{ch:cor:4-3},
+\[
+Q|_{W_P}
+:
+W_P
+\longrightarrow
+\operatorname{Im}(Q)
+\]
+is also a linear isomorphism.
+Since the composition of linear isomorphisms is again a linear isomorphism,
+\[
+Q\circ DL_P
+:
+T_P\Delta
+\longrightarrow
+\operatorname{Im}(Q)
+\]
+is itself a linear isomorphism.
+This proves the stated factorisation. 
+\end{proof}
+%% Explanatory comment: The Fundamental Differential Factorization shows that the differential of the canonical logarithmic map factors into two linear isomorphisms: the logarithmic differential DL_P followed by the quotient projection Q. This factorisation is the central structural result: it reduces the geometry of the posterior simplex to the simpler linear algebra of the quotient space.
+\begin{definition}[Canonical Logarithmic Coordinate Map]
+\label{ch:def:4-5}
+The composition
+\[
+F
+=
+Q\circ L
+\]
+is called the \textbf{canonical logarithmic coordinate map} associated with the posterior simplex.
+Its differential is
+\[
+DF_P
+=
+Q\circ DL_P.
+\]
+\end{definition}
+
+\paragraph{Why this map.}
+The canonical logarithmic coordinate map is the bridge from the simplex to Euclidean space.  Its differential is what allows us to compute gradients, Hessians, and Lipschitz constants.
+
+\begin{corollary}[Invertibility of the Differential]
+\label{ch:cor:4-6}
+For every
+$P\in\Delta_k^\circ,$
+the differential
+\[
+DF_P
+:
+T_P\Delta
+\longrightarrow
+\operatorname{Im}(Q)
+\]
+is a linear isomorphism.
+\end{corollary}
+\begin{proof}
+By Definition~\ref{ch:def:4-5},
+\[
+DF_P
+=
+Q\circ DL_P.
+\]
+The result follows immediately from Theorem~\ref{ch:thm:4-4}. 
+\end{proof}
+%% Explanatory comment: The differential of the canonical logarithmic map F = Q∘L is invertible at every point of the posterior simplex. This invertibility is the key analytical fact that enables the Inverse Function Theorem, which in turn implies that F is a local diffeomorphism — the subject of the next chapter.
+\section{Consequences}\label{ch:sec:consequences-projection}
+The previous theorem establishes that the logarithmic geometry induced by a posterior distribution is mediated by the weighted hyperplane
+$W_P.$
+This observation corrects the naive identification of the tangent space with the quotient hyperplane and provides the correct differential structure underlying the geometry of Weighted Incidence Structures.
+The factorisation
+\[
+T_P\Delta
+\xrightarrow{DL_P}
+W_P
+\xrightarrow{Q}
+\operatorname{Im}(Q)
+\]
+is the key ingredient for the subsequent chapters.
+Specifically,
+\begin{itemize}
+\item Chapter~\ref{ch:sec:local-diffeomorphism} proves that the canonical logarithmic map is a local diffeomorphism.
+\item Chapter~\ref{ch:sec:pullback-riemannian-metric} constructs the pullback Riemannian metric on the image.
+\item Chapter~\ref{ch:sec:hilbert-geometry} introduces the Universal Optimality Defect as the squared norm induced by this metric.
+\end{itemize}
+\paragraph{Running example: AES.}
+In differential privacy (Section~\ref{ch:sec:differential-privacy-and-database-queries}), the posterior manifold is the set of all output distributions induced by neighbouring databases.  The logarithmic map $L(P)=\log P$ sends the simplex to a hyperplane in $\mathbb R^n$, and the differential $DL_P$ gives the linearised effect of a database change.  For the Laplace mechanism with $n$ possible outputs, the weighted hyperplane $W_P=\{x\in\mathbb R^n:\sum_i\pi_i x_i=0\}$ has dimension $n-1$, and $\dim(\operatorname{Im}(DL_P))=k-1$ by Theorem~\ref{ch:thm:1-5}---every privacy variation is captured by a unique logarithmic direction.
+
+Thus Theorem~\ref{ch:thm:4-4} provides the differential foundation for the entire geometric theory developed in the remainder of this appendix.

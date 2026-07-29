@@ -1,0 +1,43 @@
+\chapter[Gauge Geometry of WIS]{Gauge Geometry of Weighted Incidence Structures}
+\section{Gauge Equivalence}
+Define
+\[ x\sim y \iff
+\exists\lambda\in\mathbb R,\;
+y=x+\lambda\mathbf1. \]
+This is an equivalence relation.
+\section{Quotient Space}
+Define
+\[ \mathcal G=
+\mathbb R^{k}/\operatorname{span}\{\mathbf1\}. \]
+The quotient inherits the canonical vector-space structure.
+\begin{proposition}
+\label{ch:prop:2-1}
+$\dim(\mathcal G)=k-1.$
+\end{proposition}
+\begin{proof} Apply the dimension formula for quotient spaces. 
+\end{proof}
+\section{Canonical Projection}
+Define
+$Q:\mathbb R^{k}\to\mathcal G,\qquad Q(x)=[x].$
+\begin{proposition}
+\label{ch:prop:2-2}
+The map (Q) is linear.
+\end{proposition}
+\begin{proposition}
+\label{ch:prop:2-3}
+\[ \ker(Q)=\operatorname{span}\{\mathbf1\}. \]
+\end{proposition}
+\begin{corollary}
+\label{ch:cor:2-4}
+\[ \operatorname{rank}(Q)=k-1. \]
+\end{corollary}
+\section{Hyperplane Representation}
+Define
+$H=\{x:\sum_i x_i=0\}.$
+\begin{proposition}
+\label{ch:prop:2-5}
+The restriction
+$Q|_H:H\to\mathcal G$
+is a linear isomorphism.
+\end{proposition}
+Thus the quotient and hyperplane realizations are equivalent.

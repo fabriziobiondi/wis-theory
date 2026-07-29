@@ -1,0 +1,130 @@
+﻿\chapter[Logarithmic Linearization]{Logarithmic Linearization}\label{ch:sec:graphs}
+
+The WIS factorisation $n_{mc}=\beta(c)/w(m)$ is multiplicative.
+Geometry, however, is linear: distances, angles, and inner products all
+require additive structure.  To bring geometric tools to bear on
+encryption systems, we must linearise the WIS.  Taking logarithms
+transforms the multiplicative factorisation into an additive linear
+structure, revealing that the WIS representation is equivalent to a
+linear condition on log-incidence vectors.
+
+The logarithmic linearisation of this chapter is the bridge between algebra and geometry. It produces the mismatch operator $\Phi$, which will be the central object of Chapters~7 and~8, where it defines the least-squares problem and the posterior Laplacian.
+
+which is the bridge from combinatorics to operator theory.  This
+section shows that every WIS canonically determines a linear
+representation whose associated operator is the central object of the
+analytic theory.
+\section{Logarithmic potentials}\label{ch:sec:logarithmic-potentials}
+\begin{definition}[Logarithmic potentials]\label{ch:def:log-potentials}
+For a WIS $\mathfrak W$, define vertex functions
+$u(m)=\log w(m),\qquad v(c)=\log\beta(c).$
+\end{definition}
+
+\paragraph{Why this definition.}
+The logarithmic potentials convert the multiplicative factorisation into an additive condition.  This linearisation opens the door to Hilbert-space geometry: additive structure means linear operators, least-squares, and spectral theory.
+
+\begin{proposition}\label{ch:prop:potential}
+For every incidence $mc$, $\log n_{mc}=v(c)-u(m).$ Consequently, the edge labelling $mc\mapsto\log n_{mc}$ is a difference of vertex potentials on the bipartite incidence graph.
+\end{proposition}
+
+\paragraph{Why logarithmic coordinates?}
+The WIS factorisation $n_{mc}=\beta(c)/w(m)$ is multiplicative.  Geometry, however, is linear: distances, angles, and inner products all require additive structure.  Logarithms convert the multiplicative relation into the additive relation $\log n_{mc}=v(c)-u(m)$, making the problem amenable to linear algebra.  Why not use odds $P/(1-P)$ or the Fisher metric directly?  Odds are designed for binary hypothesis testing, not for the general incidence structure of encryption.  The Fisher metric is a Riemannian structure on the space of distributions, not a tool for factoring incidence matrices.  Logarithms are the unique transformation that turns the multiplicative ratio $\beta/w$ into a difference while preserving the order structure of probabilities.
+
+\begin{proof}
+Take logarithms in the defining identity $n_{mc}=\beta(c)/w(m)$.
+\end{proof}
+
+This identity is not merely a convenient rewriting.  It reveals that
+the WIS data carry an additive structure that standard multiplicative
+reasoning cannot access.  Because $u$ and $v$ are real-valued functions
+on different vertex sets, they naturally belong to different vector
+spaces, yet their difference lives on the common set of edges.  This
+observation is the reason why Hilbert-space methods become available.
+\section{Canonical liftings}\label{ch:sec:canonical-liftings}
+Let $V_M=\mathbb R^{\Mset}$, $V_C=\mathbb R^{\Cset}$, and
+$V_I=\mathbb R^I$, each with the standard Euclidean inner product.
+Message potentials belong to $V_M$, ciphertext potentials to $V_C$;
+both are lifted to the common incidence space $V_I$.
+\begin{proposition}[Canonical lifting]\label{ch:prop:canonical-lifting}
+The operators
+$A:V_M\to V_I,\qquad (Au)_{(m,c)}=u_m,$ $C:V_C\to V_I,\qquad (Cv)_{(m,c)}=v_c,$ embed the potential spaces into $V_I$.  Both are injective when every
+vertex has at least one incident edge.
+\end{proposition}
+\begin{proof}
+If $Au=0$, then $u_m=0$ for every message that appears in an
+incidence; if the incidence graph has no isolated vertices, this
+covers all messages.  The same argument applies to $C$.
+\end{proof}
+
+\begin{quote}
+\textbf{Mathematical intuition.}
+The mismatch operator $\Phi=[A\; -C]$ sends a pair of vertex potentials $(u,v)$ to the vector $\omega=\Phi(u,v)$ whose components are $\omega_{mc}=u_m-v_c$.
+Taking logarithms turns multiplicative relations into additive ones, enabling the use of linear algebra and Hilbert-space geometry.
+\end{quote}
+
+\section{Canonical linear representation}\label{ch:sec:canonical-linear-representation}
+Because both liftings map into the same Hilbert space, their
+difference defines a canonical linear operator.  The following theorem
+is the conceptual turning point of the book: it shows that the entire
+analytic development to come is already latent inside the WIS, waiting
+only to be revealed by the logarithmic transformation.
+\begin{theorem}[Canonical linear representation]\label{ch:thm:mismatch}
+Let $A$ and $C$ be the lifting operators of
+Proposition~\ref{ch:prop:canonical-lifting}.  The unique linear operator
+$\Phi:V_M\oplus V_C\to V_I$ compatible with the logarithmic
+factorisation $\log n_{mc}=v(c)-u(m)$ is
+\[
+\Phi(u,v)=Au-Cv,
+\qquad\text{or in block form}\quad
+\Phi=[A\;-C].
+\]
+\end{theorem}
+\begin{proof}
+The logarithmic factorisation is $\omega_{mc}=v(c)-u(m)$.
+The canonical linear operator comparing lifted message and ciphertext
+potentials is therefore $\Phi(u,v)=Au-Cv,$ whose edge values are $u(m)-v(c)$.
+Consequently, $\omega = -\Phi(u,v),$ and equivalently $\omega=\Phi(-u,-v)$.
+Thus the logarithmic factorisation determines the operator uniquely
+up to the global sign convention fixed by the choice of mismatch.
+\end{proof}
+
+The mismatch operator is therefore not a modelling choice: it is the
+canonical linear representation forced by the additive structure of
+the logarithmic WIS representation.  Its image characterizes exact WIS
+factorizability; compatibility with a prescribed prior is a separate
+condition.
+\begin{theorem}[Operator form of WIS factorisation]\label{ch:thm:operator-wis}
+Let $\omega_{mc}=\log n_{mc}$.  The connected positive edge labels $n_{mc}$
+admit a WIS factorisation if and only if
+$\omega\in\operatorname{Im}(\Phi)$.  Equivalently, they satisfy the
+cycle identities of Theorem~\ref{ch:thm:cycle-factorisation}.
+\end{theorem}
+\begin{proof}
+A WIS factorisation exists iff
+$\omega_{mc}=v_c-u_m$ for some $u\in V_M$, $v\in V_C$.  Since
+$\Phi(u,v)=Au-Cv$, $\Phi(-u,-v) = -Au + Cv = v - u = \omega.$ Hence $\omega\in\operatorname{Im}(\Phi)$.  Conversely, every vector
+in $\operatorname{Im}(\Phi)$ can, after changing the signs of its
+vertex potentials, be written in the form $v_c-u_m$.  The equivalence
+with the cycle identities is Theorem~\ref{ch:thm:cycle-factorisation}.
+\end{proof}
+
+Universal optimality relative to a fixed prior is stronger: in addition
+to $\omega\in\operatorname{Im}(\Phi)$, the message potential in the
+factorisation must satisfy $u=\log\pi$ up to an additive constant.
+Thus a single linear operator $\Phi$ captures the entire
+representability condition.  \textbf{From this point onward, every
+analytic construction---the least-squares variational principle, the
+normal operator, the posterior Laplacian, convexity, strict convexity
+modulo gauge, stability of the reconstruction, the quotient geometry,
+and the intrinsic distance from universal optimality---follows from
+this canonical operator through standard Hilbert-space theory.}
+Nothing is chosen or added; each step is forced by the previous one.
+The graph-potential viewpoint developed in this section is explanatory
+rather than an additional representation theorem; standard results on
+graph potentials and incidence matrices provide the appropriate broader
+context.  \paragraph{Running example: geo-indistinguishability.}
+Geo-indistinguishability (Section~\ref{ch:sec:geo-indistinguishability-and-location-privacy}) provides a continuous analogue: the Laplacian noise mechanism produces a linear relation between the logarithm of the posterior density and the Euclidean distance to the reported location.  For two locations $P,Q$ at distance $r$, the log-incidence vector satisfies $\omega_{mc}=\log(\beta(c)/w(m))=\varepsilon r$, so the mismatch operator $\Phi$ acts as $\Phi(u,v)=\varepsilon\,\mathbf{1}_{\{mc\in I\}}$, and the least-squares solution reduces to a one-dimensional problem.
+
+Its main contribution is to reveal the linear structure that
+makes the operator-theoretic development of the next section possible.
+\endinput

@@ -1,0 +1,133 @@
+\chapter[Algebra of the UOD]{Algebra of the Universal Optimality Defect}\label{ch:sec:algebra-of-the-universal-optimality-defect}
+\section{Introduction}\label{ch:sec:introduction-analytic_uod-2}
+Part~\ref{ch:part:posterior} constructed the posterior manifold together with the
+canonical logarithmic coordinate map
+$F = Q\circ L, \qquad L(P)=\log P,$
+where (Q) denotes the quotient projection removing the additive
+logarithmic gauge symmetry. The Universal Optimality Defect (UOD) is the
+intrinsic squared distance induced by this geometry:
+$\mathcal{D}(P,Q)=\|F(P)-F(Q)\|^{2}.$
+The purpose of this chapter is to derive an exact closed formula for
+\(\mathcal{D}\) and establish its fundamental algebraic properties.
+All later comparison theorems will be derived from this identity.
+\section{Canonical Hyperplane Representation}\label{ch:sec:canonical-hyperplane-representation}
+Part~\ref{ch:part:posterior} defines (Q) abstractly as the quotient map
+\[ Q:\mathbb{R}^{n}\rightarrow
+\mathbb{R}^{n}/\operatorname{span}{\mathbf1}. \]
+For explicit computations we identify this quotient with the Euclidean
+hyperplane
+\[ H=\Bigl\{x\in\mathbb{R}^{n}:\sum_{i}
+x_i=0\Bigr\}. \]
+\begin{lemma}
+\label{ch:lem:21-1}
+The quotient space
+\(\mathbb{R}^{n}/\operatorname{span}{\mathbf1}\) is
+canonically isometric to (H). Under this identification,
+\[ Q(x)=x-\bar x,\mathbf1, \qquad
+\bar x=\frac1n\sum_{i=1}^{n} x_i. \]
+\begin{proof}
+Every equivalence class
+\(x+\operatorname{span}{\mathbf1}\) contains a unique
+vector with zero arithmetic mean, namely
+\(x-\bar x,\mathbf1\). Uniqueness follows because adding a
+constant changes the mean by that constant. Hence every quotient class
+has a unique representative in (H), defining a linear isomorphism. The
+Euclidean norm on (H) therefore induces the canonical quotient norm used
+throughout Part~\ref{ch:part:posterior}.
+\end{proof}
+\end{lemma}
+\section{Closed Formula}\label{ch:sec:closed-formula}
+\begin{theorem}
+\label{ch:thm:21-2}
+Let
+\[ a_i=\log\frac{P_i}{Q_i}, \qquad
+\bar a=\frac1n\sum_{i} a_i. \]
+Then
+\[ \boxed{
+\mathcal{D}(P,Q)
+=
+\sum_{i=1}^{n}(a_i-\bar a)^2.
+} \]
+Equivalently,
+\[ \boxed{
+\mathcal{D}(P,Q)
+=
+\sum_i a_i^2
+-
+\frac1n\left(\sum_i a_i\right)^2.
+} \]
+\begin{proof}
+By definition,
+$\mathcal{D}(P,Q) = \|Q(\log P-\log Q)\|^{2}.$
+Set \(a=\log P-\log Q\). By Lemma~\ref{ch:lem:21-1},
+$Q(a)=a-\bar a,\mathbf1.$
+Taking the Euclidean norm gives
+\[ \mathcal{D}(P,Q) = \|a-\bar a,\mathbf1\|^{2},
+\]
+whose expansion is
+\[ \sum_{i}(a_i-\bar a)^{2} = \sum_{i}
+a_i^{2}-\frac1n\left(\sum_{i}
+a_i\right)^{2}. \]
+\end{proof}
+\end{theorem}
+\section{Equivalent Forms}\label{ch:sec:equivalent-forms}
+\begin{corollary}
+\label{ch:cor:21-3}
+The Universal Optimality Defect admits the variance representation
+\[ \boxed{
+\mathcal{D}(P,Q)
+=
+n\,
+\operatorname{Var}_{U_n}
+\!\left(
+\log\frac{P_i}{Q_i}
+\right),
+} \]
+where \(\operatorname{Var}_{U_n}\) denotes variance with respect
+to the uniform distribution on the coordinate index set.
+\end{corollary}
+\section{Fundamental Properties}\label{ch:sec:fundamental-properties}
+\begin{proposition}
+\label{ch:prop:21-4}
+For all posterior distributions (P,Q):
+\begin{itemize}
+  \item \(\mathcal{D}(P,Q)\ge0\);
+  \item \(\mathcal{D}(P,Q)=0\iff P=Q\);
+  \item \(\mathcal{D}(P,Q)=\mathcal{D}(Q,P)\);
+  \item \(\mathcal{D}\) is invariant under addition of a common
+\end{itemize}
+    constant in logarithmic coordinates.
+\begin{proof}
+Items (1) and (3) follow from the squared Euclidean norm.
+If \(\mathcal{D}(P,Q)=0\), then all centered logarithmic ratios
+vanish, so
+$\log\frac{P_i}{Q_i}=c$
+for every (i). Hence \(P_i=e^{c}Q_i\). Since both distributions sum to one,
+$1=\sum_{i}P_i=e^{c}\sum_{i}Q_i=e^{c},$
+thus (c=0), proving (P=Q).
+Item (4) follows because (Q) annihilates constant vectors.
+\end{proof}
+\end{proposition}
+\section{Interpretation}\label{ch:sec:interpretation}
+The UOD is the intrinsic quadratic energy of the logarithmic
+probability-ratio vector after quotienting the additive gauge symmetry.
+Unlike Kullback--Leibler divergence, which averages logarithmic ratios
+with respect to a probability measure, the UOD measures their Euclidean
+dispersion in the canonical quotient geometry determined by Part~\ref{ch:part:posterior}.
+\section{Outlook}\label{ch:sec:outlook}
+Part~\ref{ch:part:variational} develops the mathematical theory of the UOD:
+\begin{itemize}
+  \item differential structure;\label{ch:sec:differential-uod}
+  \item local Riemannian approximation;
+  \item functional-analytic properties;\label{ch:sec:functional-uod}
+  \item global comparison theorems with Total Variation, Hellinger, $\chi^2$ and
+\end{itemize}
+    Kullback--Leibler divergence;
+\begin{itemize}
+  \item applications to entropy and security functionals.
+\end{itemize}
+
+
+\paragraph{Running example: geo-indistinguishability.}
+The variance representation $\mathcal D(P,Q)=n\operatorname{Var}_{U_n}(a)$ (Corollary~\ref{ch:cor:21-3}) is particularly illuminating for geo-indistinguishability (Section~\ref{ch:sec:geo-indistinguishability-and-location-privacy}): the log-likelihood ratio $a(x,y)=\log(P(x)/Q(y))$ becomes the Euclidean distance between two points on the plane, and the UOD is proportional to the squared spatial distance---establishing a direct link between geometric privacy and Euclidean geometry.
+

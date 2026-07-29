@@ -1,0 +1,111 @@
+\chapter[Log-Likelihood Field]{Functional Calculus on the Log-Likelihood Field}
+\section{Introduction}
+The previous chapter revealed that both the Kullback--Leibler divergence
+and the Universal Optimality Defect (UOD) are naturally expressed in
+terms of the same logarithmic quantity. This chapter develops that
+observation into a unified functional framework.
+Throughout,
+\[ a(P,Q)=\left(a_i\right),\qquad
+a_i=\log\frac{P_i}{Q_i}, \]
+will be called the \textbf{log-likelihood field}.
+\section{The Log-Likelihood Field}
+The logarithmic embedding satisfies
+$L(P)-L(Q)=a.$
+Consequently every quantity introduced in Part V is obtained by
+applying a functional to the same geometric object.
+The field (a) represents the logarithmic displacement between two
+probability distributions in quotient coordinates.
+\section{First Moment: Kullback--Leibler Divergence}
+\begin{proposition}
+\label{ch:prop:27-1}
+The Kullback--Leibler divergence is the expectation of the
+log-likelihood field with respect to the distribution (P):
+\[ \boxed{
+D_{KL}(P\|Q)=E_P[a].
+} \]
+\textbf{Proof.}
+By definition,
+\[ D_{KL}(P\|Q) = \sum_{i}P_i\log\frac{P_i}{Q_i}
+= \sum_{i}P_ia_i = E_P[a]. \]
+\end{proposition}
+\section{Reverse KL Divergence}
+\begin{proposition}
+\label{ch:prop:27-2}
+The reverse Kullback--Leibler divergence satisfies
+\[ \boxed{
+D_{KL}(Q\|P)
+=
+-E_Q[a].
+} \]
+\textbf{Proof.}
+Since
+$\log\frac{Q_i}{P_i}=-a_i,$
+we obtain
+\[ D_{KL}(Q\|P) = \sum_{i}Q_i\log\frac{Q_i}{P_i}
+= -\sum_{i}Q_ia_i. \]
+\end{proposition}
+\section{Second Centered Uniform Moment}
+Chapter 21 proved that
+\[ \boxed{
+\mathcal{D}(P,Q)
+=
+n\,\operatorname{Var}_U(a),
+} \]
+where
+$U=\left(\frac1n,\ldots,\frac1n\right).$
+Equivalently,
+$\frac{\mathcal{D}}{n} = E_U[a^{2}]-E_U[a]^{2}.$
+Thus the UOD is the centered second moment of the same log-likelihood
+field, computed with respect to the uniform measure.
+\section{A Unified Perspective}
+The previous propositions show that several apparently unrelated
+quantities are obtained by evaluating different statistics of the same
+field.
+\[
+\begin{array}{lll}
+\text{Functional} & \text{Measure} & \text{Observable} \\
+\hline
+(D_{KL}(P\|Q)) & P & a \\
+(D_{KL}(Q\|P)) & Q & -a \\
+\text{UOD} & \text{Uniform} & (a-E_U[a])^2
+\end{array}
+\]
+This table separates two independent choices:
+\begin{itemize}
+  \item the reference measure;
+  \item the functional applied to the field.
+\end{itemize}
+\section{Functional Viewpoint}
+The previous examples motivate the definition of a general functional
+$F_{\mu,\Phi}(P,Q) = E_\mu[\Phi(a)],$
+where
+\begin{itemize}
+  \item \(\mu\) is a probability measure;
+  \item \(\Phi\) is a functional acting on the log-likelihood field.
+\end{itemize}
+Different choices recover different geometric quantities.
+This observation motivates the general theory developed in the next
+chapter.
+\section{Interpretation}
+The log-likelihood field should be regarded as the fundamental geometric
+object associated with the logarithmic quotient embedding.
+Classical divergences are not primary objects; rather, they arise by
+applying different statistical functionals to the same field.
+Within this interpretation, the UOD occupies a distinguished position as
+the uniform variance of the logarithmic displacement.
+\section{Summary}
+This chapter established that
+\begin{itemize}
+  \item the log-likelihood field is the common geometric object underlying
+\end{itemize}
+    several divergences;
+\begin{itemize}
+  \item the KL divergence is its expectation under (P);
+  \item the reverse KL divergence is its expectation under (Q) with opposite
+\end{itemize}
+    sign;
+\begin{itemize}
+  \item the UOD is its centered second moment under the uniform measure.
+\end{itemize}
+These identities motivate the general functional calculus developed in
+the next chapter.

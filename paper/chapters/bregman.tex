@@ -1,0 +1,422 @@
+\chapter[Average Hessian Operator]{The Average Hessian Operator and Universal Bregman Theory}\label{ch:sec:the-average-hessian-operator-and-universal-bregman-theo}
+
+The Average Hessian Operator of this chapter turns the universal inequalities of Chapter~15 into exact equalities for Bregman divergences. This operator plays a central role in the variational theory of Part~V, where it connects the UOD to the spectral geometry of the posterior Laplacian.
+
+
+\section{Introduction}\label{ch:sec:introduction-bregman}
+The universal Lipschitz and quadratic bounds apply to any smooth
+functional.  But some functionals---Bregman divergences---have a special
+structure: they admit an exact quadratic representation through an
+average of their Hessian along the geodesic.  For these functionals the
+bounds become exact identities, not estimates.  This chapter develops
+the Average Hessian Operator, which turns the universal inequalities of
+the previous chapter into precise equalities for the entire Bregman
+class.
+
+Chapter~\ref{ch:sec:information-functionals-on-the-wis-manifold} established geometric estimates that hold for arbitrary
+smooth scalar fields on the WIS manifold. We now specialize those
+results to the important class of \textbf{Bregman divergences}.
+The central idea of this chapter is not merely that Bregman divergences
+admit an integral representation---a classical result---but that, within
+the WIS framework, this representation naturally defines a canonical
+symmetric operator associated with every pair of posterior
+distributions.
+This operator, called the \textbf{Average Hessian Operator}, provides the
+bridge between the universal geometry induced by the Universal
+Optimality Defect (UOD) and the anisotropic behavior of individual
+information-theoretic divergences.
+\subsection{Convex Potentials on the WIS Coordinate Space}\label{ch:sec:convex-potentials-on-the-wis-coordinate-space}
+Let
+$F:\mathcal P\rightarrow F(\mathcal P)$
+be the global WIS coordinate map established in Part~\ref{ch:part:posterior}.
+Let $\phi:F(\mathcal P)\rightarrow\mathbb R$ be a twice continuously differentiable convex potential.
+For
+$x=F(P),\qquad y=F(Q),$
+the associated Bregman divergence is
+\[ D_\phi(P,Q) =
+\phi(x)-\phi(y)-\nabla\phi(y)^T(x-y).
+\]
+Throughout this chapter all line segments are understood in the WIS
+coordinate space \(F(\mathcal P)\).
+
+\begin{theorem}[Integral Representation]\label{ch:thm:15-1}
+
+If \(\phi\in C^{2}(F(\mathcal P))\), then
+\[ D_\phi(P,Q) = \int_0^{1} (1-t)\,\Delta^T
+H_\phi(\gamma(t)) \Delta\,dt, \]
+where
+$H_\phi=\nabla^2\phi.$
+\end{theorem}
+
+\paragraph{Interpretation.}
+The Average Hessian Operator turns an inequality into an identity for Bregman divergences.  While the universal bounds of Chapter~15 give estimates of the form $|S(P)-S(Q)|\le L\sqrt{\mathcal D}$, the AHO gives exact equalities $D_\phi(P,Q)=\frac12\Delta^T\overline H_\phi\Delta$.  This is the bridge between the universal theory and the specific geometry of each functional.
+
+\begin{quote}
+\textbf{Mathematical intuition.}
+The Average Hessian Operator $\overline H_\phi(P,Q)$ averages the Hessian of $\phi$ along the geodesic joining $P$ to $Q$.
+For Bregman divergences this average turns an inequality into an identity: $D_\phi(P,Q)=\frac12\Delta^T\overline H_\phi\Delta$.
+The UOD bounds the spectral norm of this operator, giving universal estimates that depend only on the geometry.
+\end{quote}
+
+\begin{proof}
+Taylor's theorem with integral remainder gives
+\[
+\phi(x) - \phi(y) - \nabla\phi(y)^T(x-y)
+= \int_0^{1} (1-t)\,(x-y)^T H_\phi(y+t(x-y))\,(x-y)\,dt.
+\]
+The left-hand side is the Bregman divergence $D_\phi(P,Q)$ by definition,
+and the right-hand side is precisely the integral expression claimed. 
+\end{proof}
+
+
+
+\section{The Average Hessian Operator}\label{ch:sec:the-average-hessian-operator}
+The previous theorem motivates the following definition.
+\begin{definition}[Average Hessian Operator]
+\label{ch:defn:15-1}
+The \textbf{Average Hessian Operator} associated with \(\phi\) between
+\(P\) and \(Q\) is
+\[ \boxed{
+\overline H_\phi(P,Q)
+=
+2\int_0^1
+(1-t)
+H_\phi(\gamma(t))\,dt.
+} \]
+Because every Hessian is symmetric,
+$\overline H_\phi(P,Q)$
+is symmetric.
+Since every Hessian of a convex potential is positive semidefinite,
+$\overline H_\phi(P,Q)\succeq0.$
+\end{definition}
+
+\paragraph{Why this operator.}
+The Average Hessian Operator turns the universal inequality into an exact equality for Bregman divergences.  It is the bridge between the universal theory and the specific geometry of each divergence.
+
+The integral representation immediately becomes
+\begin{theorem}[Exact Quadratic Representation]
+\label{ch:thm:15-2}
+\[ \boxed{
+D_\phi(P,Q)
+=
+\frac12
+\Delta^T
+\overline H_\phi(P,Q)
+\Delta.
+} \]
+\end{theorem}
+Thus every Bregman divergence is represented exactly by a quadratic form
+whose metric tensor is the Average Hessian Operator.
+\subsection{Spectral Representation}\label{ch:cor:15-1}
+Since
+$\overline H_\phi(P,Q)$
+is real symmetric, the spectral theorem implies
+$\overline H_\phi = U\Lambda U^T,$
+where \(U\) is orthogonal and
+\[
+\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_n).
+\]
+Writing
+$\alpha=U^T\Delta,$
+gives the exact decomposition
+\begin{corollary}[Spectral Decomposition]
+
+\[ \boxed{
+D_\phi(P,Q)
+=
+\frac12
+\sum_{i=1}^{n}
+\lambda_i\alpha_i^2.
+} \]
+\end{corollary}
+This expression separates the universal displacement from the
+directional amplification induced by the convex potential.
+\begin{theorem}[Spectral Bounds]\label{ch:thm:15-3}
+Assume that along the segment
+$\gamma([0,1]),$
+the Hessian satisfies
+\[ m(t)I \preceq H_\phi(\gamma(t))
+\preceq M(t)I. \]
+Define
+$\underline\lambda = 2\int_0^{1}(1-t)m(t)\,dt,$
+and
+\begin{proof}
+The matrix inequalities imply identical inequalities for every quadratic
+form. Integrating them over the segment and using the definition of
+\(\phi\) yields the result. 
+\end{proof}
+\end{theorem}
+
+
+\section{Lower Bounds for General Smooth Functionals}\label{ch:sec:lower-bounds-for-general-smooth-functionals}
+
+\paragraph{Running example: differential privacy.}
+The KL divergence $D_{\mathrm{KL}}(P\|Q)=\sum_i P_i\log(P_i/Q_i)$ between posterior and uniform prior is a Bregman divergence generated by the negative Shannon entropy $\phi(x)=\sum_i x_i\log x_i$.  In the differential privacy example (Section~\ref{ch:sec:differential-privacy-and-database-queries}), the Average Hessian Operator $\overline H_\phi(P,Q)$ is diagonal with eigenvalues $\lambda_i=1/(\pi_i+P_i)$, giving the spectral quadratic form $\Delta^T\overline H_\phi\Delta=\sum_i\Delta_i^2/(\pi_i+P_i)$.  This yields explicit spectral bounds on how much the privacy---utility trade-off can differ between two nearby mechanisms.
+
+The spectral bounds of Theorem~\ref{ch:thm:15-3} apply only to Bregman
+divergences, whose quadratic structure is forced by the convex
+potential.  For arbitrary smooth functionals $S:\mathcal P\to\mathbb R$,
+the situation is different: the second-order Taylor expansion gives
+only an upper bound in general (Theorem~\ref{ch:thm:14-2}), and a
+matching lower bound requires additional structure.
+
+\subsection{Local Lower Bounds via Positive Definite Hessian}\label{ch:sec:local-lower-bounds-via-positive-definite-hessian}
+
+If $S$ has a stationary point $P^\star$ and its WIS Hessian is positive
+definite in a neighbourhood, then $S$ is locally strictly convex and
+
+\[
+S(P) - S(P^\star) \ge \frac{\lambda_{\min}}{2}\,\mathcal D(P,P^\star),
+\]
+
+where $\lambda_{\min}>0$ is the minimum eigenvalue of the Hessian on the
+segment joining $P$ and $P^\star$.
+
+\begin{theorem}[Local Lower Bound]
+\label{ch:thm:lower-local}
+Let $S\in C^2(\mathcal P)$ have a stationary point $\nabla_g S(P^\star)=0$.
+Assume that the WIS Hessian satisfies
+$\operatorname{Hess}_g S(x) \succeq \mu I$ for every $x$ on the
+geodesic segment joining $P$ and $P^\star$, with $\mu>0$.  Then
+
+\[
+S(P) - S(P^\star) \ge \frac{\mu}{2}\,\mathcal D(P,P^\star).
+\]
+
+Equivalently, for any $P,Q$ in a convex neighbourhood where
+$\operatorname{Hess}_g S \succeq \mu I$ along the segment,
+
+\[
+|S(P)-S(Q)| \ge \frac{\mu}{2}\,\mathcal D(P,Q)
+\quad\text{(up to sign depending on convexity/concavity)}.
+\]
+
+\end{theorem}
+
+\begin{proof}
+Taylor's theorem with integral remainder gives
+
+\[
+S(P) - S(P^\star)
+=
+\int_0^1 (1-t)\,\Delta^T\operatorname{Hess}_g S(\gamma(t))\,\Delta\,dt,
+\]
+
+where $\gamma$ is the geodesic from $P^\star$ to $P$ and
+$\Delta$ is the coordinate difference in the WIS embedding.
+Since $\operatorname{Hess}_g S \succeq \mu I$ along the segment,
+each quadratic form is bounded below by $\mu\|\Delta\|^2$.  Integrating
+and using $\mathcal D(P,P^\star)=\|\Delta\|^2$ gives the result.\end{proof}
+
+\subsection{Global Lower Bounds via Geodesic Convexity}\label{ch:sec:global-lower-bounds-via-geodesic-convexity}
+
+When $S$ is geodesically convex on the entire posterior manifold, the
+local lower bound extends globally.  Geodesic convexity---convexity
+along geodesics of the pullback metric---is a stronger condition than
+Euclidean convexity in coordinates, but it is satisfied by several
+important functionals.
+
+\begin{lemma}[Geodesic Convexity of the KL Divergence]
+\label{ch:lem:kl-convex}
+The Kullback--Leibler divergence $P\mapsto D_{\mathrm{KL}}(P\|Q)$ is
+geodesically convex on the posterior manifold for every fixed $Q$.
+\end{lemma}
+
+\begin{proof}
+In the WIS coordinate representation,
+$D_{\mathrm{KL}}(P\|Q) = \sum_i P_i\log(P_i/Q_i)$ becomes
+$D_{\mathrm{KL}}(x\|y) = \sum_i e^{x_i-n}(x_i-y_i)$ after the
+logarithmic embedding and normalisation.  The Hessian of this
+expression in the WIS coordinates is $\operatorname{diag}(e^{x_i-n})$,
+which is positive definite.  Since the pullback metric is flat, this
+implies geodesic convexity.\end{proof}
+
+\paragraph{What this theorem proves.}
+The universal bounds of Chapter~15 give upper estimates for how much a functional can change.  Lower bounds are harder because they require convexity.  This theorem shows that for convex functionals, the quadratic lower bound is exactly $\frac12\lambda_{\min}\|\Delta\|^2$, where $\lambda_{\min}$ is the minimum eigenvalue of the Hessian.  This completes the two-sided estimate: both upper and lower bounds now have explicit geometric constants.
+
+\begin{theorem}[Global Lower Bound for Convex Functionals]
+\label{ch:thm:lower-global}
+Let $S\in C^2(\mathcal P)$ be geodesically convex and have a stationary
+point $P^\star$ (necessarily the global minimiser).  Then for every $P$,
+
+\[
+S(P) - S(P^\star) \ge \frac{\mu}{2}\,\mathcal D(P,P^\star),
+\]
+
+where $\mu$ is the minimum eigenvalue of the Hessian of $S$ over the
+entire segment from $P^\star$ to $P$.
+\end{theorem}
+
+\subsection{What the Lower Bound Implies}\label{ch:sec:what-the-lower-bound-implies}
+
+The existence of a lower bound for convex functionals complements the
+universal upper bounds of Chapter~\ref{ch:sec:information-functionals-on-the-wis-manifold} and the Bregman theory of this
+chapter.  Together they bracket every geodesically convex functional
+between two multiples of the UOD:
+
+\[
+\frac{\mu}{2}\,\mathcal D(P,P^\star)
+\le
+S(P) - S(P^\star)
+\le
+\frac{M}{2}\,\mathcal D(P,P^\star),
+\]
+
+where $M$ is the maximum eigenvalue of the Hessian along the segment
+(Theorem~\ref{ch:thm:14-2}).  For Bregman divergences, $\mu$ and $M$
+are the extremal eigenvalues of the Average Hessian Operator
+(Theorem~\ref{ch:thm:15-3}).
+
+For non-convex functionals---such as the R\'enyi entropy for
+$\alpha>1$, which is concave---the lower bound is reversed (the
+functional is bounded above by the quadratic estimate and below by the
+trivial constant).  In such cases a lower bound in terms of the UOD is
+impossible without additional structure, because the functional can be
+arbitrarily flat near its stationary point.
+
+\subsection{Lower Bound for R\'enyi Entropy ($\alpha<1$)}\label{ch:sec:lower-bound-for-renyi-entropy}
+
+For $\alpha<1$, the R\'enyi entropy
+$H_\alpha(P)=\frac1{1-\alpha}\log\sum_i P_i^\alpha$ is strictly
+concave on the interior simplex.  Its WIS Hessian, computed in
+Remark~\ref{rem:improved-hessian}, is negative definite:
+
+\[
+\operatorname{Hess}_g H_\alpha(P) = \frac{\alpha}{1-\alpha}
+\frac{\operatorname{diag}(P^{\alpha-2})}{\sum_i P_i^\alpha}
+- \frac{\alpha^2}{(1-\alpha)^2}
+\frac{P^{\alpha-1}(P^{\alpha-1})^T}{(\sum_i P_i^\alpha)^2}
+\prec 0.
+\]
+
+The uniform distribution $U_n$ is the unique maximiser (the
+stationary point of a concave functional).  Applying the lower bound
+argument with reversed sign gives
+
+\[
+H_\alpha(U_n) - H_\alpha(P) \ge \frac{|\mu_\alpha|}{2}\,
+\mathcal D(P,U_n),
+\]
+
+where $|\mu_\alpha|>0$ is the minimum absolute eigenvalue of the
+Hessian on the segment.  For $P$ close to $U_n$, this simplifies to
+
+\[
+\log_2 n - H_\alpha(P) \ge \frac{\alpha}{2(1-\alpha)}\,
+\frac{1}{n}\,\mathcal D(P,U_n) + o\bigl(\mathcal D(P,U_n)\bigr).
+\]
+
+Thus the R\'enyi entropy for $\alpha<1$ is bounded below by the
+same quadratic form that bounds it above for $\alpha>1$, with the
+sign reversed.
+
+\subsection{Lower Bound for Min-Entropy}\label{ch:sec:lower-bound-for-min-entropy}
+
+Min-entropy $H_\infty(P)=-\log\max_i P_i$ is concave on each
+regularity region (where the argmax is fixed).  On such a region,
+its WIS Hessian is negative semidefinite with a unique negative
+eigenvalue.  Consequently,
+
+\[
+\log_2 n - H_\infty(P) \ge \frac{1}{2(\max_i P_i)^2}\,
+\mathcal D(P,U_n)
+\]
+
+for distributions sufficiently close to the uniform distribution
+(where the argmax is unique and constant).  This lower bound is the
+counterpart of the upper bound derived in
+Corollary~\ref{ch:cor:g-entropy-lipschitz} and Theorem~\ref{ch:thm:max-leakage}.
+
+\subsection{Lower Bound for Jensen--Shannon Divergence}\label{ch:sec:lower-bound-for-jensen--shannon-divergence}
+
+The Jensen--Shannon divergence
+$\operatorname{JSD}(P,Q)$ is not a Bregman divergence, but it can be
+expressed as the average of two KL divergences:
+
+\[
+\operatorname{JSD}(P,Q)
+= \frac12 D_{\mathrm{KL}}(P\|M) + \frac12 D_{\mathrm{KL}}(Q\|M),
+\qquad M=\frac{P+Q}{2}.
+\]
+
+Each KL divergence is geodesically convex (Lemma~\ref{ch:lem:kl-convex}),
+and the average preserves convexity.  Therefore JSD is geodesically
+convex in each argument separately, and for a fixed reference $Q$,
+
+\[
+\operatorname{JSD}(P,Q) \ge \frac{\mu_{\mathrm{JSD}}}{2}\,
+\mathcal D(P,Q),
+\]
+
+where $\mu_{\mathrm{JSD}}$ is the minimum eigenvalue of the
+average of the two KL Hessians along the segment.  For $P$ and $Q$
+close to the uniform distribution $U_n$, the leading-order
+approximation gives
+
+\[
+\operatorname{JSD}(P,Q) \ge \frac{1}{4n}\,\mathcal D(P,Q) + o\bigl(\mathcal D(P,Q)\bigr).
+\]
+
+\subsection{Unified Bracketing}\label{ch:sec:unified-bracketing}
+
+The lower bounds derived here, together with the upper bounds of
+Chapter~\ref{ch:sec:information-functionals-on-the-wis-manifold} and the spectral bounds of Theorem~\ref{ch:thm:15-3},
+give a complete bracketing for all major information functionals:
+
+\[
+\begin{array}{lll}
+\textbf{Functional} & \textbf{Lower bound} & \textbf{Upper bound} \\ \hline
+\text{KL divergence} & \frac{\mu}{2}\,\mathcal D & \frac{M}{2}\,\mathcal D \\
+\text{R\'enyi entropy }\alpha>1 & \text{none (concave)} & C_\alpha\,\mathcal D \\
+\text{R\'enyi entropy }\alpha<1 & \frac{|\mu_\alpha|}{2}\,\mathcal D & \text{none (convex)} \\
+\text{Min-entropy} & \frac12(\max_i P_i)^{-2}\,\mathcal D & \frac12(\min_i P_i)^{-2}\,\mathcal D \\
+\text{Jensen--Shannon} & \frac{1}{4n}\,\mathcal D & \frac12\,\mathcal D \\
+\text{Bregman divergences} & \frac{\lambda_{\min}}{2}\,\mathcal D & \frac{\lambda_{\max}}{2}\,\mathcal D
+\end{array}
+\]
+
+where the constants are evaluated on the relevant compact neighbourhoods
+and $\mu,M$ denote the extremal Hessian eigenvalues along the segment.
+
+\begin{theorem}[Comparison Principle]\label{ch:thm:15-4}
+
+Let \(\phi\) and \(\psi\) be convex potentials satisfying
+$H_\phi(x)\preceq H_\psi(x)$
+for every point of the WIS segment joining \(P\) and \(Q\).
+Then
+\[ \boxed{
+D_\phi(P,Q)\le D_\psi(P,Q).
+} \]
+\end{theorem}
+\begin{proof}
+Subtract the integral representations of the two divergences. Since the
+difference of Hessians is positive semidefinite at every point of the
+segment, the integrand is non-negative, and so is its integral.
+\end{proof}
+
+
+\section{Relation with the Universal Optimality Defect}\label{ch:sec:relation-with-the-universal-optimality-defect}
+The Universal Optimality Defect is
+$\mathcal D(P,Q)=\|\Delta\|^2.$
+It is therefore the \textbf{canonical isotropic quadratic reference form}
+associated with the WIS geometry.
+Every Bregman divergence is obtained from the same displacement vector
+by replacing the identity operator with the Average Hessian Operator,
+\[ D_\phi(P,Q) = \frac12 \Delta^T
+\overline H_\phi(P,Q) \Delta. \]
+Consequently, the geometry of the WIS manifold is universal, while
+individual divergences differ only through the operator
+\(\overline H_\phi(P,Q)\).
+As a special case,
+$\overline H_\phi=I$
+implies
+$D_\phi(P,Q) = \frac12 \mathcal D(P,Q).$
+\paragraph{Outlook.}
+The Average Hessian Operator provides a common mathematical object
+through which diverse information-theoretic divergences can be analyzed.
+The following chapter applies this framework to classical smooth
+information functionals, showing that Shannon entropy, Kullback--Leibler
+divergence, R\'enyi entropy, Tsallis entropy, collision entropy, and
+related quantities become instances of the same geometric theory.
+
+related quantities become instances of the same geometric theory.

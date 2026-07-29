@@ -1,0 +1,149 @@
+\chapter[Piecewise-Smooth Functionals]{Piecewise-Smooth Security Functionals}\label{ch:sec:piecewise-smooth}
+\section{Introduction}\label{ch:sec:introduction-piecewise_smooth}
+Chapters~\ref{ch:sec:universal-geometric-bounds}--\ref{ch:sec:the-average-hessian-operator-and-universal-bregman-theo} developed a geometric theory for smooth information
+functionals. Many security measures used in information theory and
+cryptography are not globally differentiable because they involve
+maxima, argmax operators, or probability rankings
+\cite{smith2009foundations, malacaria2007assessing,
+clark2007static, chatzikokolakis2005probability}.
+The key observation is that these non-smoothness phenomena are highly
+structured. They occur only when the ordering of posterior probabilities
+changes. Between such events, the functionals are ordinary smooth
+functions.
+This chapter formalizes that observation.
+\paragraph{Rank-Based Security Functionals.}
+Representative examples include
+\begin{itemize}
+\item Min-Entropy,
+\item Bayes Vulnerability,
+\item Guessing Entropy,
+\item Success Probability,
+\item Top-\(k\) Success Probability,
+\item rank-based leakage measures.
+\end{itemize}
+Each depends on the ordering of posterior probabilities.
+
+
+
+\section{Ranking Transition Times}\label{ch:sec:ranking-transition-times}
+Let
+\[ P(t)=F^{-1}\!\left((1-t)F(P)+tF(Q)\right),
+\qquad t\in[0,1], \]
+be the WIS geodesic.
+Along this geodesic,
+$P_i(t)\propto P_i^{1-t}Q_i^{t}.$
+A ranking change between coordinates \(i\) and \(j\) occurs only when
+$P_i(t)=P_j(t).$
+\begin{proposition}[Crossing Time]
+\label{ch:prop:17-1}
+If
+$\log(P_i/P_j)\neq\log(Q_i/Q_j),$
+there is at most one crossing time, given by
+\[ \boxed{
+t_{ij}=
+\frac{\log(P_i/P_j)}
+{\log(P_i/P_j)-\log(Q_i/Q_j)}.
+} \]
+Only values satisfying \(t_{ij}\in(0,1)\) correspond to actual
+ranking transitions.
+\end{proposition}
+\begin{proof}
+Since the normalization factor is common to every coordinate, it cancels
+when imposing
+$H_\infty(P)=-\log\max_iP_i.$
+Taking logarithms yields a linear equation in \(S\), whose unique solution
+is the expression above. If the denominator vanishes, the ratio
+\(S\) is constant and no isolated crossing occurs.
+\end{proof}
+\paragraph{Regularity Regions.}
+Let
+$T=\{t_{ij}\in(0,1)\},$
+and order the distinct transition times
+$0<\tau_1<\cdots<\tau_m<1.$
+The complement
+$[0,1]\setminus T$
+is the union of finitely many open intervals.
+On each interval the ordering of posterior probabilities is constant.
+
+
+Let
+$T=\{t_{ij}\in(0,1)\},$
+and order the distinct transition times
+$0<\tau_1<\cdots<\tau_m<1.$
+The complement
+$[0,1]\setminus T$
+is the union of finitely many open intervals.
+On each interval the ordering of posterior probabilities is constant.
+\section{Piecewise Smoothness}\label{ch:sec:piecewise-smoothness}
+The previous statement alone is not sufficient: one must also assume
+that the security functional is defined by smooth expressions once the
+ordering is fixed.
+\begin{theorem}[Piecewise Smoothness]
+\label{ch:thm:17-1}
+Let \(S\) be a security functional satisfying:
+\begin{enumerate}
+\item \(S\) depends on the posterior only through finitely many
+    comparisons, maxima, minima, or rankings;
+\item once the ordering of probabilities is fixed, \(S\) is given by a
+    \(C^{k}\) expression (\(k\ge1\)).
+\end{enumerate}
+Then \(S\) is \(C^{k}\) on every regularity interval determined by the
+transition times.
+\end{theorem}
+\begin{proof}
+On a regularity interval every comparison has a fixed outcome.
+Consequently all maxima, minima and ordering operators reduce to fixed
+index selections. Under assumption (2), the resulting expression is
+$P_i(t)\propto P_i^{1-t}Q_i^{t}.$. Therefore $P_i(t)=P_j(t).$ is $\log(P_i/P_j)\neq\log(Q_i/Q_j),$ throughout the interval.
+\end{proof}
+\subsection{Local Geometric Bounds}\label{ch:cor:17-1}
+On every regularity interval the hypotheses of Chapter~\ref{ch:sec:information-functionals-on-the-wis-manifold} apply.
+\begin{corollary}[Local Stability]
+
+If the WIS gradient of the local representative is bounded,
+$\|S(P)-S(Q)\| \le L_S \sqrt{\mathcal D(P,Q)}$
+for every pair of points contained in the same regularity interval.
+If the local representative is \(C^{2}\) and has a stationary point,
+\[ \|S(P)-S(P^{\star})\| \le C_S
+\mathcal D(P,P^{\star}). \]
+These estimates need not hold across ranking transitions without
+additional analysis.
+\end{corollary}
+
+\section{Examples}\label{ch:sec:examples}
+
+\paragraph{Min-Entropy.}
+\(H_\infty(P)=-\log\max_iP_i.\)
+When the maximizing index is unique, the functional reduces locally to
+\(-\log P_{i^{\star}},\) which is smooth.
+
+\paragraph{Bayes Vulnerability.}
+\(V(P)=\max_iP_i.\)
+Again, smoothness holds whenever the maximizing index is fixed.
+
+\paragraph{Guessing Entropy.}
+Guessing entropy depends on a permutation ordering the probabilities.
+Once that permutation is fixed, the functional becomes a fixed weighted
+sum of the probabilities and is therefore smooth.
+\paragraph{Geometric Interpretation.}
+The WIS manifold remains smooth throughout.
+The only source of non-differentiability is the combinatorial change in
+the ordering of posterior probabilities.
+The transition times identify exactly where the analytical expression of
+a rank-based functional changes.
+
+
+\section{Discussion}\label{ch:sec:discussion-piecewise_smooth}
+This chapter extends the WIS framework from globally smooth information
+functionals to a large class of piecewise-smooth security measures.
+The essential ingredients are:
+\begin{enumerate}
+\item WIS geodesics describe posterior evolution.
+\item Ranking transitions are explicitly computable.
+\item Between transitions the functional is smooth.
+\item Universal geometric bounds apply locally on each regularity
+    interval.
+\end{enumerate}
+The final chapter combines the smooth and piecewise-smooth theories into
+a unified collection of security bounds.
+

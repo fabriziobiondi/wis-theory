@@ -1,0 +1,347 @@
+\chapter[Comparative Geometry]{Comparative Geometry: UOD, Fisher, and Classical Divergences}\label{ch:sec:comparative}
+
+
+This chapter situates the UOD relative to existing geometric frameworks---the Fisher metric, the Hellinger distance, Pearson's $\chi^2$ divergence. These comparisons clarify what is new about the WIS geometry and prepare the ground for the discussion of related work in Chapter~27.
+
+
+\section{Introduction}\label{ch:sec:introduction-comparative_geometry}
+
+The UOD is not an isolated geometric quantity.  This chapter compares
+it with the Fisher information metric (the classical Riemannian metric
+of information geometry) and with standard statistical divergences,
+both locally and globally.
+
+\section{Fisher Information Geometry}\label{ch:sec:fisher-information-geometry}
+
+Throughout this chapter let $(\mathcal P,g)$ denote the posterior manifold equipped with the pullback Riemannian metric introduced in Chapter~\ref{ch:sec:pullback-riemannian-metric}.
+The purpose of this chapter is to compare the geometric structure
+induced by Weighted Incidence Structures with the classical Fisher
+information geometry.
+\begin{remark}
+The results of this chapter establish structural
+relationships. They do not assert that the pullback metric always
+coincides with the Fisher metric. Additional assumptions may be
+required for such an identification.
+\end{remark}
+\paragraph{Fisher Information Metric.}
+Let $\Theta$ be a smooth statistical model with probability distributions
+$p(x;\theta).$
+The Fisher information metric is defined by
+\[
+g_F(\theta)
+=
+\mathbb E_\theta
+\!\left[
+\nabla_\theta\log p(X;\theta)
+\nabla_\theta\log p(X;\theta)^T
+\right].
+\]
+It is a positive-semidefinite symmetric tensor and, under regularity
+assumptions, defines a Riemannian metric on the statistical manifold.
+
+\section{Comparison of the Two Geometries}\label{ch:sec:comparison-of-the-two-geometries}
+The pullback metric constructed in Chapter~\ref{ch:sec:pullback-riemannian-metric} is
+$g = F^{*}g_E,$
+where
+$F = Q\circ L$
+is the canonical logarithmic coordinate map.
+Unlike the Fisher metric, which is obtained from expectations of score
+functions, the pullback metric is induced by the differential of a
+globally defined logarithmic embedding modulo gauge equivalence.
+Thus the two constructions originate from different geometric
+principles.
+\begin{proposition}[Shared Properties]
+\label{ch:prop:10-1}
+Both the Fisher metric and the pullback metric are symmetric
+positive-definite tensor fields whenever they are defined on regular
+statistical models.
+\end{proposition}
+\begin{proof}
+The Fisher metric is symmetric by construction and positive definite
+under the usual regularity assumptions.
+The pullback metric is symmetric and positive definite by Theorem~\ref{ch:thm:7-6}.
+\end{proof}
+
+\begin{proposition}[Coordinate Invariance]
+\label{ch:prop:10-2}
+Both metrics are invariant under smooth reparameterizations of the
+underlying manifold.
+\end{proposition}
+\begin{proof}
+The Fisher metric is invariant under smooth coordinate transformations
+by classical information geometry.
+The pullback metric is defined as the pullback of the Euclidean metric
+by a diffeomorphism and is therefore intrinsically
+coordinate-independent. 
+\end{proof}
+\subsection{Structural Differences}\label{ch:sec:structural-differences}
+The Fisher metric depends on
+\begin{itemize}
+\item the statistical model,
+\item the likelihood function,
+\item expectations with respect to the model.
+\end{itemize}
+The pullback metric developed in this work depends on
+\begin{itemize}
+\item posterior distributions,
+\item logarithmic coordinates,
+\item quotient geometry induced by additive gauge symmetry.
+\end{itemize}
+Consequently, the pullback metric remains meaningful even in situations
+where no differentiable statistical parameterization is explicitly
+available.
+\begin{theorem}[Intrinsic Definition]\label{ch:thm:10-3}
+
+The pullback metric is intrinsically defined on the posterior manifold
+independently of any statistical parameterization.
+\end{theorem}
+\begin{proof}
+By Theorem~\ref{ch:thm:4-4}, the canonical logarithmic coordinate map
+is a global diffeomorphism onto its image.
+The pullback metric is therefore defined entirely through
+the logarithmic embedding, which depends only on the posterior manifold and the Euclidean structure
+of the target space.
+No external parameterization is required. 
+\end{proof}
+
+\begin{corollary}[Generality]
+\label{ch:cor:10-4}
+The differential geometry induced by Weighted Incidence Structures
+extends beyond the classical setting of parameterized statistical
+models.
+\end{corollary}
+\begin{proof}
+Immediate from Theorem~\ref{ch:thm:10-3}. 
+\end{proof}
+
+\section{Discussion}\label{ch:sec:discussion-comparative_geometry}
+The Fisher metric and the pullback metric share several fundamental
+geometric properties:
+\begin{itemize}
+\item symmetry;
+\item positive definiteness;
+\item coordinate invariance;
+\item smooth dependence on the underlying manifold.
+\end{itemize}
+However, they arise from distinct constructions.
+The Fisher metric is expectation-based and model-dependent.
+The pullback metric introduced in this appendix is induced by the
+logarithmic geometry of posterior distributions modulo gauge
+transformations.
+This distinction suggests that the present framework should be viewed as
+complementary to classical Information Geometry rather than as a
+replacement for it.
+Future work may identify conditions under which the two metrics coincide
+or become naturally isometric.
+
+\begin{theorem}[Local Quadratic Expansion]\label{ch:thm:25-1}
+
+For every \(P\in\mathcal P^\circ\) and every
+\(\delta\in T_P\mathcal P^\circ\),
+\[ \mathcal D(P+\delta,P) =
+g_P(\delta,\delta) + o(\|\delta\|^2). \]
+\end{theorem}
+\begin{proof}
+Taylor expansion of \(F\) gives
+$F(P+\delta)=F(P)+DF_P(\delta)+o(\|\delta\|),$
+therefore
+\[ \mathcal D(P+\delta,P) =
+\|DF_P(\delta)\|^2 + o(\|\delta\|^2). \]
+Since \(g=F^{*}g_E\), the conclusion follows. 
+\end{proof}
+
+\paragraph{Running example: differential privacy.}
+The comparison between the pullback metric and the Fisher metric has a concrete interpretation for differential privacy (Section~\ref{ch:sec:differential-privacy-and-database-queries}).  The Laplace mechanism achieves $\mathcal D=2/\varepsilon^2$, and Theorem~\ref{ch:thm:25-1} shows that locally the UOD is quadratic in the Fisher metric.  Hence for small privacy budgets $\varepsilon$ the loss of utility is accurately captured by the Fisher geometry---a fact that Bayesian privacy analysts can exploit directly.
+
+\section{Explicit Formula}\label{ch:sec:explicit-formula}
+\begin{proposition}[Pullback Metric Formula]
+\label{ch:prop:25-2}
+For tangent vectors \(u,v\),
+\[ g(u,v) = \sum_i\frac{u_iv_i}{P_i^2} -
+\frac1n
+\left(\sum_i\frac{u_i}{P_i}\right)
+\left(\sum_i\frac{v_i}{P_i}\right). \]
+\end{proposition}
+\begin{proof}
+Since
+\[ DF_P=Q\circ DL_P, \qquad
+DL_P(u)=\left(\frac{u_i}{P_i}\right), \]
+and \(Q\) is orthogonal,
+\[ g(u,v) = \langle Q\,DL_P u,Q\,DL_P v\rangle =
+\langle DL_P u,Q\,DL_P v\rangle. \]
+Expanding \(Q=I-\frac1n\mathbf{11}^T\) yields the formula. 
+\end{proof}
+\paragraph{Fisher Metric.}
+The Fisher information metric is
+$g_F(u,v) = \sum_i\frac{u_iv_i}{P_i}.$
+
+\paragraph{Matrix Representation.}
+Let
+\[
+D(P)=\operatorname{diag}\!\left(\frac1{P_i^2}\right),
+\qquad v(P)=\left(\frac1{P_i}\right).
+\]
+Then
+$G(P) = D(P)-\frac1n v(P)v(P)^T$
+is the matrix representing the pullback metric.
+The Fisher metric is represented by
+\[
+G_F(P)=\operatorname{diag}\!\left(\frac1{P_i}\right).
+\]
+
+\section{Uniform Equivalence}\label{ch:sec:uniform-equivalence}
+\begin{theorem}[Uniform Metric Equivalence]
+\label{ch:thm:25-3}
+Let \(K\subset\mathcal P^\circ\) be compact.
+Then there exist constants
+$0<c_K\le C_K<\infty$
+such that
+$c_K\,g_F(u,u) \le g(u,u) \le C_K\,g_F(u,u)$
+for every \(P\in K\) and every tangent vector
+\(u\in T_P\mathcal P^\circ\).
+\end{theorem}
+\begin{proof}
+Consider the normalized symmetric matrix
+$A(P) = G_F(P)^{-1/2} G(P) G_F(P)^{-1/2}.$
+Since both metrics are symmetric,
+$g(u,u) = x^T A(P) x,$
+where
+$x = G_F(P)^{1/2}u.$
+The matrix \(A(P)\) is symmetric and positive definite on the tangent
+space. Hence, by the Rayleigh quotient theorem,
+\[ \lambda_{\min}(A(P)) \|x\|^2 \le x^T A(P) x
+\le \lambda_{\max}(A(P)) \|x\|^2. \]
+Because
+$\|x\|^2 = g_F(u,u),$
+we obtain
+\[ \lambda_{\min}(A(P))\,g_F(u,u) \le g(u,u)
+\le \lambda_{\max}(A(P))\,g_F(u,u). \]
+The entries of \(A(P)\) depend continuously on \(P\). Since \(K\) is compact,
+its minimum and maximum eigenvalues are attained:
+\[ c_K =
+\min_{P\in K}\lambda_{\min}(A(P)),
+\qquad C_K =
+\max_{P\in K}\lambda_{\max}(A(P)). \]
+Because \(A(P)\) is positive definite on the tangent space,
+$0<c_K\le C_K<\infty.$
+Therefore
+$c_K\,g_F \le g \le C_K\,g_F.$
+Consequently, the two metrics induce the same local topology on every
+compact subset of the interior simplex. 
+\end{proof}
+\paragraph{Consequences.}
+\begin{corollary}[Local Topological Equivalence]
+\label{ch:cor:25-4}
+On every compact subset:
+\begin{itemize}
+\item the pullback and Fisher metrics generate the same local topology;
+\item they define equivalent notions of convergence;
+\item infinitesimal estimates can be transferred between the two
+    geometries up to uniform constants.
+\end{itemize}
+\end{corollary}
+
+\paragraph{Interpretation.}
+The Fisher metric arises from the Hessian of relative entropy, whereas
+the WIS metric is obtained by transporting Euclidean geometry through
+logarithmic quotient coordinates.
+Although their global constructions differ, Theorem~\ref{ch:thm:25-3} shows that they
+are locally equivalent on compact subsets of the posterior manifold.
+
+\paragraph{Outlook.}
+Having established the local relationship with Fisher geometry, we now
+turn to global comparisons between the Universal Optimality Defect and
+classical statistical divergences.
+\section{Comparison with Total Variation}\label{ch:sec:comparison-with-total-variation}
+The Total Variation distance is
+$TV(P,Q)=\frac12\sum_{i}\|P_i-Q_i\|.$
+\begin{theorem}
+\label{ch:thm:26-1}
+There exist sequences of probability distributions for which the Total
+Variation distance remains bounded while the UOD diverges to infinity.
+\textbf{Proof.}
+Let
+$Q=\left(\frac13,\frac13,\frac13\right),$
+and
+\[ P_\varepsilon= \left( \varepsilon,
+\frac{1-\varepsilon}{2}, \frac{1-\varepsilon}{2}
+\right). \]
+Then
+\[ TV(P_\varepsilon,Q)\longrightarrow\frac23,
+\]
+whereas
+$\log\frac{\varepsilon}{1/3}\longrightarrow-\infty.$
+After projection onto the quotient hyperplane, the logarithmic diameter
+The UOD still diverges. By Theorem~\ref{ch:thm:26-1}, the UOD
+$\mathcal{D}(P_\varepsilon,Q)\longrightarrow\infty.$
+Hence no bounded function of Total Variation can globally characterize
+the UOD. 
+\end{theorem}
+
+\paragraph{Interpretation.}
+The UOD is not equivalent to any classical divergence: unlike the Fisher metric, it is flat; unlike the Hellinger distance, it is unbounded; unlike $\chi^2$, it is quadratic in log-ratios rather than in ratios.  These differences are not defects but signatures of the fact that the UOD measures distance from a structural condition, not between two distributions.
+
+\subsection{Comparison with Hellinger Distance}\label{ch:thm:26-2}
+The squared Hellinger distance is
+\[ H^{2}(P,Q)= \frac12
+\sum_{i}(\sqrt{P_i}-\sqrt{Q_i})^{2}. \]
+\begin{theorem}
+
+The Hellinger distance is bounded whereas the UOD is unbounded.
+\textbf{Proof.}
+Using
+$H^{2}(P,Q) = 1-\sum_{i}\sqrt{P_iQ_i},$
+one immediately obtains $0\le H(P,Q)\le1.$
+By Theorem~\ref{ch:thm:26-1}, the UOD diverges along
+the boundary of the simplex. Therefore the UOD cannot be represented
+globally as a function of the Hellinger distance. 
+\end{theorem}
+\subsection{Local Comparison with Pearson's Chi-Squared Divergence}\label{ch:sec:local-comparison-with-pearsons-chi-squared-divergence}
+Pearson's divergence is
+\[ \chi^{2}(P,Q) = \sum_{i}
+\frac{(P_i-Q_i)^2}{Q_i}. \]
+Let
+\[ P=Q+\delta, \qquad
+\sum_{i}\delta_{i}=0. \]
+Using
+$\log(1+x)=x-\frac{x^2}{2}+O(x^{3}),$
+one obtains
+\[ \chi^{2}(P,Q) = \sum_{i}
+\frac{\delta_i^2}{Q_i} + O(\|\delta\|^{3}), \]
+whereas
+\[ \mathcal{D}(P,Q) = \sum_{i}
+\frac{\delta_i^2}{Q_i^2} - \frac1n \left(
+\sum_{i}\frac{\delta_i}{Q_i} \right)^{2} +
+O(\|\delta\|^{3}). \]
+Thus both quantities possess quadratic local expansions, but they induce
+different quadratic forms.
+\section{First Structural Comparison with KL}\label{ch:sec:first-structural-comparison-with-kl}
+The Kullback--Leibler divergence satisfies
+\[ D_{KL}(P\|Q) = \sum_{i} P_i
+\log\frac{P_i}{Q_i}. \]
+Introducing the logarithmic field
+$a_i=\log\frac{P_i}{Q_i},$
+we obtain the identity
+\[ \boxed{
+D_{KL}(P\|Q)=E_P[a].
+} \]
+By Corollary~\ref{ch:cor:21-3},
+\[ \boxed{
+\mathcal{D}(P,Q)
+=
+n\,Var_U(a),
+} \]
+where (U) denotes the uniform distribution.
+Hence the KL divergence and the UOD are both functionals of the same
+log-likelihood field, but evaluated in fundamentally different ways: the
+KL is its expectation with respect to (P), whereas the UOD is its
+centered second moment with respect to the uniform measure.
+This observation motivates the functional framework developed in the
+next chapter.
+\paragraph{Summary.}
+The rigorous comparison established in this chapter shows:
+\begin{itemize}
+  \item the UOD is locally equivalent to Fisher geometry;
+  \item it is globally distinct from Total Variation;
+  \item it is globally distinct from Hellinger distance;
+\end{itemize}

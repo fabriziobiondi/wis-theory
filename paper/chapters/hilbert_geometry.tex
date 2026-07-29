@@ -1,0 +1,388 @@
+\chapter[Hilbert Geometry]{Hilbert Geometry and Convex Analysis}\label{ch:sec:hilbert-geometry}
+
+We have linearised the WIS: the factorisation $n_{mc}=\beta(c)/w(m)$
+becomes $\omega=\Phi(u,v)$ in logarithmic coordinates.
+But a linear condition alone does not tell us which $\omega$ correspond
+to actual WIS---it only says \emph{how} to factor them once they are in
+the image.  What happens when $\omega$ is \emph{not} exactly
+factorisable?  How far is it from the image, and how do we measure that
+distance?  These questions force a geometric answer: the mismatch
+operator $\Phi$ defines a Hilbert-space structure, and the distance from
+$\omega$ to $\operatorname{Im}(\Phi)$ becomes the first instance of the
+Universal Optimality Defect.
+\begin{enumerate}
+\item A WIS determines $\omega=\log N$.
+\item Theorem~\ref{ch:thm:operator-wis} says that exact WIS factorisation
+is equivalent to $\omega\in\operatorname{Im}(\Phi)$.
+\item The natural mathematical question is therefore: what happens when
+an arbitrary logarithmic incidence vector does \emph{not} belong to this
+image?
+\end{enumerate}
+This is no longer a cryptographic question.  It is the classical
+problem of projecting a vector onto a linear subspace of a Hilbert
+space.  Every subsequent construction---the least-squares formulation,
+the normal operator, the reduced energy, convexity, the gauge quotient,
+strict convexity, stability, and the distance from universal
+optimality---is a standard consequence of this single observation.
+None is introduced independently; each follows from the mismatch
+operator together with elementary linear algebra and functional
+analysis.
+\paragraph{Incidence spaces.}
+Let
+\[
+V_M=\mathbb R^{\Mset},\qquad V_C=\mathbb R^{\Cset},\qquad V_I=\mathbb R^{I},
+\]
+each equipped with the standard Euclidean inner product $\langle\cdot,\cdot\rangle$.  The lifting operators $A:V_M\to V_I$ and $C:V_C\to V_I$ are those of Proposition~\ref{ch:prop:canonical-lifting}.
+
+The Hilbert-space geometry of this chapter gives the first quantitative measure of deviation from universal optimality. The posterior Laplacian and the quotient geometry of Chapters~8--11 are direct consequences of the least-squares formulation introduced here.
+
+
+
+Let
+\[
+V_M=\mathbb R^{\Mset},\qquad V_C=\mathbb R^{\Cset},\qquad V_I=\mathbb R^{I},
+\]
+each equipped with the standard Euclidean inner product $\langle\cdot,\cdot\rangle$.  The lifting operators $A:V_M\to V_I$ and $C:V_C\to V_I$ are those of Proposition~\ref{ch:prop:canonical-lifting}.
+\section{Least-squares formulation and the normal operator}\label{ch:sec:least-squares-formulation-and-the-normal-operator}
+When $\omega\notin\operatorname{Im}(\Phi)$, the natural problem is least-squares approximation.
+Define the residual functional
+$E_\omega(u,v)=\|\Phi(u,v)-\omega\|^2.$
+\begin{theorem}[Normal equations]\label{ch:thm:normal-equations}
+Minimizers of $E_\omega$ satisfy $\Phi^{\mathsf T}(\Phi x-\omega)=0$, or $\Phi^{\mathsf T}\Phi\,x=\Phi^{\mathsf T}\omega,$ where $x=(u,v)$.
+\end{theorem}
+
+\paragraph{Interpretation.}
+The normal operator reformulates the factorisation problem as a least-squares problem.  This is the crucial algorithmic insight: computing how far a system is from universal optimality reduces to solving a linear system.  The posterior Laplacian $L$ that emerges from this reformulation will become the central operator of the geometric theory.
+
+\begin{proof}
+The Fr\'echet derivative gives
+$DE_\omega(x)[h]=2\langle\Phi x-\omega,\Phi hangle
+=2\langle\Phi^{\mathsf T}(\Phi x-\omega),hangle$.
+\end{proof}
+
+The operator $\Phi^{\mathsf T}\Phi$ is the \emph{normal operator} associated with the canonical linear representation.  Computing it explicitly,
+\[
+\Phi^{\mathsf T}\Phi=
+\begin{pmatrix}
+D_M & -H\\
+-H^{\mathsf T} & D_C
+\end{pmatrix},
+\]
+where $D_M=A^{\mathsf T}A$, $D_C=C^{\mathsf T}C$ are diagonal degree matrices and $H=A^{\mathsf T}C$ is the signed incidence matrix.  In this setting, $\Phi^{\mathsf T}\Phi$ coincides with the Laplacian of the bipartite incidence graph; it appears as the normal operator of $\Phi$, not as an independent construction.
+Exact WIS factorisation corresponds to the special case where the minimum of $E_\omega$ is zero:
+\[
+\min_{u,v} E_\omega(u,v)=0 \quad\Longleftrightarrow\quad \omega\in\operatorname{Im}(\Phi).
+\]
+This condition alone does not imply universal optimality relative to a
+fixed prior; the latter is characterized below through the prior-dependent
+vector $Y=A(\log\pi)+\omega$.
+\section{The reduced energy}\label{ch:sec:the-reduced-energy}
+The ciphertext potential $v$ is a gauge degree of freedom: the posterior distribution depends only on message potentials.  For fixed $u$, minimizing over $v$ gives the closed-form solution
+$v^\star(u)=D_C^{-1}C^{\mathsf T}(Au-\omega),$
+obtained by solving $C^{\mathsf T}(Au-Cv-\omega)=0$.  Substituting back,
+$Au-Cv^\star-\omega = Q(Au-\omega),$
+where $Q=I-C D_C^{-1}C^{\mathsf T}$ is the orthogonal projector onto $\operatorname{Im}(C)^\perp$.
+The \emph{reduced energy} is therefore
+\begin{equation}\label{ch:eq:ered}
+E_{\mathrm{red}}(u)=\|Q(Au-\omega)\|^2.
+\end{equation}
+Expanding,
+\begin{equation}\label{ch:eq:ered-expanded}
+E_{\mathrm{red}}(u)=u^{\mathsf T}A^{\mathsf T}QA\,u
+-2u^{\mathsf T}A^{\mathsf T}Q\omega
++\omega^{\mathsf T}Q\omega.
+\end{equation}
+The quadratic part $L=A^{\mathsf T}QA$ is the \emph{posterior Laplacian}.  Writing $Q$ explicitly,
+\[
+L = A^{\mathsf T}QA = D_M - H D_C^{-1} H^{\mathsf T}
+= \operatorname{Schur}_{D_C}(\Phi^{\mathsf T}\Phi).
+\]
+Thus the posterior Laplacian is the reduced Hessian and the Schur complement~\cite{zhang2005schur} of the full normal operator.
+\section{Convexity of the reduced energy}\label{ch:sec:convexity-of-the-reduced-energy}
+The reduced energy is not merely quadratic: it is convex, which guarantees that the variational problem is well behaved.
+\begin{theorem}[Convexity]\label{ch:thm:convexity}
+The reduced energy $E_{\mathrm{red}}:V_M\to\mathbb R$ is convex.
+\end{theorem}
+\begin{proof}
+The Hessian is $\nabla^2 E_{\mathrm{red}}=2L=2A^{\mathsf T}QA$.
+Since $Q^2=Q$ and $Q^{\mathsf T}=Q$,
+\[
+x^{\mathsf T}Lx = x^{\mathsf T}A^{\mathsf T}QAx = (Ax)^{\mathsf T}Q(Ax)
+= \|Q(Ax)\|^2 \ge 0
+\]
+for every $x\in V_M$.  Hence $L\succeq 0$, and $E_{\mathrm{red}}$ is convex.
+\end{proof}
+
+\begin{corollary}\label{ch:cor:global-min}
+Every local minimum of $E_{\mathrm{red}}$ is a global minimum.
+\end{corollary}
+\begin{corollary}\label{ch:cor:critical-points}
+Critical points of $E_{\mathrm{red}}$ satisfy the reduced normal equations
+$L u = A^{\mathsf T}Q\omega$.
+\end{corollary}
+Convexity has numerical significance: it guarantees that gradient-based optimization of $E_{\mathrm{red}}$ converges to the unique global minimum (when the minimizer is unique) without spurious local minima.
+\section{Gauge symmetry and the kernel of $\Phi$}\label{ch:sec:gauge-symmetry-and-the-kernel-of}
+The reduced energy eliminates $v$, but the residual gauge freedom in
+$u$ remains.  Understanding this symmetry requires characterizing the
+kernel of the canonical linear representation.
+\begin{lemma}[Kernel of $\Phi$]\label{ch:lem:kernel-Phi}
+A pair $(u,v)$ belongs to $\ker\Phi$ iff there exists one constant on every connected component of the incidence graph such that both $u$ and $v$ take that constant on all vertices of the same component.  In particular, if the incidence graph is connected,
+$\ker\Phi = \{(c\,\mathbf 1_M,\;c\,\mathbf 1_C) : c\in\mathbb R\}.$
+\end{lemma}
+\begin{proof}
+$\Phi(u,v)=0$ iff $Au=Cv$.  For an edge $mc$, this forces $u_m=v_c$.  Propagating the equality along a path in a connected component forces all vertices in that component to share a common constant.  Distinct components are independent.
+\end{proof}
+
+This kernel is not a defect: it is the intrinsic gauge symmetry of logarithmic potentials.  Adding $(u,v)\in\ker\Phi$ to a solution $(u_0,v_0)$ does not change the reconstructed multiplicities.
+\section{Kernel of the Hessian}\label{ch:sec:kernel-of-the-hessian}
+Before passing to strict convexity, we characterize the nullspace of
+the reduced Hessian.  This intermediate lemma reveals that the only
+flat directions of $E_{\mathrm{red}}$ correspond to the gauge symmetry.
+\begin{lemma}[Nullspace of the reduced Hessian]\label{ch:lem:hessian-nullspace}
+The Hessian $\nabla^2 E_{\mathrm{red}} = 2L$ is positive semidefinite.
+Its nullspace satisfies $\ker L = \{u\in V_M : QA u = 0\},$ which consists precisely of the message potentials that can be compensated by a ciphertext potential without changing the energy.
+\end{lemma}
+\begin{proof}
+From the proof of Theorem~\ref{ch:thm:convexity},
+$x^{\mathsf T}Lx = \|Q(Ax)\|^2 \ge 0$, so $L\succeq 0$.
+Moreover, $Lx=0$ iff $\|Q(Ax)\|^2=0$, i.e.\ $QAx=0$.  By definition
+of $Q$, this means $Ax\in\operatorname{Im}(C)$, which is exactly the
+condition that $u$ can be absorbed into a gauge transformation of the
+ciphertext potentials.
+\end{proof}
+
+This lemma makes the transition to strict convexity transparent: the
+Hessian is positive definite precisely on the subspace orthogonal to
+the gauge degrees of freedom.
+\section{Strict convexity modulo gauge}\label{ch:sec:strict-convexity-modulo-gauge}
+On the full space $V_M\oplus V_C$, the energy $E_\omega$ is not strictly convex because directions in $\ker\Phi$ incur no cost.  However, on the quotient by this symmetry, it becomes strictly convex.
+\begin{lemma}\label{ch:lem:ker-phitphi}
+$\ker(\Phi^{\mathsf T}\Phi)=\ker\Phi$.
+\end{lemma}
+\begin{proof}
+If $\Phi^{\mathsf T}\Phi x=0$, then $x^{\mathsf T}\Phi^{\mathsf T}\Phi x=\|\Phi x\|^2=0$, hence $\Phi x=0$.  The reverse inclusion is immediate.
+\end{proof}
+
+\paragraph{What this theorem proves.}
+The quadratic form $\langle \Phi(u,v),\Phi(u,v)\rangle$ measures the energy of the mismatch operator.  Is this energy strictly positive, or can non-zero vectors produce zero energy?  The answer determines whether the least-squares problem has a unique solution.  This theorem shows that the energy is strictly convex except for the gauge direction---the only zero-energy direction comes from scaling the WIS weights, which we already know is unobservable.
+
+\begin{theorem}[Strict convexity modulo gauge]\label{ch:thm:strict-convexity}
+Assume the incidence graph $G(\mathfrak W)$ is connected.  Then $E_\omega$ is constant on cosets of $\ker\Phi$, and strictly convex on the quotient space $(V_M\oplus V_C)/\ker\Phi$.
+\end{theorem}
+\begin{proof}
+By Lemma~\ref{ch:lem:kernel-Phi}, $\ker\Phi$ consists of gauge transformations; $E_\omega$ is invariant under these by construction.  On the orthogonal complement $\ker\Phi^\perp$, Lemma~\ref{ch:lem:ker-phitphi} gives $\Phi^{\mathsf T}\Phi\succ 0$, so the Hessian of $E_\omega$ is positive definite.  Hence $E_\omega$ is strictly convex on the quotient.  Connectedness of the incidence graph ensures that $\ker\Phi$ is one-dimensional (overall constant shift), so the quotient is $|M|+|C|-1$ dimensional.
+\end{proof}
+
+\begin{corollary}\label{ch:cor:unique-min-mod-gauge}
+Every gauge class contains a unique minimizer of $E_\omega$.
+\end{corollary}
+This justifies selecting the orthogonal representative $QY$ as the canonical gauge: it is the unique minimizer of $\|Y\|$ within its coset.
+\section{Stability of the reconstruction}\label{ch:sec:stability-of-the-reconstruction}
+Strict convexity implies that the reconstruction is well posed in the
+sense of Hadamard: small perturbations of the input produce
+proportionally small perturbations of the solution.
+\begin{theorem}[Stability]\label{ch:thm:stability}
+Let $\omega,\omega'\in V_I$ be two logarithmic incidence vectors, and let
+\[
+x^\star(\omega)=(\Phi^{\mathsf T}\Phi)^\dagger\Phi^{\mathsf T}\omega
+\]
+denote the canonical minimum-norm least-squares solution, where $(\cdot)^\dagger$ is the Moore--Penrose pseudoinverse.  Then
+\[
+\|x^\star(\omega')-x^\star(\omega)\| \le C\,\|\omega'-\omega\|,
+\]
+with $C=\|(\Phi^{\mathsf T}\Phi)^\dagger\Phi^{\mathsf T}\|$.
+\end{theorem}
+\begin{proof}
+The normal equations give $\Phi^{\mathsf T}\Phi x^\star(\omega) = \Phi^{\mathsf T}\omega$ and $\Phi^{\mathsf T}\Phi x^\star(\omega') = \Phi^{\mathsf T}\omega'$, since both satisfy the same equation and the pseudoinverse selects the minimum-norm solution.  Subtracting,
+\[
+\Phi^{\mathsf T}\Phi\,(x^\star(\omega')-x^\star(\omega)) = \Phi^{\mathsf T}(\omega'-\omega).
+\]
+Applying $(\Phi^{\mathsf T}\Phi)^\dagger$ and taking norms gives the stated bound.  The constant $C$ is the norm of $(\Phi^{\mathsf T}\Phi)^\dagger\Phi^{\mathsf T}$.
+\end{proof}
+
+The minimum-norm representative therefore depends Lipschitz continuously
+on the data.  The stability constant $C$ depends only on the incidence
+graph and the number of keys, not on the specific multiplicities.
+Hence the inverse reconstruction problem is well posed in the sense of
+Hadamard after quotienting by the gauge symmetry.
+\section{Quotient geometry of the gauge symmetry}\label{ch:sec:quotient-geometry-of-the-gauge-symmetry}
+The elimination of ciphertext potentials and the residual symmetry in $u$ reflect a deeper geometric structure: the posterior distribution depends only on gauge equivalence classes.
+Define the equivalence relation on $V_I$:
+\[
+Y\sim Y' \quad\Longleftrightarrow\quad Y-Y'\in\operatorname{Im}(C).
+\]
+The quotient space $V_I/\operatorname{Im}(C)$ is the primary geometric object.  It is determined solely by the posterior symmetry of Bayes' rule, independently of any metric or variational principle.  The orthogonal projector $Q$ selects the unique minimum-norm representative in each equivalence class.
+\begin{theorem}[Canonical quotient Hilbert structure]\label{ch:thm:quotient-hilbert}
+The Euclidean inner product of $V_I$ induces a unique Hilbert-space structure on $V_I/\operatorname{Im}(C)$ whose norm satisfies
+\[
+\|q(Y)\| = \min_{z\in\operatorname{Im}(C)} \|Y-z\|,
+\]
+where $q:V_I\to V_I/\operatorname{Im}(C)$ is the quotient map.
+\end{theorem}
+\begin{proof}
+For any $z\in S$, the decomposition gives $Y-z=(Y_S-z)+Y^\perp$ with orthogonal summands, hence $\|Y-z\|^2 = \|Y_S-z\|^2 + \|Y^\perp\|^2.$ The minimum is uniquely attained at $z=Y_S$, yielding $\|q(Y)\|=\|Y^\perp\|$.  Therefore the Euclidean inner product on $V_I$ induces a unique Hilbert norm on $V_I/\operatorname{Im}(C)$, and $Q$ is precisely the orthogonal projection onto the canonical representative $Y^\perp$.
+\end{proof}
+
+The reduced energy is the pull-back of the quotient norm through the affine map $T(u)=Au-\omega$:
+$E_{\mathrm{red}}(u) = \|q(Au-\omega)\|^2.$
+\section{Universal Optimality Defect}\label{ch:sec:universal-optimality-defect}
+Only at this point---after the least-squares formulation, the normal operator, the reduced energy, convexity, strict convexity modulo gauge, stability, and the quotient geometry have all been established---do we define a numerical measure of deviation from universal optimality.
+\begin{definition}[Universal Optimality Defect]\label{ch:def:defect}
+For an incidence vector $Y\in V_I$, define $\delta(Y) = \|q(Y)\|.$ When $Y = A(\log\pi)+\omega$, this quantity is the \emph{universal optimality defect} of the encryption system.
+\end{definition}
+
+\paragraph{Why the UOD and not KL, TV, or Wasserstein?}
+The Kullback--Leibler divergence, total variation distance, and Wasserstein distance are all measures of dissimilarity between probability distributions.  The Universal Optimality Defect differs in three fundamental ways.  First, the UOD measures distance from a \emph{structural condition}---universal optimality---not from another distribution.  Second, the UOD is derived from the geometry that is forced by the WIS representation, not chosen by the analyst.  Third, the UOD is quadratic (a squared norm in a Hilbert space), which makes it analytically tractable: Lipschitz bounds, quadratic approximations, and spectral estimates all become simple norm inequalities.
+
+\begin{quote}
+\textbf{Mathematical intuition.}
+The Universal Optimality Defect $\mathcal D(P)=\|\delta(P)\|^2$ is the squared distance from a distribution to the set of universally optimal ones.
+Zero defect means the encoder is perfectly secret; larger defect means more structure---more identifying information---leaks through the ciphertext.
+\end{quote}
+
+The defect is the Euclidean distance from $Y$ to the representable subspace $\operatorname{Im}(C)$ in the quotient geometry.  It is therefore the natural culmination of the entire analytic chain: representation, least-squares, convexity, gauge quotient, and stability all converge to this single number.
+\begin{theorem}[Characterisation of the defect]\label{ch:thm:defect-characterisation}
+For an incidence vector $Y$, the following are equivalent:
+\begin{enumerate}
+\item $\delta(Y)=0$;
+\item $q(Y)=0$;
+\item $Y\in\operatorname{Im}(C)$;
+\item The encryption system satisfies universal optimality with respect to the prior $\pi$ (Theorem~\ref{ch:thm:representation}).
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+$(1)\Leftrightarrow(2)$: By definition $\delta(Y)=\|q(Y)\|$, and a norm vanishes iff its argument is the zero vector.
+$(2)\Leftrightarrow(3)$: The quotient map $q$ has kernel $\operatorname{Im}(C)$ by construction, so $q(Y)=0$ iff $Y\in\operatorname{Im}(C)$.
+$(3)\Leftrightarrow(4)$: Because $Y_{mc}=\log(\pi(m)n_{mc})$, membership in $\operatorname{Im}(C)$ means precisely that $Y$ is constant on every ciphertext column.  Exponentiating, $\pi(m)n_{mc}$ is constant over each cloak.  By Corollary~\ref{ch:cor:uo-factorisation}, this is exactly the defining condition for universal optimality.  Hence $Y\in\operatorname{Im}(C)$ iff the system is universally optimal.
+\end{proof}
+\section{Summary of the analytic chain}\label{ch:sec:summary-of-the-analytic-chain}
+The development above follows a single logical thread, each step forced by the one that precedes it:
+\begin{enumerate}
+\item The cycle factorisation theorem characterizes exact WIS factorisation by $\omega\in\operatorname{Im}(\Phi)$.
+\item When $\omega\notin\operatorname{Im}(\Phi)$, the least-squares problem produces the normal equations, whose operator $\Phi^{\mathsf T}\Phi$ is the bipartite incidence Laplacian.
+\item Eliminating ciphertext potentials yields the reduced energy $E_{\mathrm{red}}$ and the posterior Laplacian $L=A^{\mathsf T}QA$.
+\item The reduced energy is convex ($L\succeq0$), guaranteeing that every local minimum is global.
+\item The nullspace of the Hessian consists exactly of gauge symmetries (Lemma~\ref{ch:lem:hessian-nullspace}).
+\item On the quotient by this symmetry, the energy becomes strictly convex, ensuring a unique minimizer modulo gauge.
+\item Strict convexity implies stability: $\|x'-x\|\le C\|\omega'-\omega\|$, so the reconstruction is well posed in the Hadamard sense.
+\item The quotient geometry $V_I/\operatorname{Im}(C)$ captures the intrinsic gauge invariance of posterior distributions.
+\item The Universal Optimality Defect $\delta=\|q(Y)\|$ is the Euclidean distance from universal optimality in the quotient geometry.
+None of these constructions is introduced independently.  Each is a consequence of the canonical linear representation $\Phi$ and elementary Hilbert-space theory.
+\end{enumerate}
+
+\paragraph{Worked Examples.}
+\label{ch:sec:worked-examples}
+This section demonstrates the complete mathematical pipeline on three
+finite configurations.  The first exhibits the ideal case in detail;
+the second and third illustrate failure and progressive restoration
+more concisely.  All calculations are reproducible by hand.
+
+
+\section{The cycle factorisation criterion}\label{ch:sec:the-cycle-factorisation-criterion}
+On a tree, Theorem~\ref{ch:thm:cycle-factorisation} has no cycle equations,
+so every positive edge labelling factors.  After choosing one positive
+weight at a root, the remaining weights are obtained uniquely by
+propagating the equations $\beta(c)=n_{mc}w(m)$ along the unique paths.
+For a four-cycle
+$m_0-c_1-m_1-c_2-m_0$, the criterion reduces to $n_{m_0c_1}n_{m_1c_2}=n_{m_1c_1}n_{m_0c_2}.$ The labels $(2,3,6,4)$ in the cyclic edge order
+$(m_0c_1,m_1c_1,m_1c_2,m_0c_2)$ are compatible because
+$2\cdot6=3\cdot4$.  For example, taking $w(m_0)=1$ gives
+$\beta(c_1)=2$, $w(m_1)=2/3$, and $\beta(c_2)=4$.
+Replacing $6$ by $5$ makes the products $10$ and $12$; no positive
+vertex weights can then satisfy all four edge equations.
+\section{Example 1: A universally optimal encoder}\label{ch:sec:example-1-a-universally-optimal-encoder}
+Let $\Mset=\{m_1,m_2,m_3\}$ and $\Cset=\{c_1,c_2\}$ with incidence
+$I=\{(m_1,c_1),(m_1,c_2),(m_2,c_1),(m_3,c_2)\}$, so
+$\cloak(c_1)=\{m_1,m_2\}$, $\cloak(c_2)=\{m_1,m_3\}$.  Choose
+$w=(1/2,1/3,1/6)$, $\beta=(4,2)$.  The induced multiplicity matrix is
+\[
+N=\begin{pmatrix}8&4\\12&0\\0&12\end{pmatrix},
+\qquad |\Kset|=12.
+\]
+Since $w$ sums to $1$, $\pi=w$.  Universal optimality follows from
+$\pi(m)n_{mc}=4$ on $\cloak(c_1)$ and $2$ on $\cloak(c_2)$.
+Logarithmic potentials are $u(m)=\log w(m)$, $v(c)=\log\beta(c)$.
+With $V_I=\mathbb R^4$ ordered by $(m_1c_1,m_1c_2,m_2c_1,m_3c_2)$,
+\[
+\omega \approx (2.0794,1.3863,2.4849,2.4849),\qquad
+Y = A(\log\pi)+\omega = (\log4,\log2,\log4,\log2).
+\]
+Since $Y$ has the form $(a,b,a,b)$, $Y\in\operatorname{Im}(C)$ and
+$\omega\in\operatorname{Im}(\Phi)$.  Hence $\min E_\omega=0$,
+$E_{\mathrm{red}}(u)=0$ at $u=-\log\pi$, $QY=0$, $q(Y)=0$, and
+$\delta(Y)=0$.
+This example confirms mutual consistency of the WIS representation, the
+canonical linear representation, the least-squares formulation,
+convexity, the quotient geometry, and the defect in the ideal case.
+\section{Example 2: Breaking universal optimality}\label{ch:sec:example-2-breaking-universal-optimality}
+Modify a single multiplicity in Example~1: set $n_{m_1c_1}=6$,
+$n_{m_1c_2}=6$, preserving row sums:
+\[
+N'=\begin{pmatrix}\mathbf6&\mathbf6\\12&0\\0&12\end{pmatrix}.
+\]
+With the same prior, $\pi n$ is not constant on cloaks
+($3\neq4$, $3\neq2$), so the system is not universally optimal.
+\[
+\omega' = (\log6,\log6,\log12,\log12),\qquad
+Y' \approx (1.0986,1.0986,1.3863,0.6931),
+\]
+We have $Y'\notin\operatorname{Im}(C)$.  However, the incidence graph
+is a tree, so Theorem~\ref{ch:thm:cycle-factorisation}
+implies $\omega'\in\operatorname{Im}(\Phi)$ and hence
+$\min E_{\omega'}=0$: the modified multiplicities still admit an exact
+WIS factorisation, but its message weights are not proportional to the
+fixed prior.  The prior-dependent defect detects precisely this failure:
+$\delta(Y') = \|QY'\| \approx 0.3515 > 0.$
+All structures (incidence spaces, lifting operators, $Q$, quotient)
+remain well defined; only the gauge class is non-zero.  By
+Theorem~\ref{ch:thm:stability}, any perturbation of $\omega$ produces a
+proportionally bounded change in the reconstructed potentials.
+\section{Example 3: Progressive restoration}\label{ch:sec:example-3-progressive-restoration}
+Starting from Example~2, correct $n_{m_1c_1}$ toward the WIS target
+$8$ (with $n_{m_1c_2}=12-n_{m_1c_1}$):
+\[
+\begin{array}{cccc}
+\text{Step} & n_{m_1c_1} & \delta(Y) & \delta(Y)^2 \\hline
+\text{Initial} & 6 & 0.3515 & 0.1235 \\
+\text{Step 1} & 7 & 0.1839 & 0.0338 \\
+\text{Final} & 8 & 0 & 0
+\end{array}
+\]
+The defect decreases monotonically to zero as the WIS is restored.
+The reduced energy $E_{\mathrm{red}}$ remains convex throughout
+(Theorem~\ref{ch:thm:convexity}), so the unique minimizer moves
+continuously toward the WIS-compatible potentials.
+\paragraph{Stability constant.}
+We compute $C=\|(\Phi^{\mathsf T}\Phi)^\dagger\Phi^{\mathsf T}\|$ for
+this configuration.  With $|M|=3$, $|C|=2$, $|I|=4$, the operator
+$\Phi^{\mathsf T}\Phi$ is $5\times5$.  Its positive eigenvalues are
+approximately $0.3820$, $1.3820$, $2.6180$, and $3.6180$.
+Equivalently, the smallest nonzero singular value of $\Phi$ is
+$\sigma_{\min}^+\approx0.6180$.  Since
+$(\Phi^{\mathsf T}\Phi)^\dagger\Phi^{\mathsf T}=\Phi^\dagger$, the
+exact operator norm relevant to Theorem~\ref{ch:thm:stability} is
+\[
+C=\|\Phi^\dagger\|=\frac{1}{\sigma_{\min}^+}
+\approx 1.6180.
+\]
+Thus perturbations of $\omega$ are amplified by at most this constant
+in the minimum-norm reconstruction.
+\section{Discussion}\label{ch:sec:discussion-hilbert_geometry}
+The three examples illustrate the complete pipeline:
+\[
+\text{Encoder}\;\to\; N \;\to\; \text{WIS}
+\;\to\; \omega \;\to\; \Phi
+\;\to\; \text{least-squares}
+\;\to\; q(Y) \;\to\; \delta(Y).
+\]
+In Example~1 every step is consistent and $\delta=0$.  Example~2 shows
+that exact WIS factorisation may coexist with a positive
+prior-dependent universal optimality defect.  Example~3 confirms
+monotonic decrease of that defect and stability of the reconstruction.
+The defect therefore provides a quantitative measure of distance from
+universal optimality, computed from the incidence structure,
+multiplicities, and prior.
+
+\paragraph{Our running examples and the UOD.}
+In the AES example the incidence structure is perfectly representable (Section~\ref{ch:sec:aes-and-perfect-secrecy}): $\omega\in\operatorname{Im}(\Phi)$ holds exactly, giving $\delta=0$ regardless of the prior.  The differential privacy and geo-indistinguishability examples show the opposite behaviour: the Laplace mechanism operates on a continuous message space, and its UOD is the squared error $\mathcal D=\|P-Q\|^2=2/\varepsilon^2$ in the planar case.  This non-zero value quantifies the privacy---utility trade-off.  The browser fingerprinting example (Section~\ref{ch:sec:browser-fingerprinting-and-anonymity}) lies between these extremes: the incidence graph is partially representable, giving $\delta>0$ that depends on the prior, and the UOD measures how much identifying information the fingerprint reveals.
+\endinput

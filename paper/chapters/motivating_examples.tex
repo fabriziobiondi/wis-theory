@@ -1,0 +1,87 @@
+\chapter[Motivating Examples]{Motivating Examples}\label{ch:sec:motivating-examples}
+
+This book develops a mathematical framework---weighted incidence
+structures, their forced Hilbert-space geometry, and the Universal
+Optimality Defect---that unifies the analysis of encryption, privacy,
+security, and information measures.  Before building the theory, we
+present four concrete problems that it solves.
+
+\section{AES and perfect secrecy}\label{ch:sec:aes-and-perfect-secrecy}
+
+\paragraph{Main running example: the AES S-box.}
+Throughout the book we return to one concrete encryption system to
+illustrate every new concept as it is introduced.  The Advanced
+Encryption Standard (AES) encrypts a 128-bit plaintext $M$ using a
+128-bit key $K$ to produce a 128-bit ciphertext $C$.
+Every pair $(M,K)$ maps to a distinct ciphertext.  After observing
+$C$, an attacker knows that every plaintext $M$ is compatible with
+exactly one key---there is no posterior ambiguity.  The cipher is
+perfectly secret in the sense of Shannon.
+
+In our framework this is the simplest case: the WIS has $n_{mc}=1$ for
+every triple $(M,C)$.  The Universal Optimality Defect is $0$, and the
+classical theory of this book recovers perfect secrecy as the trivial
+case of a general algebraic structure.
+
+\paragraph{Additional running examples.}
+Three further problems complement the main example and illustrate the
+breadth of the framework.
+
+\section{Browser fingerprinting and anonymity}\label{ch:sec:browser-fingerprinting-and-anonymity}
+
+\textbf{Browser fingerprinting and anonymity.}
+When a user visits a website, their browser reveals dozens of
+attributes---screen resolution, installed fonts, time zone, user
+agent, installed plugins, HTTP headers.  The
+Panopticlick~\cite{eckersley2010unique} study found that $83.6\%$ of
+desktop browsers had a unique fingerprint among those tested.
+This is a WIS with a large message space (browsers), a large
+ciphertext space (fingerprints), and a highly irregular incidence
+structure (most browsers produce unique fingerprints, but some are
+shared by many).  The Universal Optimality Defect measures how far
+this system is from the uniform posterior ideal: a high UOD means
+the fingerprint is strongly identifying.
+
+\section{Geo-indistinguishability and location privacy}\label{ch:sec:geo-indistinguishability-and-location-privacy}
+
+\textbf{Geo-indistinguishability and location privacy.}
+A user wishes to report their location to a service without revealing
+it exactly.  The geo-indistinguishability model
+\cite{andres2013geo} adds planar Laplacian noise to the true
+coordinates: $C=M+\operatorname{Lap}(0,\varepsilon^{-1})^2$.  This
+ensures that any two locations within distance $r$ produce
+$\varepsilon r$-close ciphertext distributions.
+The WIS is continuous rather than discrete, but the same principles
+apply: the Laplacian mechanism is a universally optimal encoder in the
+sense that the posterior is uniform on a closed disk centred at the
+reported location.  The trade-off between privacy (large noise) and
+utility (small noise) is captured by the UOD, which in this case
+equals $2/\varepsilon^2$.
+
+\section{Differential privacy and database queries}\label{ch:sec:differential-privacy-and-database-queries}
+
+\textbf{Differential privacy and database queries.}
+A statistical database answers queries about its rows.  Differential
+privacy \cite{dwork2006differential} requires that adding or removing
+a single row changes the output distribution by at most $\varepsilon$
+multiplicatively.  This is equivalent to a WIS condition: every pair
+of neighbouring databases must be incognisable.
+The UOD measures the distinguishability of neighbouring databases.
+The classical Laplace mechanism achieves $\mathcal D=2/\varepsilon^2$.
+Our geometric bounds show that this distinguishability is the minimum
+possible for any $\varepsilon$-differentially private mechanism,
+providing a new proof of the optimality of the Laplace mechanism.
+
+\paragraph{How to read this book.}
+The AES S-box is our main running example and reappears in every
+chapter to ground abstract concepts in concrete numbers.
+The additional examples are used where they illuminate a point
+particularly well---fingerprinting for piecewise-smooth functionals,
+geo-indistinguishability for continuous limits, differential privacy
+for optimality bounds.  When a new concept is introduced---WIS,
+gauge symmetry, the Universal Optimality Defect, the Lipschitz or
+quadratic bounds, the Bregman framework, the Three-Level Theorem---we
+show how it applies first to the AES S-box and then to the additional
+examples.
+Chapter~\ref{ch:sec:applications-of-the-wis-framework} collects eight
+extended applications with full mathematical detail.

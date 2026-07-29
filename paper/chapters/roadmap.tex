@@ -1,0 +1,66 @@
+\chapter*{Roadmap of the Theory}\addcontentsline{toc}{chapter}{Roadmap of the Theory}
+\markboth{ROADMAP OF THE THEORY}{}
+
+The theory of this book follows a single chain of reasoning, from
+the concrete problem of encryption to the abstract geometry of the
+Universal Optimality Defect.  The diagram below shows the complete
+logical flow.
+
+\vspace{1em}
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=1.2cm,
+  arrow/.style={->,>=stealth,thick},
+  box/.style={rectangle,draw,rounded corners=2pt,
+    minimum width=8cm,minimum height=0.7cm,
+    align=center,font=\small}
+]
+
+\node[box] (enc) {{Universally Optimal Encoder}};
+\node[box,below=of enc] (mult) {Multiplicity Matrix $n_{mc}$};
+\node[box,below=of mult] (wis) {Weighted Incidence Structure $(w,\beta)$};
+\node[box,below=of wis] (gauge) {Gauge Class $[w,\beta]$};
+\node[box,below=of gauge] (phi) {Mismatch Operator $\Phi=[A\;-C]$};
+\node[box,below=of phi] (lsq) {{Least-Squares Problem $\min\|Au-\omega\|^2$}};
+\node[box,below=of lsq] (norm) {Normal Operator $\Phi^{\mathsf T}\Phi$};
+\node[box,below=of norm] (lap) {Posterior Laplacian $L=A^{\mathsf T}QA$};
+\node[box,below=of lap] (quot) {Quotient Geometry $V_I/\operatorname{Im}(C)$};
+\node[box,below=of quot,fill=gray!10] (uod) {{Universal Optimality Defect $\mathcal D(P)$}};
+
+\draw[arrow] (enc) -- node[right] {\small Chapter~3} (mult);
+\draw[arrow] (mult) -- node[right] {\small Chapter~4} (wis);
+\draw[arrow] (wis) -- node[right] {\small Chapter~5} (gauge);
+\draw[arrow] (gauge) -- node[right] {\small Chapter~6} (phi);
+\draw[arrow] (phi) -- node[right] {\small Chapter~7} (lsq);
+\draw[arrow] (lsq) -- node[right] {\small Chapter~7} (norm);
+\draw[arrow] (norm) -- node[right] {\small Chapter~8} (lap);
+\draw[arrow] (lap) -- node[right] {\small Chapter~9--10} (quot);
+\draw[arrow] (quot) -- node[right] {\small Chapter~11} (uod);
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{1em}
+
+\noindent\textbf{How to read this diagram.}
+Start at the top: a universally optimal encoder produces a matrix of
+multiplicities $n_{mc}$ (Chapter~3).  This matrix factorises into a
+weighted incidence structure (Chapter~4), whose only ambiguity is a
+global scaling---the gauge class (Chapter~5).  Taking logarithms
+linearises the structure, producing the mismatch operator $\Phi$
+(Chapter~6), which leads to a least-squares problem whose solution
+involves the normal operator $\Phi^{\mathsf T}\Phi$ (Chapter~7).
+The Schur complement~\cite{zhang2005schur} of this operator is the posterior Laplacian $L$
+(Chapter~8), which encodes the geometry of the quotient space
+$V_I/\operatorname{Im}(C)$ (Chapters~9--10).  The distance from a
+distribution to the optimal set---the Universal Optimality Defect
+$\mathcal D(P)$---is the squared norm in this quotient geometry
+(Chapter~11).
+
+\vspace{1em}
+
+\noindent Each subsequent part of the book builds on this core chain:
+Part~IV (Chapters~13--19) uses this geometry to bound information
+functionals; Part~V (Chapters~20--29) develops the variational
+structure of the defect and its comparison with existing frameworks.

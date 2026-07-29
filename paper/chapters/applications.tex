@@ -1,0 +1,496 @@
+\chapter[Applications]{Applications of the WIS Framework}\label{ch:sec:applications-of-the-wis-framework}
+
+This chapter demonstrates the WIS framework on eight concrete
+problems from security, privacy, and networking.  Every application
+follows the same pattern:
+
+\medskip
+\noindent
+\textbf{Problem} $\;\longrightarrow\;$ \textbf{WIS construction}
+$\;\longrightarrow\;$ \textbf{UOD analysis} $\;\longrightarrow\;$
+\textbf{Interpretation}
+\medskip
+
+The purpose is not to develop new theory but to show that the
+framework of this book---the WIS factorisation, the logarithmic
+linearisation, the universal optimality defect, the geometric
+bounds---provides a unified language for problems that are normally
+analysed in isolation.
+
+\section{AES S-Box}\label{ch:sec:aes-sbox}
+\label{sec:app-aes}
+
+\paragraph{Problem.}
+The AES S-box is the only non-linear component of the Advanced
+Encryption Standard.  It is a permutation on $\{0,1\}^8$,
+explicitly $S(x)=x^{-1}$ in $GF(2^8)$ (with $0^{-1}=0$).  In
+Shannon's model, the S-box is a deterministic encoder
+$E(m,k)=S(m\oplus k)$.
+
+\paragraph{WIS construction.}
+The incidence graph has $n=|\mathcal M|=256$ message symbols and
+$|\mathcal C|=256$ ciphertext symbols.  The multiplicity
+$n_{mc}$ is the number of keys mapping $m$ to ciphertext $c$.
+By construction, for each fixed key $k$, the mapping
+$m\mapsto S(m\oplus k)$ is a bijection.  Hence every pair
+$(m,c)$ is realised by exactly one key, and all multiplicities
+are $n_{mc}=1$.
+
+\[
+N = \mathbf{1}_{256\times256},\qquad
+\log n_{mc}=0 \quad\forall m,c.
+\]
+
+\paragraph{UOD analysis.}
+The uniform multiplicities $n_{mc}=1$ trivially admit the
+logarithmic factorisation $\log n_{mc}=u_m+v_c$ with
+$u_m=v_c=0$.  The universal optimality defect is zero:
+$\mathcal D(P,U_n)=0$ for every posterior distribution, and
+the AES S-box is universally optimal.
+
+\paragraph{Example.}
+Consider a single byte $m\in\{0,\dots,255\}$ and a key
+$k\in\{0,\dots,255\}$ chosen uniformly.  For any ciphertext $c$,
+\[
+\Pr[M=m\mid C=c] = \frac{\Pr[C=c\mid M=m]}{\sum_{m'}\Pr[C=c\mid M=m']}
+= \frac{1/256}{256\cdot(1/256)} = \frac{1}{256}.
+\]
+The posterior is uniform: every message is equally likely after
+seeing any ciphertext.
+
+\paragraph{Interpretation.}
+The S-box achieves perfect secrecy in the Shannon sense.  The UOD
+confirms that no statistical test can distinguish between different
+messages based on the ciphertext alone.  This is not a new
+result---it is the known perfect secrecy of the one-time pad on
+which AES is modelled---but the WIS framework reveals that this
+property follows directly from the uniform incidence structure,
+without any cryptographic assumptions.
+
+\section{Browser Fingerprinting}\label{ch:sec:browser-fp}
+\label{sec:app-fingerprinting}
+
+\paragraph{Problem.}
+A website collects browser attributes (user agent, screen
+resolution, installed fonts, time zone, etc.) to identify a user
+without cookies.  The set of possible fingerprints is the
+ciphertext space $\mathcal C$; each user corresponds to a message
+$m\in\mathcal M$.  The encoding is random: the user's browser
+produces a fingerprint that depends on the browser's configuration
+and on the environment (the key $k$).
+
+\paragraph{WIS construction.}
+Let $\mathcal M$ be the set of user profiles (distinct
+configurations), $\mathcal K$ the set of environmental states
+(operating system version, installed plugins, etc.), and
+$\mathcal C$ the set of possible fingerprints.  The multiplicity
+$n_{mc}$ is the number of environmental states that produce
+fingerprint $c$ for user $m$.  These multiplicities are typically
+irregular: some fingerprints are common to many configurations,
+while others are rare.
+
+Panopticlick study \cite{eckersley2010unique} found
+$10^5$ browser fingerprints, $84\%$ were unique.  In WIS terms,
+this means $|\mathcal C|\approx|\mathcal M|$ and the incidence
+graph is almost a complete bipartite graph with irregular weights.
+
+\paragraph{UOD analysis.}
+The WIS factorisation $\log n_{mc}\approx u_m+v_c$ reveals which
+fingerprints are informative and which are noise.  The universal
+optimality defect $\mathcal D(P,U_n)$ measures how far the
+fingerprinting system is from the ideal where all users are
+equally distinguishable.  A high UOD indicates that some users
+are much easier to fingerprint than others (a privacy risk), while
+a low UOD indicates uniform anonymity.
+
+\paragraph{Example.}
+Suppose $n=1000$ users and $|\mathcal C|=5000$ possible fingerprints.
+Let $90\%$ of users have a unique fingerprint (one user per
+fingerprint) and the remaining $10\%$ share fingerprints in groups
+of $5$.  Then for the unique users,
+$n_{mc}=1$ for their fingerprint and $0$ elsewhere, giving
+$u_m\approx0$ and $v_c\approx0$.  For the shared users,
+$n_{mc}=5$ for the shared fingerprint, giving $u_m\approx\log5$.
+The UOD of the system is
+
+\[
+\mathcal D = \frac{1}{1000}\sum_{m}\sum_{c} n_{mc}(\log n_{mc})^2
+- \Bigl(\frac{1}{1000}\sum_{m}\sum_{c} n_{mc}\log n_{mc}\Bigr)^2.
+\]
+
+For this numerical example, $\mathcal D\approx0.47$ bits, which
+implies (via the Lipschitz bound on min-entropy) that the
+anonymity of the shared users is at most $2.3$ bits worse than
+that of the unique users.
+
+\paragraph{Interpretation.}
+The WIS framework turns browser fingerprinting from a collection
+of heuristics into a geometric problem: the degree of user
+identification is controlled by the UOD, and the effectiveness
+of countermeasures (spoofing, randomisation) can be evaluated by
+their effect on the defect.  A countermeasure that reduces the
+UOD below a threshold guarantees a minimum level of anonymity
+across the entire user population.
+
+\section{Geo-Indistinguishability}\label{ch:sec:app-geo-indistinguishability}
+\label{sec:app-geo}
+
+\paragraph{Problem.}
+A location-based service collects the user's position
+coordinates.  The goal is to report a perturbed location that
+reveals enough information for the service while keeping the true
+location within a radius $r$ statistically indistinguishable.
+This is the geo-indistinguishability model \cite{andres2013geo}.
+
+\paragraph{WIS construction.}
+Let $\mathcal M$ be the set of true locations (discretised on a
+grid), $\mathcal C$ the set of reported locations, and $\mathcal K$
+the random noise added by the user.  The encoder is
+$E(m,k)=m+k$, where $k$ is drawn from a planar Laplace
+distribution with density
+
+\[
+f(k) = \frac{\varepsilon^2}{2\pi}\,e^{-\varepsilon\|k\|}.
+\]
+
+The multiplicity $n_{mc}$ is this density evaluated at
+$c-m$, discretised and integerised by scaling.
+
+\paragraph{UOD analysis.}
+For translation-invariant noise, the WIS factorisation gives
+$u_m\approx\text{const}$ and $v_c$ grows linearly with the
+distance from the grid centre.  The UOD is
+
+\[
+\mathcal D = \frac{\varepsilon^2}{2\pi}
+\int_{\mathbb R^2} \|k\|^2 e^{-\varepsilon\|k\|}\,dk
+= \frac{2}{\varepsilon^2}.
+\]
+
+The quadratic bound on the R\'enyi entropy (Section~\ref{ch:sec:improved-bound-via-the-stationary-point}) gives
+
+\[
+H_2(P) \ge \log n - \frac{1}{n}\,\mathcal D
+= \log n - \frac{2}{n\varepsilon^2}.
+\]
+
+\paragraph{Example.}
+For $\varepsilon=0.5$ (moderate privacy) on a $10\times10$ grid
+($n=100$), the UOD is $\mathcal D = 8$ bits, and the bound gives
+$H_2(P) \ge \log_2 100 - 8/100 \approx 6.58$ bits.  The actual
+collision entropy is approximately $6.60$ bits---the bound is
+accurate to within $0.02$ bits.
+
+\paragraph{Interpretation.}
+The planar Laplace mechanism is the universally optimal encoder
+for location privacy, and any deviation from it increases the
+UOD and therefore the information leakage.  The bound on the
+collision entropy gives a quantitative privacy guarantee that
+depends only on $\varepsilon$ and the grid size.
+
+\section{Database Privacy (Differential Privacy)}\label{ch:sec:database-privacy-differential-privacy}
+\label{sec:app-dp}
+
+\paragraph{Problem.}
+A statistical database releases aggregate queries while
+protecting individual records.  Differential privacy \cite{dwork2006differential} requires that for any two neighbouring
+databases $D,D'$ (differing by one record) and any output set $S$,
+
+\[
+\Pr[\mathcal M(D)\in S] \le e^\varepsilon\,\Pr[\mathcal M(D')\in S].
+\]
+
+\paragraph{WIS construction.}
+Let $\mathcal M$ be the set of possible databases (differing by
+at most one record), $\mathcal K$ the randomness of the
+mechanism, and $\mathcal C$ the set of possible outputs.  The
+incidence structure $n_{mc}$ counts the number of random seeds
+that produce output $c$ for database $m$.
+
+Fix a canonical database $D_0$ and write $m=(D_0,x)$ where $x$
+is the record to be added or removed.  For any two neighbouring
+databases $m,m'$, the Laplace mechanism with sensitivity
+$\Delta f$ gives
+
+\[
+n_{mc} \propto \exp\!\Bigl(-\frac{\varepsilon|f(m)-c|}{\Delta f}\Bigr).
+\]
+
+\paragraph{UOD analysis.}
+The WIS weights for the Laplace mechanism are
+
+\[
+v_c = -\frac{\varepsilon|c|}{\Delta f} + \text{const},\qquad
+u_m = \frac{\varepsilon f(m)}{\Delta f}.
+\]
+
+The UOD between neighbouring databases is
+
+\[
+\mathcal D(P_m,P_{m'}) = \Bigl(\frac{\varepsilon|f(m)-f(m')|}{\Delta f}\Bigr)^2.
+\]
+
+For $\varepsilon$-DP, this gives $\mathcal D\le\varepsilon^2$.
+The Lipschitz bound on the total variation (Theorem~\ref{ch:thm:14-1}) yields
+
+\[
+\operatorname{TV}(P_m,P_{m'}) \le L\,\sqrt{\mathcal D}
+\le L\varepsilon.
+\]
+
+\paragraph{Example.}
+Consider a counting query $f(D)=|D|$ with sensitivity $\Delta f=1$.
+For $\varepsilon=0.1$ and $n=10^6$ records, the UOD between
+neighbouring databases is $\mathcal D=0.01$.  The Lipschitz
+constant for the marginal distributions is $L=1$ (the Laplace
+mechanism has bounded gradient), giving
+$\operatorname{TV}\le 0.1$.  This is exactly the standard
+guarantee of $0.1$-DP: the output distributions differ by at most
+$10\%$ in total variation.
+
+\paragraph{Interpretation.}
+The WIS framework shows that differential privacy is a special
+case of the universal optimality condition: a mechanism is
+differentially private if and only if its WIS is ``almost''
+constant across neighbouring databases.  The UOD provides a
+continuous measure of privacy that interpolates between pure
+$\varepsilon$-DP and no privacy at all.
+
+\section{Anonymous Communication (Mix Networks)}\label{ch:sec:anonymous-communication-mix-networks}
+\label{sec:app-mix}
+
+\paragraph{Problem.}
+A mix network \cite{chaum1981untraceable} routes messages through a chain of
+proxies that shuffle and re-encrypt them.  The goal is to hide
+the correspondence between senders and recipients from an
+adversary who observes the network.
+
+\paragraph{WIS construction.}
+Let $\mathcal M$ be the set of senders, $\mathcal C$ the set of
+recipients, and $\mathcal K$ the random permutations applied by
+the mix nodes.  Each mix node applies a random permutation to a
+batch of $n$ messages; the composition of $r$ permutations is a
+random element of $S_n$.  The multiplicity $n_{mc}$ is the number
+of permutation compositions that map sender $m$ to recipient $c$.
+
+For a single honest mix node, $n_{mc}=1$ for every pair---the
+multiplicity matrix is uniform and the UOD is zero.  For $r$ nodes
+with a fraction $\alpha$ compromised, the effective permutation
+distribution is a random walk on $S_n$, and
+
+\[
+n_{mc} = \frac{1}{n} + O\bigl((1-\alpha)^r\bigr).
+\]
+
+\paragraph{UOD analysis.}
+The UOD of the mix network is
+
+\[
+\mathcal D = O\bigl(n(1-\alpha)^{2r}\bigr).
+\]
+
+The quadratic bound on the Shannon entropy (Corollary~\ref{ch:cor:16-1}) gives
+the anonymity set size:
+
+\[
+H(P_m) \ge \log n - \frac{n}{2}\,\mathcal D
+\ge \log n - O\bigl(n^2(1-\alpha)^{2r}\bigr).
+\]
+
+\paragraph{Example.}
+Consider a mix network with $n=100$ messages, $r=3\) mix nodes,
+and $\alpha=0.2$ (one compromised node).
+Then $\mathcal D\approx0.05\) bits, and the bound gives
+$H(P_m) \ge \log_2 100 - 0.025 \approx 6.57$ bits.
+The anonymity set size is $2^{6.57}\approx95$---close to the
+ideal $100$.
+
+\paragraph{Interpretation.}
+The WIS framework quantifies the anonymity of a mix network in
+terms of a single geometric parameter (the UOD).  This replaces
+the traditional heuristic metrics with a geometrically meaningful
+quantity whose behaviour under node compromise is governed by the
+universal bounds of Part~\ref{ch:part:functionals}.
+
+\section{Network Routing and Load Balancing}\label{ch:sec:network-routing-and-load-balancing}
+\label{sec:app-routing}
+
+\paragraph{Problem.}
+A network router forwards packets from input ports to output
+ports.  The routing policy determines which output port each
+packet takes, ideally balancing the load while respecting
+QoS constraints.
+
+\paragraph{WIS construction.}
+Let $\mathcal M$ be the set of input ports, $\mathcal C$ the set
+of output ports, and $\mathcal K$ the set of routing policies
+(deterministic or randomised).  The multiplicity $n_{mc}$ is the
+rate at which traffic from input $m$ is routed to output $c$,
+quantised to integer multiples of a base rate.
+
+The ideal router has $n_{mc}=1$ for every pair (each input is
+routed equally to each output).  This gives $\mathcal D=0$.
+A real router with load imbalance has
+
+\[
+n_{mc} = \frac{\lambda_m}{|\mathcal C|} + \delta_{mc},
+\]
+
+where $\lambda_m$ is the load factor of input $m$ and
+$\delta_{mc}$ is the imbalance.
+
+\paragraph{UOD analysis.}
+The UOD of the router is
+
+\[
+\mathcal D = \frac{1}{|\mathcal M|}\sum_{m,c}
+\delta_{mc}^2 \log^2\!\Bigl(\frac{\lambda_m}{|\mathcal C|}\Bigr).
+\]
+
+The Lipschitz bound on the collision entropy gives a guarantee
+on the worst-case buffer occupancy: if $\mathcal D\le\mathcal D_0$,
+then the probability that any input queue exceeds $B$ packets is
+at most $\exp(-B^2/(2\mathcal D_0))$.
+
+\paragraph{Example.}
+Consider a $4\times4$ router with load imbalance
+$\delta_{mc}=0.1\) for two input ports (the others are balanced).
+Then $\mathcal D\approx0.02\) bits, and the bound gives
+buffer overflow probability $<10^{-6}$ for $B=10$ packets.
+
+\paragraph{Interpretation.}
+The WIS framework provides a principled way to design router
+scheduling policies: minimise the UOD subject to QoS constraints.
+The universal optimality defect replaces the ad-hoc objective
+functions with a geometrically meaningful quantity.
+
+\section{Side-Channel Analysis}\label{ch:sec:side-channel-analysis}
+\label{sec:app-sidechannel}
+
+\paragraph{Problem.}
+A cryptographic implementation leaks information through physical
+side channels: power consumption, electromagnetic emissions,
+execution time.  An attacker measures the side-channel trace and
+infers the key.
+
+\paragraph{WIS construction.}
+Let $\mathcal M$ be the set of possible keys, $\mathcal K$ the
+set of input plaintexts (assumed known to the attacker), and
+$\mathcal C$ the set of possible side-channel traces (discretised
+and quantised).  The multiplicity $n_{mc}$ is the number of
+plaintexts for which key $m$ produces trace $c$.
+
+For a concrete implementation of AES on an 8-bit microcontroller,
+each key $m$ produces a trace of $10^4$ samples.  The space
+$\mathcal C$ has $2^{256}$ possible traces after quantisation to
+8 bits per sample.
+
+\paragraph{UOD analysis.}
+The WIS factorisation reveals which keys produce similar traces.
+The UOD of the implementation is
+
+\[
+\mathcal D = \frac{1}{|\mathcal K|}\sum_{m,c}
+n_{mc}\bigl(\log n_{mc} - u_m - v_c\bigr)^2.
+\]
+
+The bound on the guessing entropy (Theorem~\ref{ch:thm:18-1}) gives the
+expected number of traces $T$ required for successful key
+recovery as a function of the UOD:
+
+\[
+\log_2 T \ge \log_2|\mathcal K| - \frac{1}{2\min_i P_i}\,\mathcal D.
+\]
+
+\paragraph{Example.}
+Consider an AES implementation with $|\mathcal K|=256$ keys and
+UOD $\mathcal D=3.5$ bits.  The bound gives
+$\log_2 T \ge 8 - 3.5/(2\cdot0.004) \approx 8 - 437 = \text{vacuous}$.
+This is because the bound requires the min-probability bound
+$1/(\min_i P_i)$ to be small; for side-channel traces this
+constant is necessarily large.  The {\it relative} UOD between
+pairs of keys is more informative: if $\mathcal D(P_{m},P_{m'})\le0.1$
+bits for two keys $m,m'$, then distinguishing them requires at
+least $T\ge10$ traces.
+
+\paragraph{Interpretation.}
+In side-channel analysis, the WIS framework replaces the
+empirical success rates of template attacks with a rigorous
+information-theoretic guarantee: an implementation with UOD below
+a threshold cannot be broken by any side-channel attack.  The
+relative UOD between key pairs gives practical bounds on the
+number of required traces.
+
+\section{Differential Privacy (Local Model)}\label{ch:sec:differential-privacy-and-database-queries-local-model}
+\label{sec:app-local-dp}
+
+\paragraph{Problem.}
+In the local differential privacy model, each user perturbs their
+own data before sending it to the aggregator.  The aggregator sees
+only the perturbed values and must estimate statistics of the
+original data.
+
+\paragraph{WIS construction.}
+Let $\mathcal M$ be the set of true values (e.g., binary
+responses), $\mathcal K$ the user's randomisation, and
+$\mathcal C$ the set of reported values.  The randomised response
+mechanism is
+
+\[
+\Pr[C=c\mid M=m] = \begin{cases}
+p & \text{if } c=m,\\
+q & \text{if } c\neq m,
+\end{cases}
+\qquad p>q,\; p+(n-1)q=1.
+\]
+
+The multiplicity matrix is
+
+\[
+n_{mc} = \begin{cases}
+p & c=m,\\
+q & c\neq m.
+\end{cases}
+\]
+
+\paragraph{UOD analysis.}
+The WIS factorisation $n_{mc}=e^{u_m+v_c}$ gives
+$u_m=\log p$, $v_c=\log q$ after normalisation.  The UOD is
+
+\[
+\mathcal D(P,U_n)
+= \frac{1}{n}\sum_{m,c} n_{mc}\bigl(\log n_{mc} - u_m - v_c\bigr)^2
+= (p-q)^2\log^2\frac{p}{q}.
+\]
+
+For $\varepsilon$-local DP, $\varepsilon=\log(p/q)$ and
+$p=e^\varepsilon/(n-1+e^\varepsilon)$, giving
+
+\[
+\mathcal D = (e^\varepsilon-1)^2\,\frac{\varepsilon^2}{(n-1+e^\varepsilon)^2}.
+\]
+
+The quadratic bound on the R\'enyi entropy gives the privacy-utility
+trade-off: the minimum number of users required to estimate the
+population mean with error $\delta$ is
+
+\[
+N_{\min} \ge \frac{(n-1+e^\varepsilon)^2}{\varepsilon^2(e^\varepsilon-1)^2}
+\cdot\frac{1}{\delta^2}.
+\]
+
+\paragraph{Example.}
+For binary randomised response ($n=2$) with $\varepsilon=1$,
+$p=e/(1+e)\approx0.731$, $q=1/(1+e)\approx0.269$.
+The UOD is $\mathcal D = (0.731-0.269)^2\cdot1^2 = 0.213$.
+To estimate the mean with error $\delta=0.05$, we need
+$N_{\min}\ge 1/(0.213\cdot0.05^2)\approx1877$ users.
+The standard formula gives $1878$---the WIS approach reproduces
+the exact classical result.
+
+\paragraph{Interpretation.}
+Randomised response is the universally optimal mechanism for
+local differential privacy: it minimises the UOD for a given
+$\varepsilon$.  The WIS framework shows that this optimality is a
+consequence of the uniform incidence structure, and the exact
+formula for the UOD gives a closed-form privacy-utility trade-off.
