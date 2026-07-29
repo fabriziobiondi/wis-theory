@@ -2,7 +2,7 @@
 
 **Geometry, Information, and Cryptography**
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-blue.svg)](LICENSE)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey)](LICENSE)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.XXXXXXX-blue)](https://doi.org/10.5281/zenodo.XXXXXXX)
 [![Pages](https://img.shields.io/badge/GitHub%20Pages-online-success)](https://fabriziobiondi.github.io/wis-theory/)
 [![arXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b)](https://arxiv.org/abs/XXXX.XXXXX)
@@ -128,8 +128,8 @@ wis-theory/
 
 ## License
 
-The text of this monograph is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).  
-The accompanying code is licensed under [MIT](LICENSE).
+The manuscript and documentation in the `paper/` directory are licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).  
+The source code in this repository is licensed under the [MIT License](LICENSE-MIT).
 
 ---
 
