@@ -23,7 +23,6 @@ The Euclidean metric defines a smooth Riemannian metric on \(F(\mathcal P)\).
 \begin{proof}
 The Euclidean inner product is constant in every affine coordinate system. Hence it varies smoothly and is positive definite on every tangent space. 
 \end{proof}
-%% Explanatory comment: The Euclidean metric on the image space is smooth, which is essential because pulling back a smooth metric by a diffeomorphism yields a smooth Riemannian metric on the posterior manifold. This ensures that all subsequent geometric computations are well-defined.
 \paragraph{Why the pullback metric?}
 The image $F(\mathcal P)$ is a subset of Euclidean space, so it inherits the Euclidean metric.  But what we need is a metric on the posterior manifold itself---a way to measure how much two distributions differ in terms of their cryptographic structure.  The pullback metric $g=F^*g_E$ is the unique Riemannian metric that makes $F$ a local isometry: the distance between $P$ and $Q$ on the manifold equals the Euclidean distance between their images $F(P)$ and $F(Q)$.  This identification is the bridge between geometry (distributions) and algebra (WIS factorisation).
 
@@ -65,7 +64,6 @@ $DF_P:T_P\mathcal P\rightarrow T_{F(P)}F(\mathcal P)$
 is a linear isomorphism for every \(P\).
 Since \(g_E\) is defined on every tangent space of the image, the expression above is well defined. 
 \end{proof}
-%% Explanatory comment: The pullback metric is well-defined because F is a diffeomorphism: the differential DF_P is invertible, so the Euclidean metric on the image is transported uniquely back to the tangent space of the posterior manifold. Without this invertibility, the pullback would not be uniquely defined.
 \begin{proposition}[Symmetry]
 \label{ch:prop:7-4}
 For every posterior point \(P\), the bilinear form
@@ -86,7 +84,6 @@ g_E(DF_Pv,DF_Pu)
 g_P(v,u). \qquad
 \]
 \end{proof}
-%% Explanatory comment: Symmetry of the pullback metric follows directly from the symmetry of the Euclidean inner product. This property is necessary for the pullback to qualify as a genuine Riemannian metric, as Riemannian metrics are always symmetric bilinear forms.
 \begin{proposition}[Positive Definiteness]
 \label{ch:prop:7-5}
 The pullback metric is positive definite.
@@ -104,7 +101,6 @@ Hence
 $g_P(u,u)>0.$
 Therefore \(g\) is positive definite. 
 \end{proof}
-%% Explanatory comment: The pullback metric is positive definite because the differential DF_P is invertible and the Euclidean metric is positive definite. This means that the induced norm is a genuine measure of length on the posterior manifold: non-zero tangent vectors have positive length.
 \begin{theorem}[Smooth Riemannian Metric]
 \label{ch:thm:7-6}
 The pullback metric defines a smooth Riemannian metric on the posterior manifold.
@@ -115,7 +111,6 @@ The pullback of a smooth tensor field by a smooth map is smooth.
 Propositions~\ref{ch:prop:7-4} and~\ref{ch:prop:7-5} establish symmetry and positive definiteness.
 Hence \(g\) is a smooth Riemannian metric on \(\mathcal P\). 
 \end{proof}
-%% Explanatory comment: The pullback metric defines a smooth Riemannian metric on the posterior manifold, equipping it with a genuine geometric structure. This is the foundational result for all subsequent geometric analysis: distances, angles, gradients, and curvatures on the posterior manifold are now well-defined through this metric.
 \section{Coordinate Representation}\label{ch:sec:coordinate-representation}
 Let
 $J_P=DF_P.$
@@ -138,7 +133,6 @@ is invertible,
 $J_P^{\!T}J_P$
 is symmetric positive definite by elementary linear algebra. 
 \end{proof}
-%% Explanatory comment: The matrix representation J^T J of the pullback metric is positive definite at every point, confirming that the metric is non-degenerate. This representation also shows that the metric can be expressed in terms of the Jacobian of the logarithmic map, making it computable in practice.
 \subsection{Geometric Interpretation}\label{ch:sec:geometric-interpretation}
 The pullback metric measures infinitesimal posterior variations after eliminating the additive gauge symmetry through the quotient projection.
 Consequently, distances, norms, gradients and quadratic forms computed with respect to \(g\) are intrinsic properties of the posterior manifold and do not depend on the choice of logarithmic representative.

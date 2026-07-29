@@ -21,7 +21,6 @@ is \(C^\infty\).
 linear, and the squared Euclidean norm is polynomial. Therefore
 \(\mathcal D\) is a composition of smooth maps. 
 \end{proof}
-%% Explanatory comment: Smoothness of the UOD implies that the Universal Optimality Defect is infinitely differentiable, which allows the use of differential calculus for its analysis. Consequently, gradient-based optimization methods and Taylor expansions are applicable.
 \section{Positivity and Separation}\label{ch:sec:positivity-and-separation}
 \begin{theorem}[Positivity]
 \label{ch:thm:23-2}
@@ -32,7 +31,6 @@ with equality iff \(P=Q\).
 \(\mathcal D(P,Q)=0\), then \(F(P)=F(Q)\). By the results of Part~\ref{ch:part:posterior}, \(F\) is
 injective, hence \(P=Q\). The converse is immediate. 
 \end{proof}
-%% Explanatory comment: Positivity ensures that the UOD is a genuine measure of discrepancy between probability distributions, vanishing only when the distributions coincide. This property is essential for the UOD to function as a valid distance-like functional.
 \section{Continuity}\label{ch:sec:continuity}
 \begin{theorem}[Continuity]
 \label{ch:thm:23-3}
@@ -43,7 +41,6 @@ $\mathcal D(P_n,Q_n)\to\mathcal D(P,Q).$
 \(F\) with the squared Euclidean norm, both of which are \(C^\infty\)
 on the interior of the simplex.  Hence \(\mathcal D\) is smooth.
 \end{proof}
-%% Explanatory comment: Joint continuity guarantees that the UOD is stable under simultaneous small perturbations of both arguments. In practice this means that nearby probability distributions produce nearby UOD values, a prerequisite for any reliable numerical computation.
 \section{Local Lipschitz Continuity}\label{ch:sec:local-lipschitz-continuity}
 \begin{theorem}[Local Lipschitz]
 \label{ch:thm:23-4}
@@ -57,7 +54,6 @@ for all \(P_i,Q_i\in K\).
 bounded on \(K\times K\). The multivariable mean-value theorem
 gives the estimate. 
 \end{proof}
-%% Explanatory comment: Local Lipschitz continuity provides a quantitative bound on how much the UOD can change under perturbations: small changes in the input probabilities produce proportionally small changes in the defect value. This estimate is crucial for convergence analysis of iterative algorithms.
 \section{An Auxiliary Linear Lemma}\label{ch:sec:an-auxiliary-linear-lemma}
 The proof of properness relies on a purely linear fact.
 \begin{lemma}[Growth in the Quotient Space]
@@ -86,7 +82,6 @@ Therefore,
 \frac{\operatorname{diam}(a^{(k)})}{\sqrt 2}
 \longrightarrow\infty. \]
 \end{proof}
-%% Explanatory comment: This lemma establishes that when the spread of logarithmic coordinates diverges, the norm in the quotient space diverges as well. It is the key linear ingredient for proving that the UOD diverges near the boundary of the simplex.
 \section{Properness}\label{ch:sec:properness}
 \begin{theorem}[Properness]
 \label{ch:thm:23-6}
@@ -106,7 +101,6 @@ $a^{(n)}=\log P_n-\log Q$
 tends to infinity. Lemma~\ref{ch:lem:23-5} yields
 $\|Q(a^{(n)})\|\to\infty,$ which is precisely \(\mathcal D(P_n,Q)\to\infty\). 
 \end{proof}
-%% Explanatory comment: Properness prevents minimizing sequences from escaping to the boundary of the simplex: if a sequence approaches the boundary, the UOD diverges to infinity. This guarantees that every minimization problem formulated with the UOD admits a solution in the interior.
 \section{Compact Sublevel Sets}\label{ch:sec:compact-sublevel-sets}
 \begin{corollary}[Compact Sublevel Sets]
 \label{ch:cor:23-7}
@@ -117,7 +111,6 @@ is compact in the relative topology of the simplex.
 sequences in \(S_c\) from approaching the boundary. Since the simplex is
 compact, \(S_c\) is compact. 
 \end{proof}
-%% Explanatory comment: Compact sublevel sets mean that every set of distributions whose UOD from a fixed reference is bounded below a threshold is necessarily compact. Consequently, any continuous objective defined on such sublevel sets attains its minimum, a property essential for the existence of optimal posterior distributions.
 \section{Topological Equivalence}\label{ch:sec:topological-equivalence}
 \begin{theorem}[Topological Equivalence]
 \label{ch:thm:23-8}
@@ -129,7 +122,6 @@ Since the UOD is the squared Euclidean distance in that image,
 convergence in UOD is equivalent to Euclidean convergence of \(F(P)\),
 hence to manifold convergence. 
 \end{proof}
-%% Explanatory comment: Topological equivalence confirms that the UOD induces the same notion of convergence as the underlying manifold topology. Thus the UOD is not merely a convenient computational tool but a geometrically faithful representation of the proximity structure of the probability simplex.
 \section{Summary}\label{ch:sec:summary}
 The Universal Optimality Defect is:
 \begin{itemize}

@@ -15,7 +15,6 @@ The map \(L\) is smooth because each component is a logarithm of a strictly posi
 The projection \(Q\) is linear, hence smooth.
 The composition \(F = Q \circ L\) is therefore smooth. 
 \end{proof}
-%% Explanatory comment: The canonical logarithmic map F is smooth because it is composed of smooth functions. This smoothness is the minimal regularity needed to apply the tools of differential geometry, including the Inverse Function Theorem used later in this chapter.
 
 This chapter establishes that the logarithmic coordinates are a valid chart on the posterior manifold. This justifies every local computation---gradients, Hessians, Taylor expansions---that appears in the stability analysis (Chapter~12) and the variational theory (Chapters~20--25).
 
@@ -31,7 +30,6 @@ By the chain rule,
 $DF_P(v) = Q(DL_P(v)).$
 The expression for \(DL_P\) follows from the componentwise derivative of the logarithm. 
 \end{proof}
-%% Explanatory comment: The differential of F at any point is simply the composition of the logarithmic differential with the quotient projection. This explicit expression allows the computation of the differential in coordinates, which is essential for the metric constructions in the following chapters.
 \begin{corollary}[Invertibility on the Tangent Space]
 \label{ch:cor:5-3}
 The differential \(DF_P\) is a linear isomorphism between \(T_P \Delta_k^\circ\) and \(\operatorname{Im}(Q)\).
@@ -43,7 +41,6 @@ By Corollary~\ref{ch:cor:4-3}, the restriction \(Q|_{W_P} : W_P \to \operatornam
 Since the composition of linear isomorphisms is again a linear isomorphism,
 \(DF_P\) is itself a linear isomorphism. 
 \end{proof}
-%% Explanatory comment: The differential DF_P is invertible at every point, which means that F is an immersion and a submersion simultaneously. This is the key analytical condition that, by the Inverse Function Theorem, makes F a local diffeomorphism.
 \section{Local Diffeomorphism Property}\label{ch:sec:local-diffeomorphism-property}
 \begin{theorem}[Local Diffeomorphism]
 \label{ch:thm:5-4}
@@ -58,7 +55,6 @@ By Proposition~\ref{ch:prop:5-1}, the map \(F\) is smooth.
 By Proposition~\ref{ch:prop:5-2}, the differential \(DF_P\) is invertible at every point \(P \in \Delta_k^\circ\).
 By the Inverse Function Theorem, \(F\) is a local diffeomorphism. 
 \end{proof}
-%% Explanatory comment: The canonical logarithmic map F is a local diffeomorphism everywhere on the posterior simplex. This means that, locally, the geometry of the simplex is isomorphic to the geometry of the linear quotient space. Consequently, all local differential-geometric constructions (metrics, connections, geodesics) can be transported from the quotient space to the simplex.
 \section{Consequences}\label{ch:sec:consequences-diffeomorphism_local}
 \begin{corollary}[Local Logarithmic Coordinates]
 \label{ch:cor:5-5}
@@ -68,7 +64,6 @@ The logarithmic coordinate map provides a local chart on the posterior manifold.
 Since \(F\) is a local diffeomorphism, its inverse restricted to a neighborhood of each point provides a local coordinate chart.
 The second statement follows from the standard fact that local diffeomorphisms allow pulling back smooth functions. 
 \end{proof}
-%% Explanatory comment: The logarithmic quotient coordinates provide a valid local chart on the posterior manifold. This means that every smooth geometric quantity — functions, vector fields, tensors — can be expressed locally in these coordinates, which is essential for the explicit metric computations carried out in subsequent chapters.
 
 \paragraph{Running example: geo-indistinguishability.}
 The local diffeomorphism theorem guarantees that for geo-indistinguishability (Section~\ref{ch:sec:geo-indistinguishability-and-location-privacy}) the logarithmic quotient coordinates provide a valid local chart around every posterior.  In a neighbourhood of any true location $P$, the canonical map $F=Q\circ L$ satisfies $DF_P(Q-P)=Q(\log P-\log Q)$, and the UOD simplifies to $\mathcal D(P,Q)=\|F(P)-F(Q)\|^2=\|Q(\log P-\log Q)\|^2$, which for small perturbations $\delta=P-Q$ gives $\mathcal D\approx\|\delta\|^2/\min_i P_i$.

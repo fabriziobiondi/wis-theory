@@ -89,7 +89,6 @@ e^{a_1}(1+a_1), \ldots, e^{a_n}(1+a_n)
 \]
 These two vectors are linearly dependent only if there exists a scalar \(\lambda\) such that \(e^{a_i}(1+a_i)=\lambda e^{a_i}\) for all \(i\), which would imply all coordinates \(a_i\) are equal. This forces \(P=U_n\) and consequently \(K=0\), contradicting \(K>0\). Therefore the gradients are linearly independent everywhere on the constraint manifold, establishing LICQ. 
 \end{proof}
-%% Explanatory comment: The LICQ condition guarantees that the constraint manifold of feasible probability distributions is regular, meaning that the Lagrange multiplier method is valid for all interior critical points. Consequently, every constrained stationary point satisfies the Euler–Lagrange equations derived in the next section.
 \section{Euler--Lagrange Equations}\label{ch:sec:euler--lagrange-equations}
 By Lemma~\ref{ch:lem:29-1}, every interior constrained critical point satisfies the Euler--Lagrange equations
 $\nabla\mathcal D = \lambda_1\nabla g_1 + \lambda_2\nabla g_2$
@@ -139,7 +138,6 @@ Differentiating,
 $\psi'(x)=2e^{-x}(1-x+\bar a)-\beta.$
 Since \(e^{-x}(1-x+\bar a)\) is bounded and \(\beta\neq0\), the equation \(\psi'(x)=0\) has finitely many solutions. By the theory of exponential polynomials, \(\psi\) can have at most three zeros unless it vanishes identically. The identical vanishing case would imply \(\varphi\equiv0\), which is impossible for nontrivial parameters because the exponential term cannot be canceled by the linear term globally. Therefore \(\varphi\) has at most three distinct real zeros. 
 \end{proof}
-%% Explanatory comment: This lemma identifies the key structural property of the stationarity function: regardless of the ambient dimension n, every coordinate of a critical point solves the same scalar equation, which admits at most three solutions. This observation is the first step toward the dimensional collapse phenomenon.
 \begin{corollary}[Coordinate Collapse]
 \label{ch:cor:29-1}
 Every interior regular constrained critical point has at most three distinct values among its coordinates \(a_1,\ldots,a_n\).
@@ -147,7 +145,6 @@ Every interior regular constrained critical point has at most three distinct val
 \begin{proof}
 Since every coordinate \(a_i\) satisfies \(\varphi(a_i)=0\) and \(\varphi\) has at most three distinct real zeros (Lemma~\ref{ch:lem:29-2}), the coordinates can take at most three distinct values. 
 \end{proof}
-%% Explanatory comment: The corollary of the coordinate collapse is a striking consequence: every interior constrained critical point concentrates into at most three distinct log-likelihood values. This reduction from an n-dimensional coordinate vector to at most three distinct values is the central phenomenon of the chapter.
 \section{Extended Chebyshev Structure}\label{ch:sec:extended-chebyshev-structure}
 \begin{lemma}[Extended Chebyshev System]
 \label{ch:lem:29-3}
@@ -181,7 +178,6 @@ W_4(x)=
 \]
 All Wronskians are non-vanishing, confirming the Extended Chebyshev property. 
 \end{proof}
-%% Explanatory comment: The set of functions {1, x, e^x, xe^x} forms an Extended Chebyshev System, which is the deepest structural explanation for the three-level collapse. This property implies that any nontrivial linear combination of these functions has at most three zeros, directly bounding the number of distinct coordinate values at a critical point.
 \begin{lemma}[Non-Degeneracy]
 \label{ch:lem:29-4}
 The stationarity function \(\varphi\) cannot vanish identically on any interval of positive length.
@@ -189,7 +185,6 @@ The stationarity function \(\varphi\) cannot vanish identically on any interval 
 \begin{proof}
 Identical vanishing would imply \(2(x-\bar a)=e^x(\alpha+\beta x)\) for all \(x\) in an interval. If \(\beta=0\), then \(2(x-\bar a)=\alpha e^x\), which cannot hold identically because the left-hand side is linear while the right-hand side is exponential. If \(\beta\neq0\), the exponential term grows faster than the linear term, preventing identical equality. Therefore \(\varphi\) cannot vanish identically. 
 \end{proof}
-%% Explanatory comment: The stationarity function cannot vanish identically on any interval, confirming that the root-counting bound from the Chebyshev System is not artificially saturated. This non-degeneracy ensures that the three-level structure is a genuine geometric constraint rather than a trivial consequence of a vanishing function.
 \begin{lemma}[Zero Counting]
 \label{ch:lem:29-5}
 The function \(\varphi\) with \(\beta\neq0\) has at most three distinct real zeros. Moreover, if it has exactly three distinct zeros, they are simple and the sign pattern of \(\varphi\) alternates between them.
@@ -197,7 +192,6 @@ The function \(\varphi\) with \(\beta\neq0\) has at most three distinct real zer
 \begin{proof}
 The function \(\varphi\) belongs to the four-dimensional space spanned by \(\{1,x,e^x,xe^x\}\). By Lemma~\ref{ch:lem:29-3}, this space is an Extended Chebyshev System. By Lemma~\ref{ch:lem:29-4}, \(\varphi\) is not identically zero. A fundamental property of Extended Chebyshev Systems is that any non-zero element has at most three zeros. The simplicity and sign alternation follow from the non-vanishing of the Wronskians. 
 \end{proof}
-%% Explanatory comment: This lemma sharpens the bound: the stationarity function has at most three zeros, and when exactly three occur they are simple with alternating sign patterns. The simplicity property is important because it guarantees that the critical points are non-degenerate, which in turn implies structural stability under small perturbations.
 \section{Main Structural Theorem}\label{ch:sec:main-structural-theorem}
 \begin{theorem}[Three-Level Structure of Interior Regular Constrained Critical Points]
 \label{ch:thm:29-3}
@@ -213,7 +207,6 @@ By Lemma~\ref{ch:lem:29-1}, LICQ holds, so the Euler--Lagrange equations are nec
 The probability values are obtained through the transformation \(P_i=e^{a_i}/n\), which preserves distinctness.
 When exactly three distinct values occur, let them be \(a_1<a_2<a_3\) with multiplicities \(m_1,m_2,m_3\ge1\) and \(m_1+m_2+m_3=n\). The unknowns are: the three coordinates \(a_1,a_2,a_3\), the three multiplicities \(m_1,m_2,m_3\), and the two Lagrange multipliers \(\lambda_1,\lambda_2\) (equivalently \(\alpha,\beta\)). These satisfy: the two constraint equations (normalization and KL divergence), the three stationarity equations \(\varphi(a_j)=0\) for \(j=1,2,3\), and the multiplicity sum \(m_1+m_2+m_3=n\). This yields a finite system determining the possible configurations. 
 \end{proof}
-%% Explanatory comment: The Three-Level Structure Theorem is the central result of this chapter: every interior regular constrained critical point collapses to at most three distinct log-likelihood values, regardless of the ambient dimension n. This dimensional collapse is universal and follows from the interaction between the stationarity equations and the Extended Chebyshev System structure.
 \begin{corollary}[Finite-Dimensional Reduction]
 \label{ch:cor:29-2}
 The search for interior regular constrained critical points reduces from the infinite-dimensional space of probability distributions on \(n\) symbols to a finite-dimensional algebraic system of at most five equations in five unknowns, independently of \(n\).
@@ -221,7 +214,6 @@ The search for interior regular constrained critical points reduces from the inf
 \begin{proof}
 Theorem~\ref{ch:thm:29-3} explicitly identifies the unknowns and the governing equations. The reduction is independent of \(n\) because the structure of the stationarity function \(\varphi\) depends only on the parameters \(\bar a,\alpha,\beta\) and not on the dimension. 
 \end{proof}
-%% Explanatory comment: The finite-dimensional reduction transforms what appears to be a high-dimensional optimization problem into a small algebraic system of at most five equations in five unknowns, independently of n. This is the practical payoff of the three-level structure: the search for interior critical points becomes computationally tractable even in very high dimensions.
 \section{Explicit Characterization for Three Distinct Values}\label{ch:sec:explicit-characterisation-for-three-distinct-values}
 When three distinct log-likelihood values \(a<b<c\) occur with multiplicities \(p,q,r\ge1\) and \(p+q+r=n\), the system becomes:
 Normalization: \(p e^{a}+q e^{b}+r e^{c}=n\).
