@@ -62,3 +62,5 @@ This work is licensed under the MIT License.
 ## Contact
 
 Fabrizio Biondi — `biondif@gmail.com`
+
+<!-- GitHub Pages: https://fabriziobiondi.github.io/wis-theory/ -->
