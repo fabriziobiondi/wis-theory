@@ -1,5 +1,5 @@
 site_name: Weighted Incidence Structures
-site_description: A mathematical framework for universal optimal encoding — geometry, information, cryptography
+site_description: A mathematical framework for universal optimal encoding
 site_url: https://fabriziobiondi.github.io/wis-theory/
 site_author: Fabrizio Biondi
 
@@ -37,6 +37,8 @@ extra:
       link: https://github.com/fabriziobiondi/wis-theory
     - icon: fontawesome/solid/envelope
       link: mailto:biondif@gmail.com
+    - icon: fontawesome/solid/file-pdf
+      link: https://github.com/fabriziobiondi/wis-theory/raw/main/paper/main.pdf
 
 markdown_extensions:
   - pymdownx.arithmatex:
@@ -48,6 +50,12 @@ markdown_extensions:
       alternate_style: true
   - admonition
   - footnotes
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji
+
+extra_css:
+  - stylesheets/extra.css
 
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
@@ -61,6 +69,7 @@ nav:
       - Universal Bounds: theory/bounds.md
       - Variational Structure: theory/variational.md
   - Examples: examples.md
+  - Current Status: roadmap.md
   - Open Problems: open-problems.md
   - FAQ: faq.md
   - Bibliography: bibliography.md

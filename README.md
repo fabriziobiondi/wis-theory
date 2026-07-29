@@ -1,47 +1,75 @@
-# Weighted Incidence Structures
+# Weighted Incidence Structures (WIS)
 
 **Geometry, Information, and Cryptography**
 
-A mathematical framework for universal optimal encoding.
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-blue.svg)](LICENSE)
+[![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.XXXXXXX-blue)](https://doi.org/10.5281/zenodo.XXXXXXX)
+[![Pages](https://img.shields.io/badge/GitHub%20Pages-online-success)](https://fabriziobiondi.github.io/wis-theory/)
+[![arXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b)](https://arxiv.org/abs/XXXX.XXXXX)
+[![Paper](https://img.shields.io/badge/PDF-204%20pages-red)](paper/main.pdf)
+![Status](https://img.shields.io/badge/status-stable-green)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
-
----
-
-## Overview
-
-A deterministic encryption system is *universally optimal* if, after observing the ciphertext, every compatible message is equally likely. This monograph provides a complete classification of such systems, together with a canonical Hilbert-space geometry that emerges inevitably from the combinatorial data.
-
-The key insight: the logarithmic representation of the multiplicity matrix transforms a multiplicative factorisation into an additive linear structure, opening the door to operator theory, spectral geometry, and universal bounds for information-theoretic quantities.
+A complete classification of universally optimal deterministic encoders, together with the forced Hilbert-space geometry that emerges from their algebraic structure.
 
 ---
 
-## Main paper
+## Abstract
 
-[📄 Read the paper](paper/main.pdf) (204 pages, 34 chapters)
+A deterministic encryption system is *universally optimal* if, after observing the ciphertext, every compatible message is equally likely. This monograph provides:
 
-### Abstract
-
-**Problem.** A deterministic encryption system is universally optimal if, after observing the ciphertext, every compatible message is equally likely. Despite decades of study, the full set of such systems—and their geometric structure—remained unknown.
-
-**Main theorem.** A deterministic encoder is universally optimal if and only if its multiplicity matrix admits a factorisation $n_{mc} = \beta(c) / w(m)$ into message and ciphertext weights.
-
-**Main consequence.** The Universal Optimality Defect (UOD) is the squared norm in the forced Hilbert-space geometry. Every information-theoretic quantity (Shannon entropy, Rényi entropy, min-entropy, Bayes vulnerability, guessing entropy) is Lipschitz continuous with respect to the UOD, with explicit constants.
-
-**Practical impact.** The UOD provides a quantitative tool for evaluating real-world encryption systems—side-channel resistance, anonymity set size, privacy–utility trade-offs—replacing the binary verdict of perfect secrecy with a continuous scale.
+- A **complete classification** of all universally optimal deterministic encoders through weighted incidence structures.
+- A **forced Hilbert-space geometry** where the Universal Optimality Defect (UOD) measures the distance from perfect secrecy.
+- **Universal Lipschitz and quadratic bounds** for every smooth and piecewise-smooth information functional.
+- A **Three-Level Theorem** showing that interior critical points of the UOD collapse to at most three distinct log-likelihood values.
 
 ---
 
-## Key results
+## The logical chain
 
-| Result | Statement |
-|--------|-----------|
-| **Representation Theorem** | Universal optimality $\iff$ $n_{mc} = \beta(c)/w(m)$ |
-| **Cycle factorisation criterion** | Graph-theoretic test for the existence of WIS weights |
-| **Universal Lipschitz bound** | $\|S(P) - S(Q)\| \le L \sqrt{\mathcal D(P,Q)}$ for every smooth functional $S$ |
-| **Three-Level Theorem** | Interior critical points of the UOD collapse to at most three distinct log-likelihood values |
-| **Bregman identity** | $D_\phi(P,Q) = \frac12 \Delta^{\mathsf T} \overline H_\phi \Delta$ |
+```
+Universally Optimal Encoder
+        │
+        ▼
+Multiplicity Matrix  n_mc
+        │
+        ▼
+Weighted Incidence Structure  (w, β)
+        │
+        ▼
+Gauge Class  [w, β]
+        │
+        ▼
+Mismatch Operator  Φ = [A  −C]
+        │
+        ▼
+Least-Squares Problem  min ‖Au − ω‖²
+        │
+        ▼
+Normal Operator  ΦᵀΦ
+        │
+        ▼
+Posterior Laplacian  L = AᵀQA
+        │
+        ▼
+Quotient Geometry  V_I / Im(C)
+        │
+        ▼
+Universal Optimality Defect  D(P)
+```
+
+---
+
+## Quick links
+
+| What | Where |
+|------|-------|
+| 📄 **Read the paper** | [`paper/main.pdf`](paper/main.pdf) (204 pages) |
+| 🌐 **Documentation site** | [fabriziobiondi.github.io/wis-theory](https://fabriziobiondi.github.io/wis-theory/) |
+| 📖 **Theory overview** | [docs/theory/overview.md](docs/theory/overview.md) |
+| 💡 **Examples** | [docs/examples.md](docs/examples.md) |
+| ❓ **FAQ** | [docs/faq.md](docs/faq.md) |
+| 🔮 **Open problems** | [docs/open-problems.md](docs/open-problems.md) |
+| 📋 **Current status** | [docs/roadmap.md](docs/roadmap.md) |
 
 ---
 
@@ -49,17 +77,39 @@ The key insight: the logarithmic representation of the multiplicity matrix trans
 
 ```
 wis-theory/
-├── paper/           # Monograph source (LaTeX + PDF)
-│   ├── main.pdf     # Compiled monograph
-│   ├── main.tex     # Main LaTeX file
-│   ├── chapters/    # Chapter sources (34 files)
-│   └── figures/     # Diagrams and illustrations
-├── code/            # Computational companion (Apollonian framework)
-├── examples/        # Example configurations and data
-├── notebooks/       # Jupyter notebooks for exploration
-├── docs/            # Documentation site (MkDocs)
-└── references/      # External references and notes
+├── paper/                  # Monograph source (LaTeX + PDF)
+│   ├── main.pdf            # Compiled monograph
+│   ├── main.tex            # Main LaTeX file
+│   ├── chapters/           # 34 chapter sources
+│   └── figures/            # Diagrams and illustrations
+├── docs/                   # MkDocs documentation site
+│   ├── index.md            # Homepage (with buttons)
+│   ├── theory/             # Theory pages (5 areas)
+│   ├── examples.md         # Running examples
+│   ├── faq.md              # Frequently asked questions
+│   ├── roadmap.md          # Current status tracker
+│   └── open-problems.md    # Future directions
+├── code/                   # Computational companion
+├── examples/               # Example configurations
+├── notebooks/              # Jupyter notebooks
+├── references/             # External references
+└── .github/workflows/      # CI/CD (deploy to Pages)
 ```
+
+---
+
+## Key results
+
+| Result | Chapter | Statement |
+|--------|---------|-----------|
+| **Representation Theorem** | 5 | $E$ universally optimal $\iff n_{mc} = \beta(c)/w(m)$ |
+| **Cycle factorisation** | 4 | Existence of WIS weights $\iff$ cycle product $= 1$ |
+| **Encoder realizability** | 4 | Integrality + balance $B\beta = Kw$ |
+| **Universal Lipschitz bound** | 15 | $|S(P)-S(Q)| \le L\sqrt{\mathcal D(P,Q)}$ |
+| **Universal quadratic bound** | 15 | Local quadratic approximation of $S$ |
+| **Average Hessian Operator** | 16 | $D_\phi(P,Q) = \frac12 \Delta^{\mathsf T} \overline H_\phi \Delta$ |
+| **Three-Level Theorem** | 25 | Critical points of $\mathcal D$ collapse to $3$ values |
+| **Stability** | 12 | $\mathcal D$ is continuous and locally strictly convex |
 
 ---
 
@@ -70,7 +120,7 @@ wis-theory/
   author    = {Fabrizio Biondi},
   title     = {Weighted Incidence Structures: Geometry, Information, and Cryptography},
   year      = {2026},
-  note      = {Available at \url{https://github.com/fabriziobiondi/wis-theory}}
+  note      = {\url{https://github.com/fabriziobiondi/wis-theory}}
 }
 ```
 
@@ -78,12 +128,11 @@ wis-theory/
 
 ## License
 
-This work is licensed under the MIT License — see [LICENSE](LICENSE) for details.
+The text of this monograph is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).  
+The accompanying code is licensed under [MIT](LICENSE).
 
 ---
 
 ## Contact
 
-Fabrizio Biondi — `biondif@gmail.com`
-
-Comments, corrections, and suggestions are welcome.
+Fabrizio Biondi — [`biondif@gmail.com`](mailto:biondif@gmail.com)

@@ -2,65 +2,99 @@
 
 **A mathematical framework for universal optimal encoding.**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/fabriziobiondi/wis-theory/blob/main/LICENSE)
+<div class="grid cards" markdown>
+
+-   :fontawesome-solid-file-pdf: **Read the paper**
+
+    Full monograph in PDF
+    (204 pages, 34 chapters)
+
+    [:octicons-arrow-right-24: Download](https://github.com/fabriziobiondi/wis-theory/raw/main/paper/main.pdf)
+
+-   :fontawesome-brands-github: **GitHub**
+
+    Source code, issues, contributions
+
+    [:octicons-arrow-right-24: Repository](https://github.com/fabriziobiondi/wis-theory)
+
+-   :fontawesome-solid-book: **Documentation**
+
+    Theory, definitions, examples, FAQ
+
+    [:octicons-arrow-right-24: Browse](theory/overview.md)
+
+-   :fontawesome-solid-flask: **Examples**
+
+    AES, geo-indistinguishability, differential privacy
+
+    [:octicons-arrow-right-24: Explore](examples.md)
+
+-   :fontawesome-solid-lightbulb: **Open Problems**
+
+    Structural, geometric, algorithmic, applications
+
+    [:octicons-arrow-right-24: See](open-problems.md)
+
+-   :fontawesome-solid-map: **Current Status**
+
+    What is done, what remains
+
+    [:octicons-arrow-right-24: Track](roadmap.md)
+
+</div>
 
 ---
 
-## Overview
+## Abstract
 
-A deterministic encryption system is *universally optimal* if, after observing the ciphertext, every compatible message is equally likely. This monograph provides a complete classification of such systems, together with a canonical Hilbert-space geometry that emerges inevitably from the combinatorial data.
+**Problem.** A deterministic encryption system is *universally optimal* if, after observing the ciphertext, every compatible message is equally likely. Despite decades of study, the full set of such systems—and their geometric structure—remained unknown.
 
-The key insight: the logarithmic representation of the multiplicity matrix transforms a multiplicative factorisation into an additive linear structure, opening the door to operator theory, spectral geometry, and universal bounds for information-theoretic quantities.
+**Main theorem.** A deterministic encoder is universally optimal if and only if its multiplicity matrix admits a factorisation $n_{mc} = \beta(c) / w(m)$ into message and ciphertext weights.
 
----
-
-## Main paper
-
-[📄 Download the full monograph (PDF, 204 pages)](https://github.com/fabriziobiondi/wis-theory/raw/main/paper/main.pdf)
-
-### Abstract
-
-**Problem.** A deterministic encryption system is universally optimal if, after observing the ciphertext, every compatible message is equally likely. Despite decades of study, the full set of such systems—and their geometric structure—remained unknown.
-
-**Main theorem.** A deterministic encoder is universally optimal if and only if its multiplicity matrix admits a factorisation $n_{mc} = \beta(c) / w(m)$ into message and ciphertext weights. Taking logarithms transforms this multiplicative factorisation into a linear condition, forcing a canonical Hilbert-space geometry on every such system.
-
-**Main consequence.** The Universal Optimality Defect (UOD) $\mathcal D(P) = \|\delta(P)\|^2$ is the squared norm in this forced geometry. Every information-theoretic quantity (Shannon entropy, Rényi entropy, min-entropy, Bayes vulnerability, guessing entropy) is Lipschitz continuous with respect to the UOD, with explicit constants that depend only on the system's incidence structure.
-
-**Practical impact.** The UOD provides a quantitative tool for evaluating real-world encryption systems—side-channel resistance, anonymity set size, privacy–utility trade-offs—replacing the binary verdict of perfect secrecy with a continuous scale.
+**Main consequence.** The Universal Optimality Defect (UOD) is the squared norm in the forced Hilbert-space geometry. Every information-theoretic quantity is Lipschitz continuous with respect to the UOD, with explicit constants.
 
 ---
 
 ## Key results
 
-| Result | Statement | Chapter |
-|--------|-----------|---------|
-| **Representation Theorem** | $E$ is universally optimal $\iff$ $n_{mc} = \beta(c)/w(m)$ | 5 |
-| **Cycle factorisation** | Existence of WIS weights $\iff$ cycle product $= 1$ | 4 |
-| **Universal Lipschitz bound** | $\|S(P) - S(Q)\| \le L \sqrt{\mathcal D(P,Q)}$ | 15 |
-| **Three-Level Theorem** | Critical points of $\mathcal D$ collapse to 3 values | 25 |
-| **Bregman identity** | $D_\phi(P,Q) = \frac12 \Delta^{\mathsf T} \overline H_\phi \Delta$ | 16 |
+| Result | Chapter | Statement |
+|--------|---------|-----------|
+| **Representation Theorem** | 5 | $E$ universally optimal $\iff n_{mc} = \beta(c)/w(m)$ |
+| **Cycle factorisation** | 4 | Existence of WIS weights $\iff$ cycle product $= 1$ |
+| **Universal Lipschitz bound** | 15 | $|S(P)-S(Q)| \le L\sqrt{\mathcal D(P,Q)}$ |
+| **Three-Level Theorem** | 25 | Critical points of $\mathcal D$ collapse to $3$ values |
 
 ---
 
-## Repository structure
+## The logical chain
 
 ```
-wis-theory/
-├── paper/           # Monograph source (LaTeX + PDF)
-├── code/            # Computational companion (Apollonian framework)
-├── examples/        # Example configurations and data
-├── docs/            # This documentation site
-└── references/      # External references and notes
+Universally Optimal Encoder
+        │
+        ▼
+Multiplicity Matrix  n_mc
+        │
+        ▼
+Weighted Incidence Structure  (w, β)
+        │
+        ▼
+Gauge Class  [w, β]
+        │
+        ▼
+Mismatch Operator  Φ = [A  −C]
+        │
+        ▼
+Least-Squares Problem  min ‖Au − ω‖²
+        │
+        ▼
+Normal Operator  ΦᵀΦ
+        │
+        ▼
+Posterior Laplacian  L = AᵀQA
+        │
+        ▼
+Quotient Geometry  V_I / Im(C)
+        │
+        ▼
+Universal Optimality Defect  D(P)
 ```
-
----
-
-## License
-
-This work is licensed under the MIT License.
-
-## Contact
-
-Fabrizio Biondi — `biondif@gmail.com`
-
-<!-- GitHub Pages: https://fabriziobiondi.github.io/wis-theory/ -->

@@ -5,8 +5,17 @@ authors:
     given-names: "Fabrizio"
     orcid: "https://orcid.org/0000-0000-0000-0000"
 title: "Weighted Incidence Structures: Geometry, Information, and Cryptography"
-version: 1.0
+version: 1.0.0
 date-released: 2026-07
 url: "https://github.com/fabriziobiondi/wis-theory"
-license: "MIT"
+doi: "10.5281/zenodo.XXXXXXX"
+license: "CC-BY-4.0"
 type: monograph
+preferred-citation:
+  type: book
+  authors:
+    - family-names: "Biondi"
+      given-names: "Fabrizio"
+  title: "Weighted Incidence Structures: Geometry, Information, and Cryptography"
+  year: 2026
+  url: "https://github.com/fabriziobiondi/wis-theory"
