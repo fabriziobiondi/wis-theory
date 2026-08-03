@@ -41,12 +41,6 @@ These estimates depend only on the WIS geometry and not on the specific
 functional.
 \end{theorem}
 
-
-The results of Chapter~\ref{ch:sec:information-functionals-on-the-wis-manifold} immediately imply the following general
-theorem.
-
-
-
 \section{A Unified Classification}
 Every information or security functional considered in this appendix
 falls into one of two categories.
@@ -79,19 +73,6 @@ Specifically,
 \end{itemize}
 The only additional ingredients are regularity assumptions specific to
 the functional.
-
-
-The previous results can be summarized by a single principle.
-\textbf{Principle.}
-Every security functional considered in this appendix admits a geometric
-stability estimate controlled by the Universal Optimality Defect.
-Specifically,
-\begin{itemize}
-\item globally for smooth functionals;
-\item locally on regularity intervals for piecewise-smooth functionals.
-\end{itemize}
-The only additional ingredients are regularity assumptions specific to
-the functional.
 \subsection{Interpretation}\label{ch:sec:interpretation-piecewise_smooth}
 The Universal Optimality Defect plays the role of a canonical geometric
 reference quantity.
@@ -107,21 +88,6 @@ functional-specific one.
 
 
 \subsection{Scope and Limitations}\label{ch:sec:scope-and-limitations}
-The results established in this appendix should be interpreted as
-\textbf{stability estimates} rather than optimal inequalities.
-In particular,
-\begin{itemize}
-\item the constants generally depend on the region under consideration;
-\item piecewise bounds do not automatically extend across ranking transitions;
-\item global constants may fail to exist near the boundary of the probability simplex.
-\end{itemize}
-\paragraph{Running example: browser fingerprinting.}
-The min-entropy $H_\infty(P)=-\log\max_i P_i$ of the browser fingerprint distribution (Section~\ref{ch:sec:browser-fingerprinting-and-anonymity}) is the canonical piecewise-smooth functional: on the region $\{P\in\Delta_n^\circ:P_1>P_2>\dots>P_n\}$ it is smooth with $H_\infty(P)=-\log P_1$, but at a boundary $P_i=P_j$ the identity of the maximiser changes abruptly and the gradient $\nabla H_\infty$ jumps.  Theorem~\ref{ch:thm:18-1} guarantees that on each interval the Lipschitz bound $|H_\infty(P)-H_\infty(Q)|\le L\sqrt{\mathcal D(P,Q)}$ holds with the same $L$, so a small perturbation of the fingerprint distribution cannot produce an arbitrarily large change in identifiability.
-
-These limitations arise from the analytical properties of the
-functionals rather than from the WIS geometry itself.
-
-
 The results established in this appendix should be interpreted as
 \textbf{stability estimates} rather than optimal inequalities.
 In particular,
