@@ -401,7 +401,9 @@ regularity has been verified.
 The g-entropy \cite{briet2019properties} unifies Shannon, R\'enyi,
 Tsallis \cite{tsallis1988possible}, min-entropy, and collision entropy under a single formula.
 Let \(g:\mathbb R_{>0}\to\mathbb R\) be a continuous, strictly
-monotone function and write \(h=g^{-1}\).  The g-entropy of a distribution \(P\) is
+monotone function and write \(h=g^{-1}\), with the single exception of the
+Tsallis case below, where \(h\) is chosen independently of \(g\).
+The g-entropy of a distribution \(P\) is
 
 \[
 H_g(P) = g\!\left(\sum_{i=1}^n P_i\, h(-\log P_i)\right).
@@ -413,7 +415,7 @@ Different choices of \(g\) recover classical entropies:
 \begin{array}{ll}
 g(x)=x & \text{Shannon entropy}, \\[2pt]
 g(x)=\dfrac{\log x}{1-\alpha} & \text{R\'enyi entropy of order }\alpha, \\[2pt]
-g(x)=\dfrac{x-1}{1-\alpha} & \text{Tsallis entropy}, \\[2pt]
+g(x)=\dfrac{x-1}{1-\alpha},\ h(y)=e^{(1-\alpha)y} & \text{Tsallis entropy}, \\[2pt]
 g(x)=\lim_{\alpha\to\infty}\dfrac{\log x}{1-\alpha} & \text{Min-entropy}.
 \end{array}
 \]
@@ -423,11 +425,16 @@ Indeed, with \(g(x)=x\) one has \(h(y)=y\) and
 \(g(x)=\log(x)/(1-\alpha)\) one has \(h(y)=e^{(1-\alpha)y}\) and
 \(\sum_i P_i e^{-(1-\alpha)\log P_i}=\sum_i P_i^\alpha\), so
 \(H_g(P)=\log(\sum_i P_i^\alpha)/(1-\alpha)=H_\alpha(P)\).
-The Tsallis case is identical with \(g(x)=(x-1)/(1-\alpha)\).
+The Tsallis case uses the same kernel \(h(y)=e^{(1-\alpha)y}\) as the R\'enyi
+entropy, with \(g(x)=(x-1)/(1-\alpha)\); here \(h\) is not the inverse of \(g\).
+Then \(\sum_i P_i e^{(1-\alpha)(-\log P_i)}=\sum_i P_i^\alpha\), so
+\(H_g(P)=(\sum_i P_i^\alpha-1)/(1-\alpha)=T_\alpha(P)\), the Tsallis entropy.
 
 \begin{theorem}[g-Entropy Gradient]
 \label{ch:thm:g-entropy-gradient}
-Let \(h=g^{-1}\) and \(\Sigma_g(P)=\sum_i P_i h(-\log P_i)\).
+Let \(h\) be the kernel of the chosen entropy (\(h=g^{-1}\) for Shannon and
+R\'enyi, \(h(y)=e^{(1-\alpha)y}\) for Tsallis) and
+\(\Sigma_g(P)=\sum_i P_i h(-\log P_i)\).
 The squared norm of the WIS gradient of the g-entropy is
 
 \[
@@ -446,9 +453,10 @@ This expression is bounded on every compact subset of \(\Delta_n^\circ\).
 \end{theorem}
 
 \begin{proof}
-The g-entropy is smooth on the interior simplex because \(g\) and
-\(g^{-1}\) are smooth on their domains (all entropies of interest use
-smooth \(g\)).  Writing \(\Sigma_g(P)=\sum_i P_i h(-\log P_i)\), the
+The g-entropy is smooth on the interior simplex because \(g\) and the
+kernel \(h\) are smooth on their domains (all entropies of interest use
+smooth \(g\) and \(h\); in the Tsallis case \(h(y)=e^{(1-\alpha)y}\)
+is smooth as well).  Writing \(\Sigma_g(P)=\sum_i P_i h(-\log P_i)\), the
 chain rule gives
 \[
 \frac{\partial H_g}{\partial P_k}
@@ -907,7 +915,7 @@ larger due to the non-smooth transition.
 The gradient is obtained by differentiating
 \(H_\infty(P)=-\log\max_i P_i\) on the regularity region.  The bounds
 follow from Theorems~\ref{ch:thm:14-1} and~\ref{ch:thm:14-2} together
-with the piecewise-smooth theory of Chapter~\ref{ch:sec:classical-smooth-information-functionals}. \(\)
+with the piecewise-smooth theory of Chapter~\ref{ch:sec:piecewise-smooth}. \(\)
 \end{proof}
 
 \section{Refined g-Entropy Bound}\label{ch:sec:refined-g-entropy-bound}
