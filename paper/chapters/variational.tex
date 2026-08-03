@@ -142,11 +142,13 @@ Thus every coordinate of a critical point must be a root of the same scalar func
 For any real parameters \(\bar a,\alpha,\beta\) with \(\beta\neq0\), the function \(\varphi\) is real-analytic and has at most three distinct real zeros.
 \end{lemma}
 \begin{proof}
-Consider the auxiliary function
-$\psi(x)=e^{-x}\varphi(x)=2e^{-x}(x-\bar a)-(\alpha+\beta x).$
-Differentiating,
-$\psi'(x)=2e^{-x}(1-x+\bar a)-\beta.$
-Since \(e^{-x}(1-x+\bar a)\) is bounded and \(\beta\neq0\), the equation \(\psi'(x)=0\) has finitely many solutions. By the theory of exponential polynomials, \(\psi\) can have at most three zeros unless it vanishes identically. The identical vanishing case would imply \(\varphi\equiv0\), which is impossible for nontrivial parameters because the exponential term cannot be canceled by the linear term globally. Therefore \(\varphi\) has at most three distinct real zeros. 
+The stationarity function belongs to the four-dimensional space spanned
+by \(\{1,x,e^x,xe^x\}\), which is an Extended Chebyshev System by
+Lemma~\ref{ch:lem:29-3}.  By Lemma~\ref{ch:lem:29-4} it does not vanish
+identically on any interval, and a fundamental property of Extended
+Chebyshev Systems is that every non-zero element has at most three
+distinct real zeros.  The real-analyticity is immediate from the
+definition. 
 \end{proof}
 \begin{corollary}[Coordinate Collapse]
 \label{ch:cor:29-1}

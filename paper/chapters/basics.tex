@@ -87,7 +87,10 @@ uniform.
 Universal optimality is weaker than Shannon perfect secrecy: the former
 requires $\Pr[M=m\mid C=c]$ to be uniform over the cloak, whereas the
 latter requires $\Pr[M=m\mid C=c]=\pi(m)$ for every message.  The two
-notions coincide only when the prior is uniform on every cloak.
+notions coincide only when the prior is uniform on every cloak and
+every message is incident with every ciphertext (complete incidence):
+otherwise a message outside the cloak of some ciphertext has zero
+posterior probability there while its prior may be positive.
 \end{remark}
 
 A simple example is the one-time pad with uniformly distributed keys:

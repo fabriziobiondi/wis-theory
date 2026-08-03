@@ -30,7 +30,7 @@ We assume \(\|\nabla_g S(P)\|_g\le L\) for every point of the region under consi
 Let \(S\in C^{1}(\mathcal P)\) satisfy
 \(\|\nabla_gS\|_g\le L.\)
 Then, for every pair of posterior distributions \(P,Q\),
-\(\|S(P)-S(Q)\| \le L\,d_g(P,Q).\)
+\(|S(P)-S(Q)| \le L\,d_g(P,Q).\)
 Consequently,
 \[ \boxed{
 |S(P)-S(Q)|
@@ -112,7 +112,7 @@ stationary point satisfies the quadratic estimate of Theorem~\ref{ch:thm:14-2}.
 Therefore no functional-specific argument is required to establish
 continuity or local stability.
 Only verification of the regularity assumptions remains.
-\paragraph{Transition to Chapter~\ref{ch:sec:universal-geometric-bounds}.}
+\paragraph{Transition.}
 \paragraph{Running example: differential privacy.}
 In differential privacy (Section~\ref{ch:sec:differential-privacy-and-database-queries}), the Laplace mechanism produces a smooth privacy loss $\mathcal L$.  Theorem~\ref{ch:thm:14-1} applies with Lipschitz constant $L\le 1/\min_i\pi_i$, providing an explicit uniform bound on how much the privacy loss can change across the posterior manifold.  The geo-indistinguishability example (Section~\ref{ch:sec:geo-indistinguishability-and-location-privacy}) satisfies the same hypotheses, and Theorem~\ref{ch:thm:14-2} sharpens the estimate near optimal posteriors.
 The results of this chapter apply to arbitrary smooth scalar fields.
