@@ -4,38 +4,38 @@
 
 <div class="grid cards" markdown>
 
--   :fontawesome-solid-file-pdf: **Read the paper**
+-   :fontawesome-solid/file-pdf: **Read the paper**
 
     Full monograph in PDF
     (204 pages, 34 chapters)
 
     [:octicons-arrow-right-24: Download](https://github.com/fabriziobiondi/wis-theory/raw/main/paper/main.pdf)
 
--   :fontawesome-brands-github: **GitHub**
+-   :fontawesome-brands/github: **GitHub**
 
     Source code, issues, contributions
 
     [:octicons-arrow-right-24: Repository](https://github.com/fabriziobiondi/wis-theory)
 
--   :fontawesome-solid-book: **Documentation**
+-   :fontawesome-solid/book: **Documentation**
 
     Theory, definitions, examples, FAQ
 
     [:octicons-arrow-right-24: Browse](theory/overview.md)
 
--   :fontawesome-solid-flask: **Examples**
+-   :fontawesome-solid/flask: **Examples**
 
     AES, geo-indistinguishability, differential privacy
 
     [:octicons-arrow-right-24: Explore](examples.md)
 
--   :fontawesome-solid-lightbulb: **Open Problems**
+-   :fontawesome-solid/lightbulb: **Open Problems**
 
     Structural, geometric, algorithmic, applications
 
     [:octicons-arrow-right-24: See](open-problems.md)
 
--   :fontawesome-solid-map: **Current Status**
+-   :fontawesome-solid/map: **Current Status**
 
     What is done, what remains
 
@@ -60,7 +60,7 @@
 | Result | Chapter | Statement |
 |--------|---------|-----------|
 | **Representation Theorem** | 5 | $E$ universally optimal $\iff n_{mc} = \beta(c)/w(m)$ |
-| **Cycle factorisation** | 4 | Existence of WIS weights $\iff$ cycle product $= 1$ |
+| **Cycle factorisation** | 4 | Existence of WIS weights $\iff$ alternating edge products agree on every cycle |
 | **Universal Lipschitz bound** | 15 | $|S(P)-S(Q)| \le L\sqrt{\mathcal D(P,Q)}$ |
 | **Three-Level Theorem** | 25 | Critical points of $\mathcal D$ collapse to $3$ values |
 

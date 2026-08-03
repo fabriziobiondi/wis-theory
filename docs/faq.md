@@ -22,4 +22,4 @@ Yes. The UOD is the solution of a least-squares problem that reduces to linear a
 
 ## How does the UOD compare with differential privacy?
 
-The UOD for the Laplace mechanism equals $2/\varepsilon^2$. The geometric Lipschitz bound recovers the optimal privacy–utility trade-off. The UOD is a generalisation that applies to any deterministic encoder, not just to mechanisms adding noise.
+The UOD for the Laplace mechanism equals $6/\varepsilon^2$. The geometric Lipschitz bound recovers the optimal privacy–utility trade-off. The UOD is a generalisation that applies to any deterministic encoder, not just to mechanisms adding noise.

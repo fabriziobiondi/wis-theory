@@ -18,7 +18,7 @@ where $w: \mathcal M \to \mathbb R_{>0}$ and $\beta: \mathcal C \to \mathbb R_{>
 
 - The factorisation separates the contribution of the message (through $w$) from the contribution of the ciphertext (through $\beta$).
 - The only ambiguity is a global scaling: $(w,\beta)$ and $(\lambda w, \lambda^{-1}\beta)$ produce the same multiplicities. This *gauge symmetry* defines a quotient space.
-- The **cycle factorisation criterion** (Chapter 4) gives a purely graph-theoretic test: the product of multiplicities around every simple cycle must equal $1$.
+- The **cycle factorisation criterion** (Chapter 4) gives a purely graph-theoretic test: around every simple cycle, the alternating products of edge multiplicities must agree.
 
 ## Encoder realizability
 

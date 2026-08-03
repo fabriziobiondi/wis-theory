@@ -20,7 +20,7 @@ This collapse from $n$ (the dimension of the simplex) to $3$ is the signature of
 
 ## Extended Chebyshev structure
 
-The stationarity function $\varphi$ belongs to an **Extended Chebyshev system** (Section 25.6). This gives:
+The stationarity function $\varphi$ belongs to an **Extended Chebyshev system** (Section \u201cExtended Chebyshev Structure\u201d, Chapter 25). This gives:
 
 - A **Wronskian condition** characterising admissible triples $(\varphi_1, \varphi_2, \varphi_3)$.
 - **Explicit bounds** on the number of critical points.
