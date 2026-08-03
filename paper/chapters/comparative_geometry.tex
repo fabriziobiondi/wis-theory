@@ -254,7 +254,7 @@ turn to global comparisons between the Universal Optimality Defect and
 classical statistical divergences.
 \section{Comparison with Total Variation}\label{ch:sec:comparison-with-total-variation}
 The Total Variation distance is
-$TV(P,Q)=\frac12\sum_{i}\|P_i-Q_i\|.$
+$TV(P,Q)=\frac12\sum_{i}|P_i-Q_i|.$
 \begin{theorem}
 \label{ch:thm:26-1}
 There exist sequences of probability distributions for which the Total
@@ -267,12 +267,11 @@ and
 \frac{1-\varepsilon}{2}, \frac{1-\varepsilon}{2}
 \right). \]
 Then
-\[ TV(P_\varepsilon,Q)\longrightarrow\frac23,
+\[ TV(P_\varepsilon,Q)\longrightarrow\frac13,
 \]
 whereas
 $\log\frac{\varepsilon}{1/3}\longrightarrow-\infty.$
-After projection onto the quotient hyperplane, the logarithmic diameter
-The UOD still diverges. By Theorem~\ref{ch:thm:26-1}, the UOD
+After projection onto the quotient hyperplane the logarithmic coordinates still diverge, and by Theorem~\ref{ch:thm:26-1} the UOD
 $\mathcal{D}(P_\varepsilon,Q)\longrightarrow\infty.$
 Hence no bounded function of Total Variation can globally characterize
 the UOD. 
