@@ -8,7 +8,7 @@ F=Q\circ L:\mathcal P^\circ\rightarrow F(\mathcal P^\circ),
 \]
 where \(\mathcal P^\circ\) denotes the interior of the
 probability simplex. Part~\ref{ch:part:posterior} proves that \(F\) is a global
-diffeomorphism onto its image. The results below are consequences of
+diffeomorphism onto its image. The results below are consequences of this fact and of the smoothness of the logarithm on $(0,\infty)$.
 \section{Smoothness}\label{ch:sec:smoothness}
 \begin{theorem}[Smoothness]
 \label{ch:thm:23-1}
@@ -37,9 +37,7 @@ injective, hence \(P=Q\). The converse is immediate.
 If \(P_n\to P\) and \(Q_n\to Q\), then
 $\mathcal D(P_n,Q_n)\to\mathcal D(P,Q).$
 \end{theorem}
-\begin{proof} The UOD is the composition of the smooth embedding
-\(F\) with the squared Euclidean norm, both of which are \(C^\infty\)
-on the interior of the simplex.  Hence \(\mathcal D\) is smooth.
+\begin{proof} By Theorem~\ref{ch:thm:23-1} the UOD is \(C^\infty\), hence in particular continuous: if \(P_n\to P\) and \(Q_n\to Q\), then \(F(P_n)\to F(P)\) and \(F(Q_n)\to F(Q)\), and the squared norm is continuous, so \(\mathcal D(P_n,Q_n)\to\mathcal D(P,Q)\).
 \end{proof}
 \section{Local Lipschitz Continuity}\label{ch:sec:local-lipschitz-continuity}
 \begin{theorem}[Local Lipschitz]
