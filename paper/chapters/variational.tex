@@ -312,34 +312,23 @@ determines \(p\).
 Consider a symmetric configuration where the three log-likelihood values
 are equally spaced: let \(a=-\delta\), \(b=0\), \(c=\delta\) with
 \(\delta>0\).  By symmetry, the multiplicities satisfy \(p=r\) and
-\(q=n-2p\).  The stationarity equations at \(\pm\delta\) become
-
+\(q=n-2p\).  The arithmetic mean of the three levels is then
 \[
-2(-\delta) = e^{-\delta}(\alpha-\beta\delta),\qquad
-2\delta = e^{\delta}(\alpha+\beta\delta).
+\bar a = \frac{p(-\delta)+q\cdot 0+p\,\delta}{n} = 0.
 \]
-
-Adding the two equations gives
-\(0 = e^{-\delta}(\alpha-\beta\delta) + e^{\delta}(\alpha+\beta\delta)\),
-which implies \(\alpha(e^{\delta}+e^{-\delta}) = \beta\delta(e^{\delta}-e^{-\delta})\), or
-
+The stationarity equation at \(b=0\) therefore forces
+\(\alpha = 2(0-\bar a) = 0\), and the stationarity equations at
+\(\pm\delta\) become
 \[
-\alpha = \beta\delta\tanh\delta.
+-2\delta = -\beta\delta\,e^{-\delta}, \qquad
+2\delta = \beta\delta\,e^{\delta},
 \]
-
-Substituting back, the stationarity equation at \(b=0\) gives
-
-\[
-2(0-\bar a) = \alpha,
-\]
-
-so \(\bar a = -\alpha/2 = -(\beta\delta\tanh\delta)/2\).
-
-The normalization constraint \(p e^{-\delta} + q + p e^{\delta} = n\) and
-the KL constraint then determine the admissible values of \(\delta\)
-and \(p\) for each \(n\).  For \(n=3\) and \(p=1,q=1\), the system
-admits a unique solution, which is the global maximum of the UOD under
-the KL constraint for that dimension.
+which require \(\beta = 2e^{\delta} = 2e^{-\delta}\), and hence
+\(\delta=0\).  Thus the only critical point compatible with the full
+symmetry \(p=r\) is the trivial uniform configuration.  This confirms
+Remark~\ref{rem:three-level-existence}: interior three-level critical
+points do not exist for every constraint level; in particular, small
+\(K\) forces the uniform distribution.
 \end{example}
 
 \begin{remark}[Existence and Uniqueness]
