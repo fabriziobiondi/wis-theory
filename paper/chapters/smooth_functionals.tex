@@ -968,12 +968,12 @@ by the maximum component gives:
 g(x)=x &: \quad L_g^2 = \frac{1}{\min_i P_i},\\[4pt]
 g(x)=\dfrac{\log x}{1-\alpha} &: \quad
 L_\alpha^2 = \frac{\alpha^2}{(1-\alpha)^2}
-\frac{\sum_i P_i^{2\alpha}}{(\sum_i P_i^\alpha)^2}
-\max_i P_i^{2\alpha-2},\\[4pt]
+\frac{\sum_i P_i^{2\alpha-2}}{(\sum_i P_i^\alpha)^2}
+\max_i P_i,\\[4pt]
 g(x)=\dfrac{x-1}{1-\alpha} &: \quad
 L_{\mathrm{Tsallis}}^2 = \frac{\alpha^2}{(1-\alpha)^2}
-\frac{\sum_i P_i^{2\alpha}}{(\sum_i P_i^\alpha)^2}
-\max_i P_i^{2\alpha-2}.
+\frac{\sum_i P_i^{2\alpha-2}}{(\sum_i P_i^\alpha)^2}
+\max_i P_i.
 \end{align*}
 \end{corollary}
 
@@ -1026,17 +1026,19 @@ satisfied (as guaranteed by Theorem~\ref{ch:thm:14-1}).  However, the
 margin is enormous.  Table~\ref{tab:empirical-lipschitz} shows
 representative values.
 
-\[
-\begin{array}{c|c|c|c|c|c}
-n & \varepsilon & \mathcal D(P,U_n) & \text{Bound }L\sqrt{\mathcal D} & \text{Actual gap} & \text{Ratio} \\ \hline
+\begin{table}[ht]
+\centering
+\caption{Empirical Lipschitz ratios for one-heavy distributions.}
 \label{tab:empirical-lipschitz}
-5 & 0.005 & 1.14 & 42\,214 & 2.29 & 18\,400\times \\
-5 & 0.100 & 1.60 & 98 & 1.59 & 62\times \\
-10 & 0.005 & 2.47 & 61\,403 & 3.26 & 18\,800\times \\
-50 & 0.005 & 9.69 & 108\,201 & 5.24 & 20\,700\times \\
-100 & 0.005 & 11.08 & 94\,626 & 5.66 & 16\,700\times
-\end{array}
-\]
+\begin{tabular}{c|c|c|c|c|c}
+$n$ & $\varepsilon$ & $\mathcal D(P,U_n)$ & $L\sqrt{\mathcal D}$ & Actual gap & Ratio \\ \hline
+$5$ & $0.005$ & $1.14$ & $42\,214$ & $2.29$ & $18\,400\times$ \\
+$5$ & $0.100$ & $1.60$ & $98$ & $1.59$ & $62\times$ \\
+$10$ & $0.005$ & $2.47$ & $61\,403$ & $3.26$ & $18\,800\times$ \\
+$50$ & $0.005$ & $9.69$ & $108\,201$ & $5.24$ & $20\,700\times$ \\
+$100$ & $0.005$ & $11.08$ & $94\,626$ & $5.66$ & $16\,700\times$
+\end{tabular}
+\end{table}
 
 The Lipschitz ratio ranges from $62\times$ to over $20\,000\times$.
 The bound is mathematically correct but quantitatively useless for most
