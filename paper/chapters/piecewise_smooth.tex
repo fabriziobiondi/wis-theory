@@ -68,16 +68,6 @@ The complement
 $[0,1]\setminus T$
 is the union of finitely many open intervals.
 On each interval the ordering of posterior probabilities is constant.
-
-
-Let
-$T=\{t_{ij}\in(0,1)\},$
-and order the distinct transition times
-$0<\tau_1<\cdots<\tau_m<1.$
-The complement
-$[0,1]\setminus T$
-is the union of finitely many open intervals.
-On each interval the ordering of posterior probabilities is constant.
 \section{Piecewise Smoothness}\label{ch:sec:piecewise-smoothness}
 The previous statement alone is not sufficient: one must also assume
 that the security functional is defined by smooth expressions once the
@@ -95,10 +85,7 @@ Then \(S\) is \(C^{k}\) on every regularity interval determined by the
 transition times.
 \end{theorem}
 \begin{proof}
-On a regularity interval every comparison has a fixed outcome.
-Consequently all maxima, minima and ordering operators reduce to fixed
-index selections. Under assumption (2), the resulting expression is
-$P_i(t)\propto P_i^{1-t}Q_i^{t}.$. Therefore $P_i(t)=P_j(t).$ is $\log(P_i/P_j)\neq\log(Q_i/Q_j),$ throughout the interval.
+On a regularity interval the ordering of the posterior probabilities is constant. Consequently every comparison, maximum, minimum, or ranking operator in the definition of \(S\) reduces to a fixed selection of indices. Under assumption (2), the resulting expression is a \(C^{k}\) function of the posterior coordinates; since the WIS geodesic \(P(t)\) is smooth, the composition is \(C^{k}\) in \(t\) on the interval.
 \end{proof}
 \subsection{Local Geometric Bounds}\label{ch:cor:17-1}
 On every regularity interval the hypotheses of Chapter~\ref{ch:sec:information-functionals-on-the-wis-manifold} apply.
