@@ -98,7 +98,7 @@ Every fundamental cycle is simple, proving the final assertion.
 \end{proof}
 
 \paragraph{What this theorem proves.}
-We have defined WIS and shown that universal optimality implies a factorisation.  The natural question is the converse: given a candidate WIS, how can we tell whether it corresponds to an actual encoder?  This theorem provides a necessary and sufficient condition expressed purely in terms of the incidence graph: the product of multiplicities around every cycle must equal $1$.
+We have defined WIS and shown that universal optimality implies a factorisation.  The natural question is the converse: given a candidate WIS, how can we tell whether it corresponds to an actual encoder?  This theorem provides a necessary and sufficient condition expressed purely in terms of the incidence graph: around every cycle, the alternating product of multiplicities must close, i.e. the product of the even-indexed edges equals the product of the odd-indexed edges.
 
 \begin{theorem}[Cycle factorisation criterion]\label{ch:thm:cycle-factorisation}
 Let $G=(\Mset,\Cset,I)$ be a finite connected bipartite graph and let
@@ -281,7 +281,9 @@ proves the converse: every weighted incidence structure satisfying the
 intrinsic integrality and balance conditions is realized by a
 deterministic encoder.  Consequently, universally optimal deterministic
 encryption systems are completely classified by weighted incidence
-structures satisfying these two intrinsic conditions.
+structures satisfying these two intrinsic conditions together with the
+posterior condition \(w(m)\propto\pi(m)\) that characterises universal
+optimality (Theorem~\ref{ch:thm:representation}).
 
 
 \paragraph{Multiplicity Matrices.}
@@ -301,7 +303,7 @@ For every deterministic Shannon encoder $E$ with multiplicity matrix $N$,
 \]
 \end{lemma}
 \begin{proof}
-For fixed $m$, every key has exactly one image under $k\mapsto E(m,k)$, so the sets counted by the entries in the $m$th row partition $\Kset$. Dividing by $|\Kset|$ gives the transition probability. The last assertion follows from Definition~\ref{ch:def:cloak-basics} and the full support of $\pi$.
+For fixed $m$, every key has exactly one image under $k\mapsto E(m,k)$, so the sets counted by the entries in the $m$th row partition $\Kset$. Hence their sizes sum to $|\Kset|$, as claimed.
 \end{proof}
 
 \begin{lemma}[Posterior formula]\label{ch:lem:posterior-formula}
@@ -312,7 +314,7 @@ For every active ciphertext $c$ and $m\in\Mset$,
 \]
 \end{lemma}
 \begin{proof}
-Substitute the second identity of Lemma~\ref{ch:lem:row-sum} into Bayes' formula~\eqref{ch:eq:bayes-multiplicity-preview}. The factor $|\Kset|^{-1}$ cancels from numerator and denominator.
+Substitute the identity of Lemma~\ref{ch:lem:row-sum} into Bayes' formula~\eqref{ch:eq:bayes-multiplicity-preview}. The factor $|\Kset|^{-1}$ cancels from numerator and denominator.
 \end{proof}
 \section{The factorisation criterion}\label{ch:sec:the-factorisation-criterion}
 \begin{proposition}\label{ch:prop:factorisation-criterion}
@@ -341,5 +343,5 @@ An encoder is universally optimal relative to $\pi$ if and only if there is a fu
 The corollary is the precise point at which a posterior condition becomes a combinatorial identity.
 
 \paragraph{Our running examples as WIS.}
-In the AES example (Section~\ref{ch:sec:aes-and-perfect-secrecy}), the incidence structure is the complete bipartite graph $K_{2^{128},2^{128}}$ with $n_{mc}=1$ for every pair---the simplest possible WIS.  Every ciphertext is its own cloak, and weights are constant: $w(m)=\beta(c)=1$ (up to gauge).  The browser fingerprinting example (Section~\ref{ch:sec:browser-fingerprinting-and-anonymity}) illustrates the opposite extreme: $|{\Mset}|\gg|{\Cset}|$, with highly irregular incidence---some browsers produce unique fingerprints (cloak of size~1), while others share identical fingerprints (large cloaks).  The resulting WIS is dense and strongly identifies messages.  The geo-indistinguishability and differential privacy examples involve continuous message spaces and therefore require the generalised WIS framework of Section~\ref{ch:sec:applications-of-the-wis-framework}.
+In the AES example (Section~\ref{ch:sec:aes-and-perfect-secrecy}), the incidence structure is the complete bipartite graph $K_{2^{128},2^{128}}$ with $n_{mc}=1$ for every pair---the simplest possible WIS.  With complete incidence the cloak of every ciphertext is all of $\mathcal M$ (every plaintext is compatible with every ciphertext), and weights are constant: $w(m)=\beta(c)=1$ (up to gauge).  The browser fingerprinting example (Section~\ref{ch:sec:browser-fingerprinting-and-anonymity}) illustrates the opposite extreme: $|{\Mset}|\gg|{\Cset}|$, with highly irregular incidence---some browsers produce unique fingerprints (cloak of size~1), while others share identical fingerprints (large cloaks).  The resulting WIS is dense and strongly identifies messages.  The geo-indistinguishability and differential privacy examples involve continuous message spaces and therefore require the generalised WIS framework of Section~\ref{ch:sec:applications-of-the-wis-framework}.
 \endinput

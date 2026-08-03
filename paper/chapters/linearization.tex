@@ -58,7 +58,7 @@ covers all messages.  The same argument applies to $C$.
 
 \begin{quote}
 \textbf{Mathematical intuition.}
-The mismatch operator $\Phi=[A\; -C]$ sends a pair of vertex potentials $(u,v)$ to the vector $\omega=\Phi(u,v)$ whose components are $\omega_{mc}=u_m-v_c$.
+The mismatch operator $\Phi=[A\; -C]$ sends a pair of vertex potentials $(u,v)$ to the vector $\Phi(u,v)$ whose components are $u_m-v_c$.  The logarithmic incidence vector is $\omega=-\Phi(u,v)$, equivalently $\omega=\Phi(-u,-v)$, with components $\omega_{mc}=v_c-u_m$.
 Taking logarithms turns multiplicative relations into additive ones, enabling the use of linear algebra and Hilbert-space geometry.
 \end{quote}
 
@@ -123,7 +123,7 @@ The graph-potential viewpoint developed in this section is explanatory
 rather than an additional representation theorem; standard results on
 graph potentials and incidence matrices provide the appropriate broader
 context.  \paragraph{Running example: geo-indistinguishability.}
-Geo-indistinguishability (Section~\ref{ch:sec:geo-indistinguishability-and-location-privacy}) provides a continuous analogue: the Laplacian noise mechanism produces a linear relation between the logarithm of the posterior density and the Euclidean distance to the reported location.  For two locations $P,Q$ at distance $r$, the log-incidence vector satisfies $\omega_{mc}=\log(\beta(c)/w(m))=\varepsilon r$, so the mismatch operator $\Phi$ acts as $\Phi(u,v)=\varepsilon\,\mathbf{1}_{\{mc\in I\}}$, and the least-squares solution reduces to a one-dimensional problem.
+Geo-indistinguishability (Section~\ref{ch:sec:geo-indistinguishability-and-location-privacy}) provides a continuous analogue: the Laplacian noise mechanism produces a linear relation between the logarithm of the posterior density and the Euclidean distance to the reported location.  For two locations $P,Q$ at distance $r$, the log-incidence vector satisfies $\omega_{mc}=\log(\beta(c)/w(m))=\varepsilon r$ for the incident pair, so the least-squares solution of $\Phi(u,v)\approx-\omega$ reduces to a one-dimensional problem in the radial direction.
 
 Its main contribution is to reveal the linear structure that
 makes the operator-theoretic development of the next section possible.
