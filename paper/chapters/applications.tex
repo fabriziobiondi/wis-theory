@@ -179,10 +179,11 @@ H_2(P) \ge \log n - \frac{1}{n}\,\mathcal D
 
 \paragraph{Example.}
 For $\varepsilon=0.5$ (moderate privacy) on a $10\times10$ grid
-($n=100$), the UOD is $\mathcal D = 8$ bits, and the bound gives
-$H_2(P) \ge \log_2 100 - 8/100 \approx 6.58$ bits.  The actual
+($n=100$), the UOD is $\mathcal D = 6/\varepsilon^2 = 24$ in
+natural units (approximately $50$ bit$^2$), and the bound gives
+$H_2(P) \ge \log_2 100 - 50/100 \approx 6.14$ bits.  The actual
 collision entropy is approximately $6.60$ bits---the bound is
-accurate to within $0.02$ bits.
+accurate to within about $0.5$ bits.
 
 \paragraph{Interpretation.}
 The planar Laplace mechanism is the universally optimal encoder
