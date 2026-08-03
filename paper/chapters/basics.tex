@@ -106,7 +106,7 @@ Chapter~\ref{ch:sec:representation} turns it into the representation
 theorem.
 
 \paragraph{Running example: AES.}
-Our main running example, the AES S-box (Section~\ref{ch:sec:aes-and-perfect-secrecy}), illustrates this simplest case.  The message and ciphertext spaces coincide ($|\Mset|=|\Cset|=2^{128}$), the incidence is complete ($I=\Mset\times\Cset$), and every ciphertext has a single pre-image: $n_{mc}=1$ for all $(m,c)$.  The posterior is a Dirac mass at each ciphertext, $\Pr[M=m\mid C=c]=\delta_{mc}$, trivially satisfying universal optimality with $\mathcal D\equiv0$.
+Our main running example, the AES S-box (Section~\ref{ch:sec:aes-and-perfect-secrecy}), illustrates this simplest case.  The message and ciphertext spaces coincide ($|\Mset|=|\Cset|=2^{128}$), the incidence is complete ($I=\Mset\times\Cset$), and every ciphertext has a single pre-image: $n_{mc}=1$ for all $(m,c)$.  By Bayes' rule the posterior equals the prior, $\Pr[M=m\mid C=c]=\pi(m)$, on the full message space; with a uniform prior it is uniform on the cloak, which is all of $\mathcal M$, and universal optimality holds with $\mathcal D\equiv0$.
 
 \paragraph{Scope.}
 This book is restricted to finite spaces and deterministic encoders.
