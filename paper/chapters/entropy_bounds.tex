@@ -54,12 +54,15 @@ Finite sums preserve smoothness.\end{proof}
 
 \begin{theorem}[Geometric Entropy Estimate]
 \label{ch:thm:11-3}
-There exists a neighborhood of $P^\star$ and a constant $C>0$ such that
+Let $P^\star$ be a stationary point of $\mathcal H$ (for instance the uniform
+posterior).  Then there exists a neighborhood of $P^\star$ and a constant $C>0$ such that
 $|\mathcal H(P)-\mathcal H(P^\star)|\le C\,\|P-P^\star\|_g^2$.
 \end{theorem}
 
 \begin{proof}
-By Proposition~\ref{ch:prop:11-2} the entropy variation is quadratic.
+By Proposition~\ref{ch:prop:11-2} the entropy is smooth, and since $P^\star$ is a
+stationary point the first-order term of its Taylor expansion at $P^\star$ vanishes,
+so the entropy variation is quadratic.
 By Theorem~\ref{ch:thm:7-6} the pullback metric induces a norm equivalent to the
 Euclidean norm on every finite-dimensional tangent space.
 Hence the quadratic remainder is bounded by a constant multiple of the
@@ -69,7 +72,8 @@ squared Riemannian norm.\end{proof}
 
 \begin{corollary}[Entropy--UOD Relation]
 \label{ch:cor:11-4}
-In a sufficiently small neighborhood of the reference posterior,
+If $P^\star$ is a stationary point of $\mathcal H$, then in a sufficiently small
+neighborhood of the reference posterior,
 $|\mathcal H(P)-\mathcal H(P^\star)| = O(\mathcal D(P))$.
 \end{corollary}
 
