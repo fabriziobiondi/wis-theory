@@ -1,4 +1,4 @@
-﻿\chapter[Representation by WIS]{Representation by Weighted Incidence Structures}\label{ch:sec:representation}
+\chapter[Representation by WIS]{Representation by Weighted Incidence Structures}\label{ch:sec:representation}
 
 We have introduced weighted incidence structures as the intrinsic
 invariant of universally optimal encoders.  But do all WIS actually
@@ -79,7 +79,7 @@ equality. \(\)
 \end{proof}
 
 \paragraph{What this theorem proves.}
-The WIS factorisation $n_{mc}=\beta(c)/w(m)$ is not unique: if $(w,\beta)$ works, then $(\lambda w,\lambda^{-1}\beta)$ also works.  The question is whether this scaling ambiguity is the only one.  This theorem proves that it is: the WIS weights are unique up to a single global scaling factor---the gauge.  This is what makes the quotient geometry of Chapter~5 well-defined.
+The WIS factorisation $n_{mc}=\beta(c)/w(m)$ is not unique: if $(w,\beta)$ works, then $(\lambda w,\lambda\beta)$ also works.  The question is whether this scaling ambiguity is the only one.  This theorem proves that it is: the WIS weights are unique up to a single global scaling factor---the gauge.  This is what makes the quotient geometry of Chapter~5 well-defined.
 
 \begin{theorem}[Uniqueness of the WIS weights]\label{ch:thm:uniqueness}
 Let \(\mathfrak W\) and \(\mathfrak W'\) be two weighted incidence
@@ -114,7 +114,7 @@ components.
 
 \begin{quote}
 \textbf{Mathematical intuition.}
-The gauge transformation $w\mapsto\lambda w,\;\beta\mapsto\lambda^{-1}\beta$ leaves every incidence ratio $n_{mc}=\beta(c)/w(m)$ unchanged.
+The gauge transformation $w\mapsto\lambda w,\;\beta\mapsto\lambda\beta$ leaves every incidence ratio $n_{mc}=\beta(c)/w(m)$ unchanged.
 The only observable quantities are the ratios, not the weights themselves.
 \end{quote}
 
@@ -122,7 +122,7 @@ Thus the intrinsic datum is a gauge class of weights, not a preferred
 normalization.
 
 \paragraph{Why the quotient?}
-The gauge transformation $w\mapsto\lambda w,\;\beta\mapsto\lambda^{-1}\beta$ leaves every observable quantity---the multiplicities $n_{mc}$---unchanged.  The weights themselves are not identifiable from the encoder.  Why not fix a gauge by requiring, say, $\sum_m w(m)=1$?  Because any such choice is arbitrary and obscures the fact that the theory depends only on ratios.  The quotient space $V_I/\operatorname{Im}(C)$ is the natural information space: two vectors that differ by a gauge transformation encode the same cryptographic structure.
+The gauge transformation $w\mapsto\lambda w,\;\beta\mapsto\lambda\beta$ leaves every observable quantity---the multiplicities $n_{mc}$---unchanged.  The weights themselves are not identifiable from the encoder.  Why not fix a gauge by requiring, say, $\sum_m w(m)=1$?  Because any such choice is arbitrary and obscures the fact that the theory depends only on ratios.  The quotient space $V_I/\operatorname{Im}(C)$ is the natural information space: two vectors that differ by a gauge transformation encode the same cryptographic structure.
 
 \paragraph{Running example: browser fingerprinting.}
 The browser fingerprinting example (Section~\ref{ch:sec:browser-fingerprinting-and-anonymity}) illustrates the power of the representation theorem.  With $|\Mset|\approx10^6$ distinct browsers and $|\Cset|$ limited by measurable attributes, the incidence structure is highly non-uniform.  For a browser $m$ with fingerprint $c$, the ratio $w(m)/\beta(c)=1/n_{mc}$ gives the per-fingerprint probability weight, and the gauge freedom $w\mapsto\lambda w,\;\beta\mapsto\lambda\beta$ corresponds to rescaling all browser identities simultaneously---the only ambiguity is a single multiplicative constant.
