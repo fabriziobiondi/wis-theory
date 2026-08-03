@@ -1,11 +1,11 @@
-﻿\chapter[WIS]{Weighted Incidence Structures}\label{ch:sec:wis}
+\chapter[WIS]{Weighted Incidence Structures}\label{ch:sec:wis}
 We have seen that the multiplicity matrix $n_{mc}$ captures how many keys
 map a given message to a given ciphertext.  But multiplicities alone
 are too fine-grained: they depend on the specific key set $\Kset$.
 Two encoders with different key spaces may produce the same pattern of
 posterior uniformity.  What structure survives when we abstract away the
 key-counting?  The answer is a \emph{weighted incidence structure}:
-the normalised ratio $n_{mc}=w(m)/\beta(c)$ that factors out the key
+the normalised ratio $n_{mc}=\beta(c)/w(m)$ that factors out the key
 set size.
 
 This chapter defines the primary object of the book. The WIS factorisation $n_{mc}=\beta(c)/w(m)$ is the algebraic backbone from which all geometric structure---the mismatch operator, the posterior Laplacian, the Universal Optimality Defect---will be derived in subsequent chapters.
@@ -186,11 +186,6 @@ can arise from a deterministic encoder?
 A WIS $\mathfrak W$ is \emph{encoder-realizable} if there exists a deterministic Shannon encoder $E$ whose multiplicities satisfy $n_{mc} = \frac{\beta(c)}{w(m)}$ for every incidence $(m,c)\in I$, and are zero otherwise.
 It is \emph{$\pi$-compatible} when $w$ is proportional to the prior $\pi$.
 \end{definition}
-\begin{proof}
-For a fixed message $m$, each key $k\in\mathcal K$ produces exactly one
-ciphertext $c=E(m,k)$.  Hence the sum over $c$ of the number of keys
-mapping $m$ to $c$ is precisely $|\mathcal K|$.
-\end{proof}
 
 The following proposition shows that, conversely, any nonnegative
 integer matrix with constant row sums is realizable by some encoder.
@@ -290,10 +285,10 @@ structures satisfying these two intrinsic conditions.
 
 
 \paragraph{Multiplicity Matrices.}
-﻿We now pass from an encoder to the integer data that will carry the representation.
+We now pass from an encoder to the integer data that will carry the representation.
 
 
-﻿
+
 \section{Definition and elementary identities}\label{ch:sec:definition-and-elementary-identities}
 \begin{definition}[Multiplicity matrix]\label{ch:def:multiplicity}
 Let $E:\Mset\times\Kset\to\Cset$ be a deterministic Shannon encoder. Its \emph{multiplicity matrix} is the matrix $N=(n_{mc})_{m\in\Mset,c\in\Cset}$ defined by
