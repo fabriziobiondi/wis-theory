@@ -74,21 +74,21 @@ vector $Y=A(\log\pi)+\omega$.
 The ciphertext potential $v$ is a gauge degree of freedom: the posterior distribution depends only on message potentials.  For fixed $u$, minimizing over $v$ gives the closed-form solution
 $v^\star(u)=D_C^{-1}C^{\mathsf T}(Au-\omega),$
 obtained by solving $C^{\mathsf T}(Au-Cv-\omega)=0$.  Substituting back,
-$Au-Cv^\star-\omega = Q(Au-\omega),$
-where $Q=I-C D_C^{-1}C^{\mathsf T}$ is the orthogonal projector onto $\operatorname{Im}(C)^\perp$.
+$Au-Cv^\star-\omega = \Pi(Au-\omega),$
+where $\Pi=I-C D_C^{-1}C^{\mathsf T}$ is the orthogonal projector onto $\operatorname{Im}(C)^\perp$.
 The \emph{reduced energy} is therefore
 \begin{equation}\label{ch:eq:ered}
-E_{\mathrm{red}}(u)=\|Q(Au-\omega)\|^2.
+E_{\mathrm{red}}(u)=\|\Pi(Au-\omega)\|^2.
 \end{equation}
 Expanding,
 \begin{equation}\label{ch:eq:ered-expanded}
-E_{\mathrm{red}}(u)=u^{\mathsf T}A^{\mathsf T}QA\,u
--2u^{\mathsf T}A^{\mathsf T}Q\omega
-+\omega^{\mathsf T}Q\omega.
+E_{\mathrm{red}}(u)=u^{\mathsf T}A^{\mathsf T}\Pi A\,u
+-2u^{\mathsf T}A^{\mathsf T}\Pi\omega
++\omega^{\mathsf T}\Pi\omega.
 \end{equation}
-The quadratic part $L=A^{\mathsf T}QA$ is the \emph{posterior Laplacian}.  Writing $Q$ explicitly,
+The quadratic part $L=A^{\mathsf T}\Pi A$ is the \emph{posterior Laplacian}.  Writing $Q$ explicitly,
 \[
-L = A^{\mathsf T}QA = D_M - H D_C^{-1} H^{\mathsf T}
+L = A^{\mathsf T}\Pi A = D_M - H D_C^{-1} H^{\mathsf T}
 = \operatorname{Schur}_{D_C}(\Phi^{\mathsf T}\Phi).
 \]
 Thus the posterior Laplacian is the reduced Hessian and the Schur complement~\cite{zhang2005schur} of the full normal operator.
@@ -98,11 +98,11 @@ The reduced energy is not merely quadratic: it is convex, which guarantees that 
 The reduced energy $E_{\mathrm{red}}:V_M\to\mathbb R$ is convex.
 \end{theorem}
 \begin{proof}
-The Hessian is $\nabla^2 E_{\mathrm{red}}=2L=2A^{\mathsf T}QA$.
-Since $Q^2=Q$ and $Q^{\mathsf T}=Q$,
+The Hessian is $\nabla^2 E_{\mathrm{red}}=2L=2A^{\mathsf T}\Pi A$.
+Since $\Pi^2=\Pi$ and $\Pi^{\mathsf T}=\Pi$,
 \[
-x^{\mathsf T}Lx = x^{\mathsf T}A^{\mathsf T}QAx = (Ax)^{\mathsf T}Q(Ax)
-= \|Q(Ax)\|^2 \ge 0
+x^{\mathsf T}Lx = x^{\mathsf T}A^{\mathsf T}\Pi Ax = (Ax)^{\mathsf T}\Pi(Ax)
+= \|\Pi(Ax)\|^2 \ge 0
 \]
 for every $x\in V_M$.  Hence $L\succeq 0$, and $E_{\mathrm{red}}$ is convex.
 \end{proof}
@@ -112,7 +112,7 @@ Every local minimum of $E_{\mathrm{red}}$ is a global minimum.
 \end{corollary}
 \begin{corollary}\label{ch:cor:critical-points}
 Critical points of $E_{\mathrm{red}}$ satisfy the reduced normal equations
-$L u = A^{\mathsf T}Q\omega$.
+$L u = A^{\mathsf T}\Pi\omega$.
 \end{corollary}
 Convexity has numerical significance: it guarantees that gradient-based optimization of $E_{\mathrm{red}}$ converges to the unique global minimum (when the minimizer is unique) without spurious local minima.
 \section{Gauge symmetry and the kernel of $\Phi$}\label{ch:sec:gauge-symmetry-and-the-kernel-of}
@@ -138,9 +138,9 @@ Its nullspace satisfies $\ker L = \{u\in V_M : QA u = 0\},$ which consists preci
 \end{lemma}
 \begin{proof}
 From the proof of Theorem~\ref{ch:thm:convexity},
-$x^{\mathsf T}Lx = \|Q(Ax)\|^2 \ge 0$, so $L\succeq 0$.
-Moreover, $Lx=0$ iff $\|Q(Ax)\|^2=0$, i.e.\ $QAx=0$.  By definition
-of $Q$, this means $Ax\in\operatorname{Im}(C)$, which is exactly the
+$x^{\mathsf T}Lx = \|\Pi(Ax)\|^2 \ge 0$, so $L\succeq 0$.
+Moreover, $Lx=0$ iff $\|\Pi(Ax)\|^2=0$, i.e.\ $\Pi Ax=0$.  By definition
+of $\Pi$, this means $Ax\in\operatorname{Im}(C)$, which is exactly the
 condition that $u$ can be absorbed into a gauge transformation of the
 ciphertext potentials.
 \end{proof}
@@ -205,7 +205,7 @@ Define the equivalence relation on $V_I$:
 \[
 Y\sim Y' \quad\Longleftrightarrow\quad Y-Y'\in\operatorname{Im}(C).
 \]
-The quotient space $V_I/\operatorname{Im}(C)$ is the primary geometric object.  It is determined solely by the posterior symmetry of Bayes' rule, independently of any metric or variational principle.  The orthogonal projector $Q$ selects the unique minimum-norm representative in each equivalence class.
+The quotient space $V_I/\operatorname{Im}(C)$ is the primary geometric object.  It is determined solely by the posterior symmetry of Bayes' rule, independently of any metric or variational principle.  The orthogonal projector $\Pi$ selects the unique minimum-norm representative in each equivalence class.
 \begin{theorem}[Canonical quotient Hilbert structure]\label{ch:thm:quotient-hilbert}
 The Euclidean inner product of $V_I$ induces a unique Hilbert-space structure on $V_I/\operatorname{Im}(C)$ whose norm satisfies
 \[
@@ -214,7 +214,7 @@ The Euclidean inner product of $V_I$ induces a unique Hilbert-space structure on
 where $q:V_I\to V_I/\operatorname{Im}(C)$ is the quotient map.
 \end{theorem}
 \begin{proof}
-Let $S=\operatorname{Im}(C)$ and let $Y_S$ denote the orthogonal projection of $Y$ onto $S$, so that $Y^\perp=Y-Y_S$ is orthogonal to $S$.  For any $z\in S$, the decomposition $Y-z=(Y_S-z)+Y^\perp$ has orthogonal summands, hence $\|Y-z\|^2 = \|Y_S-z\|^2 + \|Y^\perp\|^2.$ The minimum is uniquely attained at $z=Y_S$, yielding $\|q(Y)\|=\|Y^\perp\|$.  Therefore the Euclidean inner product on $V_I$ induces a unique Hilbert norm on $V_I/\operatorname{Im}(C)$, and $Q$ is precisely the orthogonal projection onto the canonical representative $Y^\perp$.
+Let $S=\operatorname{Im}(C)$ and let $Y_S$ denote the orthogonal projection of $Y$ onto $S$, so that $Y^\perp=Y-Y_S$ is orthogonal to $S$.  For any $z\in S$, the decomposition $Y-z=(Y_S-z)+Y^\perp$ has orthogonal summands, hence $\|Y-z\|^2 = \|Y_S-z\|^2 + \|Y^\perp\|^2.$ The minimum is uniquely attained at $z=Y_S$, yielding $\|q(Y)\|=\|Y^\perp\|$.  Therefore the Euclidean inner product on $V_I$ induces a unique Hilbert norm on $V_I/\operatorname{Im}(C)$, and $\Pi$ is precisely the orthogonal projection onto the canonical representative $Y^\perp$.
 \end{proof}
 
 The reduced energy is the pull-back of the quotient norm through the affine map $T(u)=Au-\omega$:
@@ -254,7 +254,7 @@ The development above follows a single logical thread, each step forced by the o
 \begin{enumerate}
 \item The cycle factorisation theorem characterizes exact WIS factorisation by $\omega\in\operatorname{Im}(\Phi)$.
 \item When $\omega\notin\operatorname{Im}(\Phi)$, the least-squares problem produces the normal equations, whose operator $\Phi^{\mathsf T}\Phi$ is the bipartite incidence Laplacian.
-\item Eliminating ciphertext potentials yields the reduced energy $E_{\mathrm{red}}$ and the posterior Laplacian $L=A^{\mathsf T}QA$.
+\item Eliminating ciphertext potentials yields the reduced energy $E_{\mathrm{red}}$ and the posterior Laplacian $L=A^{\mathsf T}\Pi A$.
 \item The reduced energy is convex ($L\succeq0$), guaranteeing that every local minimum is global.
 \item The nullspace of the Hessian consists exactly of gauge symmetries (Lemma~\ref{ch:lem:hessian-nullspace}).
 \item On the quotient by this symmetry, the energy becomes strictly convex, ensuring a unique minimizer modulo gauge.
@@ -326,7 +326,7 @@ implies $\omega'\in\operatorname{Im}(\Phi)$ and hence
 $\min E_{\omega'}=0$: the modified multiplicities still admit an exact
 WIS factorisation, but its message weights are not proportional to the
 fixed prior.  The prior-dependent defect detects precisely this failure:
-$\delta(Y') = \|QY'\| \approx 0.3515 > 0.$
+$\delta(Y') = \|\Pi Y'\| \approx 0.3515 > 0.$
 All structures (incidence spaces, lifting operators, $Q$, quotient)
 remain well defined; only the gauge class is non-zero.  By
 Theorem~\ref{ch:thm:stability}, any perturbation of $\omega$ produces a
