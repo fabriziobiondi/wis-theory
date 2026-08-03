@@ -43,7 +43,7 @@ N = \mathbf{1}_{256\times256},\qquad
 
 \paragraph{UOD analysis.}
 The uniform multiplicities $n_{mc}=1$ trivially admit the
-logarithmic factorisation $\log n_{mc}=u_m+v_c$ with
+logarithmic factorisation $\log n_{mc}=v_c-u_m$ with
 $u_m=v_c=0$.  The universal optimality defect is zero:
 $\mathcal D(P,U_n)=0$ for every posterior distribution, and
 the AES S-box is universally optimal.
@@ -95,7 +95,7 @@ this means $|\mathcal C|\approx|\mathcal M|$ and the incidence
 graph is almost a complete bipartite graph with irregular weights.
 
 \paragraph{UOD analysis.}
-The WIS factorisation $\log n_{mc}\approx u_m+v_c$ reveals which
+The WIS factorisation $\log n_{mc}\approx v_c-u_m$ reveals which
 fingerprints are informative and which are noise.  The universal
 optimality defect $\mathcal D(P,U_n)$ measures how far the
 fingerprinting system is from the ideal where all users are
@@ -415,8 +415,11 @@ This is because the bound requires the min-probability bound
 $1/(\min_i P_i)$ to be small; for side-channel traces this
 constant is necessarily large.  The {\it relative} UOD between
 pairs of keys is more informative: if $\mathcal D(P_{m},P_{m'})\le0.1$
-bits for two keys $m,m'$, then distinguishing them requires at
-least $T\ge10$ traces.
+bits for two keys $m,m'$, then a bound of the same form with
+$|\mathcal K|=2$ and a moderate min-probability constant gives a
+two-digit lower bound on the number of required traces, making the
+estimate practically meaningful---in contrast to the vacuous global
+bound above.
 
 \paragraph{Interpretation.}
 In side-channel analysis, the WIS framework replaces the
@@ -459,8 +462,8 @@ q & c\neq m.
 \]
 
 \paragraph{UOD analysis.}
-The WIS factorisation $n_{mc}=e^{u_m+v_c}$ gives
-$u_m=\log p$, $v_c=\log q$ after normalisation.  The UOD is
+The WIS factorisation $n_{mc}=e^{v_c-u_m}$ gives
+$u_m=-\log p$, $v_c=\log q$ after normalisation.  The UOD is
 
 \[
 \mathcal D(P,U_n)
