@@ -90,6 +90,22 @@ of the gradient is
 =
 \frac{\alpha^2}{(1-\alpha)^2}
 \,
+\sum_{i=1}^n
+\Bigl(
+\frac{P_i^{\alpha}}{\sum_j P_j^{\alpha}}
+-
+P_i
+\Bigr)^2,
+\]
+because the projection of the logarithmic gradient onto the tangent
+space of the simplex removes the shift direction and the resulting
+components sum to zero.  A convenient explicit upper bound, used for
+the constants below, is obtained by bounding each summand:
+\[
+\|\nabla_g H_\alpha(P)\|_g^2
+\le
+\frac{\alpha^2}{(1-\alpha)^2}
+\,
 \frac{
 \sum_i P_i^{2\alpha-2}
 }{
@@ -98,10 +114,11 @@ of the gradient is
 \cdot
 \max_i P_i.
 \]
-This expression is continuous on the interior and bounded on any
+Both expressions are continuous on the interior and bounded on any
 compact subset \(K\). By Theorem~\ref{ch:thm:14-1}, the Lipschitz estimate
-follows with \(L_{\alpha,K}\) equal to the supremum of this gradient
-norm over \(K\).
+follows with \(L_{\alpha,K}\) equal to the supremum of the exact
+gradient norm over \(K\); the upper bound above yields an explicit
+constant that is valid (though not tight) on \(K\).
 \section{Improved Bound via the Stationary Point}\label{ch:sec:improved-bound-via-the-stationary-point}
 The R\'enyi entropy for \(\alpha>0\) has a unique stationary point at the
 uniform distribution \(U_n\). Expanding around this stationary point and
