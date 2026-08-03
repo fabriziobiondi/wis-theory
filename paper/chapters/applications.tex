@@ -164,7 +164,10 @@ distance from the grid centre.  The UOD is
 \[
 \mathcal D = \frac{\varepsilon^2}{2\pi}
 \int_{\mathbb R^2} \|k\|^2 e^{-\varepsilon\|k\|}\,dk
-= \frac{2}{\varepsilon^2}.
+= \frac{\varepsilon^2}{2\pi}\,\cdot\,2\pi
+\int_0^\infty r^3 e^{-\varepsilon r}\,dr
+= \frac{\varepsilon^2}{2\pi}\,\cdot\,2\pi\,\cdot\,\frac{6}{\varepsilon^4}
+= \frac{6}{\varepsilon^2}.
 \]
 
 The quadratic bound on the R\'enyi entropy (Section~\ref{ch:sec:improved-bound-via-the-stationary-point}) gives
@@ -298,12 +301,14 @@ H(P_m) \ge \log n - \frac{n}{2}\,\mathcal D
 \]
 
 \paragraph{Example.}
-Consider a mix network with $n=100$ messages, $r=3$ mix nodes,
-and $\alpha=0.2$ (one compromised node).
-Then $\mathcal D\approx0.05$ bits, and the bound gives
-$H(P_m) \ge \log_2 100 - 0.025 \approx 6.57$ bits.
-The anonymity set size is $2^{6.57}\approx95$---close to the
-ideal $100$.
+Consider a mix network with $n=100$ messages and $r=3$ mix nodes,
+with a fraction $\alpha=0.2$ of the nodes compromised.  With
+$\mathcal D\approx0.05$ bits, the bound gives
+$H(P_m) \ge \log_2 100 - \frac{100}{2}\cdot0.05 = \log_2 100 - 2.5
+\approx 4.14$ bits.
+The anonymity set size is $2^{4.14}\approx17.6$---a substantial
+reduction from the ideal $100$, as expected when one node in five
+is compromised.
 
 \paragraph{Interpretation.}
 The WIS framework quantifies the anonymity of a mix network in
