@@ -37,12 +37,6 @@ each equipped with the standard Euclidean inner product $\langle\cdot,\cdot\rang
 The Hilbert-space geometry of this chapter gives the first quantitative measure of deviation from universal optimality. The posterior Laplacian and the quotient geometry of Chapters~8--11 are direct consequences of the least-squares formulation introduced here.
 
 
-
-Let
-\[
-V_M=\mathbb R^{\Mset},\qquad V_C=\mathbb R^{\Cset},\qquad V_I=\mathbb R^{I},
-\]
-each equipped with the standard Euclidean inner product $\langle\cdot,\cdot\rangle$.  The lifting operators $A:V_M\to V_I$ and $C:V_C\to V_I$ are those of Proposition~\ref{ch:prop:canonical-lifting}.
 \section{Least-squares formulation and the normal operator}\label{ch:sec:least-squares-formulation-and-the-normal-operator}
 When $\omega\notin\operatorname{Im}(\Phi)$, the natural problem is least-squares approximation.
 Define the residual functional
@@ -56,8 +50,8 @@ The normal operator reformulates the factorisation problem as a least-squares pr
 
 \begin{proof}
 The Fr\'echet derivative gives
-$DE_\omega(x)[h]=2\langle\Phi x-\omega,\Phi hangle
-=2\langle\Phi^{\mathsf T}(\Phi x-\omega),hangle$.
+$DE_\omega(x)[h]=2\langle\Phi x-\omega,\Phi h\rangle
+=2\langle\Phi^{\mathsf T}(\Phi x-\omega),h\rangle$.
 \end{proof}
 
 The operator $\Phi^{\mathsf T}\Phi$ is the \emph{normal operator} associated with the canonical linear representation.  Computing it explicitly,
@@ -220,7 +214,7 @@ The Euclidean inner product of $V_I$ induces a unique Hilbert-space structure on
 where $q:V_I\to V_I/\operatorname{Im}(C)$ is the quotient map.
 \end{theorem}
 \begin{proof}
-For any $z\in S$, the decomposition gives $Y-z=(Y_S-z)+Y^\perp$ with orthogonal summands, hence $\|Y-z\|^2 = \|Y_S-z\|^2 + \|Y^\perp\|^2.$ The minimum is uniquely attained at $z=Y_S$, yielding $\|q(Y)\|=\|Y^\perp\|$.  Therefore the Euclidean inner product on $V_I$ induces a unique Hilbert norm on $V_I/\operatorname{Im}(C)$, and $Q$ is precisely the orthogonal projection onto the canonical representative $Y^\perp$.
+Let $S=\operatorname{Im}(C)$ and let $Y_S$ denote the orthogonal projection of $Y$ onto $S$, so that $Y^\perp=Y-Y_S$ is orthogonal to $S$.  For any $z\in S$, the decomposition $Y-z=(Y_S-z)+Y^\perp$ has orthogonal summands, hence $\|Y-z\|^2 = \|Y_S-z\|^2 + \|Y^\perp\|^2.$ The minimum is uniquely attained at $z=Y_S$, yielding $\|q(Y)\|=\|Y^\perp\|$.  Therefore the Euclidean inner product on $V_I$ induces a unique Hilbert norm on $V_I/\operatorname{Im}(C)$, and $Q$ is precisely the orthogonal projection onto the canonical representative $Y^\perp$.
 \end{proof}
 
 The reduced energy is the pull-back of the quotient norm through the affine map $T(u)=Au-\omega$:
