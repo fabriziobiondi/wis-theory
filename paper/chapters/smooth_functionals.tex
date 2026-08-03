@@ -914,22 +914,33 @@ with the piecewise-smooth theory of Chapter~\ref{ch:sec:classical-smooth-informa
 
 The gradient norm of the g-entropy computed in
 Section~\ref{ch:sec:max-leakage-guessing-probability} can be made fully explicit for any differentiable
-\(g\).  Using the chain rule on
-\(H_g(P)=g(\Sigma_g(P))\), where
-\(\Sigma_g(P)=\sum_i g^{-1}(-\log P_i)\), we obtain
+\(g\).  Writing \(h=g^{-1}\) and \(\Sigma_g(P)=\sum_i P_i h(-\log P_i)\),
+Theorem~\ref{ch:thm:g-entropy-gradient} gives the exact squared norm
 
 \[
 \|\nabla_g H_g(P)\|_g^2
 =
-\frac{
-\sum_i
-\bigl(
-(g^{-1})'(-\log P_i)
-\bigr)^2
-P_i^{-2}
-}{
-\bigl(g'(\Sigma_g(P))\bigr)^2
-}
+g'(\Sigma_g(P))^2
+\sum_{k=1}^n
+P_k^2
+\Bigl(
+A_k
+-
+\sum_{j=1}^n P_j A_j
+\Bigr)^2,
+\qquad
+A_k=h(-\log P_k)-h'(-\log P_k).
+\]
+
+Since \(\sum_k P_k^2\le\max_i P_i\) on the simplex, bounding the
+centred term by the maximum component gives the explicit upper bound
+
+\[
+\|\nabla_g H_g(P)\|_g^2
+\le
+g'(\Sigma_g(P))^2
+\,
+\max_k A_k^2
 \,
 \max_i P_i.
 \]
@@ -942,21 +953,10 @@ constant on a compact set \(K\subset\Delta_n^\circ\) satisfies
 \[
 L_{g,K}^2
 \le
-\frac{
 \max_{P\in K}
-\bigl[
-\sum_i
-\bigl(
-(g^{-1})'(-\log P_i)
-\bigr)^2
-P_i^{-2}
-\bigr]
-}{
-\bigl(
-\min_{P\in K}
-g'(\Sigma_g(P))
-\bigr)^2
-}
+g'(\Sigma_g(P))^2
+\,
+\max_{P\in K}\,\max_k A_k^2
 \,
 \max_{P\in K} P_i.
 \]
