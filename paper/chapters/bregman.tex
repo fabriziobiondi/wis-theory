@@ -234,9 +234,12 @@ In the WIS coordinate representation,
 $D_{\mathrm{KL}}(P\|Q) = \sum_i P_i\log(P_i/Q_i)$ becomes
 $D_{\mathrm{KL}}(x\|y) = \sum_i e^{x_i-n}(x_i-y_i)$ after the
 logarithmic embedding and normalisation.  The Hessian of this
-expression in the WIS coordinates is $\operatorname{diag}(e^{x_i-n})$,
-which is positive definite.  Since the pullback metric is flat, this
-implies geodesic convexity.\end{proof}
+expression in the WIS coordinates is
+$\operatorname{diag}\bigl(e^{x_i-n}(x_i-y_i+2)\bigr)$,
+which is positive definite precisely when $x_i-y_i+2>0$ for every $i$, in
+particular on a neighbourhood of $Q$ (where $x_i=y_i$).  Since the pullback
+metric is flat, this implies geodesic convexity on that neighbourhood.
+\end{proof}
 
 \paragraph{What this theorem proves.}
 The universal bounds of Chapter~15 give upper estimates for how much a functional can change.  Lower bounds are harder because they require convexity.  This theorem shows that for convex functionals, the quadratic lower bound is exactly $\frac12\lambda_{\min}\|\Delta\|^2$, where $\lambda_{\min}$ is the minimum eigenvalue of the Hessian.  This completes the two-sided estimate: both upper and lower bounds now have explicit geometric constants.
@@ -424,6 +427,4 @@ through which diverse information-theoretic divergences can be analyzed.
 The following chapter applies this framework to classical smooth
 information functionals, showing that Shannon entropy, Kullback--Leibler
 divergence, R\'enyi entropy, Tsallis entropy, collision entropy, and
-related quantities become instances of the same geometric theory.
-
 related quantities become instances of the same geometric theory.
