@@ -384,10 +384,10 @@ regularity has been verified.
 The g-entropy \cite{briet2019properties} unifies Shannon, R\'enyi,
 Tsallis \cite{tsallis1988possible}, min-entropy, and collision entropy under a single formula.
 Let \(g:\mathbb R_{>0}\to\mathbb R\) be a continuous, strictly
-monotone function.  The g-entropy of a distribution \(P\) is
+monotone function and write \(h=g^{-1}\).  The g-entropy of a distribution \(P\) is
 
 \[
-H_g(P) = g\!\left(\sum_{i=1}^n g^{-1}(-\log P_i)\right).
+H_g(P) = g\!\left(\sum_{i=1}^n P_i\, h(-\log P_i)\right).
 \]
 
 Different choices of \(g\) recover classical entropies:
@@ -395,40 +395,61 @@ Different choices of \(g\) recover classical entropies:
 \[
 \begin{array}{ll}
 g(x)=x & \text{Shannon entropy}, \\[2pt]
-g(x)=\exp\!\left(\frac{1-\alpha}{\alpha}x\right) & \text{R\'enyi entropy of order }\alpha, \\[2pt]
-g(x)=\frac{2^{x}-1}{1-\alpha} & \text{Tsallis entropy}, \\[2pt]
-g(x)=\lim_{\alpha\to\infty}\exp\!\left(\frac{1-\alpha}{\alpha}x\right) & \text{Min-entropy}.
+g(x)=\dfrac{\log x}{1-\alpha} & \text{R\'enyi entropy of order }\alpha, \\[2pt]
+g(x)=\dfrac{x-1}{1-\alpha} & \text{Tsallis entropy}, \\[2pt]
+g(x)=\lim_{\alpha\to\infty}\dfrac{\log x}{1-\alpha} & \text{Min-entropy}.
 \end{array}
 \]
 
+Indeed, with \(g(x)=x\) one has \(h(y)=y\) and
+\(\sum_i P_i(-\log P_i)=H_{\mathrm{Shannon}}(P)\); with
+\(g(x)=\log(x)/(1-\alpha)\) one has \(h(y)=e^{(1-\alpha)y}\) and
+\(\sum_i P_i e^{-(1-\alpha)\log P_i}=\sum_i P_i^\alpha\), so
+\(H_g(P)=\log(\sum_i P_i^\alpha)/(1-\alpha)=H_\alpha(P)\).
+The Tsallis case is identical with \(g(x)=(x-1)/(1-\alpha)\).
+
 \begin{theorem}[g-Entropy Gradient]
 \label{ch:thm:g-entropy-gradient}
+Let \(h=g^{-1}\) and \(\Sigma_g(P)=\sum_i P_i h(-\log P_i)\).
 The squared norm of the WIS gradient of the g-entropy is
 
 \[
 \|\nabla_g H_g(P)\|_g^2
 =
-\bigl(g'\bigl(\Sigma_g(P)\bigr)\bigr)^{-2}
-\,
-\frac{
-\sum_i \bigl((g^{-1})'(-\log P_i)\bigr)^2 P_i^{-2}
-}{
-\bigl(\sum_i P_i^{\alpha}\bigr)^2
-}
-\cdot\max_i P_i,
+g'(\Sigma_g(P))^2
+\sum_{k=1}^n
+P_k^2
+\Bigl(
+h(-\log P_k)-h'(-\log P_k)
+-\sum_{j=1}^n P_j\bigl(h(-\log P_j)-h'(-\log P_j)\bigr)
+\Bigr)^2.
 \]
 
-where \(\Sigma_g(P)=\sum_i g^{-1}(-\log P_i)\).  This expression is
-bounded on every compact subset of \(\Delta_n^\circ\).
+This expression is bounded on every compact subset of \(\Delta_n^\circ\).
 \end{theorem}
 
 \begin{proof}
 The g-entropy is smooth on the interior simplex because \(g\) and
 \(g^{-1}\) are smooth on their domains (all entropies of interest use
-smooth \(g\)).  The gradient formula follows from the chain rule applied
-to the composition \(g\circ\Sigma_g\circ L\), where \(L\) is the
-logarithmic embedding.  Boundedness on compacts follows from
-continuity. \(\)
+smooth \(g\)).  Writing \(\Sigma_g(P)=\sum_i P_i h(-\log P_i)\), the
+chain rule gives
+\[
+\frac{\partial H_g}{\partial P_k}
+=
+g'(\Sigma_g)\Bigl(h(-\log P_k)-h'(-\log P_k)\Bigr),
+\]
+because \(\partial(P_k h(-\log P_k))/\partial P_k
+= h(-\log P_k)-h'(-\log P_k)\) and the remaining terms
+\(P_i h(-\log P_i)\), \(i\neq k\), are independent of \(P_k\).
+In the logarithmic coordinates \(a_k=\log P_k\), the pullback metric
+is the projected Euclidean metric, and the gradient of a function
+\(S\) is represented by the components
+\(b_k=P_k\,\partial S/\partial P_k-P_k\sum_j P_j\,\partial S/\partial P_j\)
+(tangent to the simplex), whose squared norm is
+\(\sum_k b_k^2-(1/n)(\sum_k b_k)^2\).  For \(S=H_g\) the second
+term vanishes because \(\sum_k b_k\propto \sum_k P_k h(-\log P_k)
+-\sum_j P_j h(-\log P_j)=0\), yielding the displayed formula.
+Boundedness on compacts follows from continuity. \(\)
 \end{proof}
 
 \begin{corollary}[Universal g-Entropy Bound]
@@ -448,7 +469,6 @@ on any compact subset \(K\subset\Delta_n^\circ\), with Lipschitz constant
 Thus the existence of a unified bound for all classical entropies is
 not a coincidence: it follows from the g-entropy representation and the
 universal geometry of the posterior manifold.
-
 \section{Alpha-Divergences (Amari)}\label{ch:sec:alpha-divergences-amari}
 
 The \(\alpha\)-divergences of Amari \cite{amari2016information} form a one-parameter family that
@@ -924,17 +944,19 @@ g'(\Sigma_g(P))
 \max_{P\in K} P_i.
 \]
 
-For the special cases:
+For the special cases, applying the gradient formula of
+Theorem~\ref{ch:thm:g-entropy-gradient} and bounding the projection term
+by the maximum component gives:
 \begin{align*}
 g(x)=x &: \quad L_g^2 = \frac{1}{\min_i P_i},\\[4pt]
-g(x)=\exp\!\bigl(\tfrac{1-\alpha}{\alpha}x\bigr) &: \quad
+g(x)=\dfrac{\log x}{1-\alpha} &: \quad
 L_\alpha^2 = \frac{\alpha^2}{(1-\alpha)^2}
-\frac{\sum_i P_i^{2\alpha-2}}{(\sum_i P_i^\alpha)^2}
-\max_i P_i,\\[4pt]
-g(x)=\frac{2^{x}-1}{1-\alpha} &: \quad
-L_{\mathrm{Tsallis}}^2 = \frac{1}{1-\alpha}
-\frac{\max_i P_i^{2\alpha-2}}{(\sum_i P_i^\alpha)^2}
-\max_i P_i.
+\frac{\sum_i P_i^{2\alpha}}{(\sum_i P_i^\alpha)^2}
+\max_i P_i^{2\alpha-2},\\[4pt]
+g(x)=\dfrac{x-1}{1-\alpha} &: \quad
+L_{\mathrm{Tsallis}}^2 = \frac{\alpha^2}{(1-\alpha)^2}
+\frac{\sum_i P_i^{2\alpha}}{(\sum_i P_i^\alpha)^2}
+\max_i P_i^{2\alpha-2}.
 \end{align*}
 \end{corollary}
 
