@@ -170,7 +170,7 @@ By Lemma~\ref{ch:lem:kernel-Phi}, $\ker\Phi$ consists of gauge transformations; 
 \begin{corollary}\label{ch:cor:unique-min-mod-gauge}
 Every gauge class contains a unique minimizer of $E_\omega$.
 \end{corollary}
-This justifies selecting the orthogonal representative $QY$ as the canonical gauge: it is the unique minimizer of $\|Y\|$ within its coset.
+This justifies selecting the orthogonal representative $\Pi Y$ (the projection of $Y$ onto $\operatorname{Im}(C)^\perp$) as the canonical gauge: it is the unique minimizer of $\|Y\|$ within its coset.
 \section{Stability of the reconstruction}\label{ch:sec:stability-of-the-reconstruction}
 Strict convexity implies that the reconstruction is well posed in the
 sense of Hadamard: small perturbations of the input produce
@@ -230,7 +230,7 @@ The Kullback--Leibler divergence, total variation distance, and Wasserstein dist
 
 \begin{quote}
 \textbf{Mathematical intuition.}
-The Universal Optimality Defect $\mathcal D(P)=\|\delta(P)\|^2$ is the squared distance from a distribution to the set of universally optimal ones.
+The Universal Optimality Defect $\mathcal D(Y)=\|q(Y)\|^2=\|Y-\Pi Y\|^2$ is the squared distance from the incidence vector $Y$ to the subspace $\operatorname{Im}(C)$ of universally optimal encoders.
 Zero defect means the encoder is perfectly secret; larger defect means more structure---more identifying information---leaks through the ciphertext.
 \end{quote}
 
@@ -291,7 +291,7 @@ $\cloak(c_1)=\{m_1,m_2\}$, $\cloak(c_2)=\{m_1,m_3\}$.  Choose
 $w=(1/2,1/3,1/6)$, $\beta=(4,2)$.  The induced multiplicity matrix is
 \[
 N=\begin{pmatrix}8&4\\12&0\\0&12\end{pmatrix},
-\qquad |\Kset|=12.
+\qquad |\Kset|=12\text{ keys per message}.
 \]
 Since $w$ sums to $1$, $\pi=w$.  Universal optimality follows from
 $\pi(m)n_{mc}=4$ on $\cloak(c_1)$ and $2$ on $\cloak(c_2)$.
@@ -303,7 +303,7 @@ Y = A(\log\pi)+\omega = (\log4,\log2,\log4,\log2).
 \]
 Since $Y$ has the form $(a,b,a,b)$, $Y\in\operatorname{Im}(C)$ and
 $\omega\in\operatorname{Im}(\Phi)$.  Hence $\min E_\omega=0$,
-$E_{\mathrm{red}}(u)=0$ at $u=-\log\pi$, $QY=0$, $q(Y)=0$, and
+$E_{\mathrm{red}}(u)=0$ at $u=-\log\pi$, $\Pi Y=0$, $q(Y)=0$, and
 $\delta(Y)=0$.
 This example confirms mutual consistency of the WIS representation, the
 canonical linear representation, the least-squares formulation,
