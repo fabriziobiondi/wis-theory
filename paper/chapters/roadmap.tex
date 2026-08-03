@@ -28,15 +28,15 @@ logical flow.
 \node[box,below=of lap] (quot) {Quotient Geometry $V_I/\operatorname{Im}(C)$};
 \node[box,below=of quot,fill=gray!10] (uod) {{Universal Optimality Defect $\mathcal D(P)$}};
 
-\draw[arrow] (enc) -- node[right] {\small Chapter~3} (mult);
-\draw[arrow] (mult) -- node[right] {\small Chapter~4} (wis);
-\draw[arrow] (wis) -- node[right] {\small Chapter~5} (gauge);
-\draw[arrow] (gauge) -- node[right] {\small Chapter~6} (phi);
-\draw[arrow] (phi) -- node[right] {\small Chapter~7} (lsq);
-\draw[arrow] (lsq) -- node[right] {\small Chapter~7} (norm);
-\draw[arrow] (norm) -- node[right] {\small Chapter~8} (lap);
-\draw[arrow] (lap) -- node[right] {\small Chapter~9--10} (quot);
-\draw[arrow] (quot) -- node[right] {\small Chapter~11} (uod);
+\draw[arrow] (enc) -- node[right] {\small Chapter~\ref{ch:sec:background}} (mult);
+\draw[arrow] (mult) -- node[right] {\small Chapter~\ref{ch:sec:wis}} (wis);
+\draw[arrow] (wis) -- node[right] {\small Chapter~\ref{ch:sec:representation}} (gauge);
+\draw[arrow] (gauge) -- node[right] {\small Chapter~\ref{ch:sec:graphs}} (phi);
+\draw[arrow] (phi) -- node[right] {\small Chapter~\ref{ch:sec:hilbert-geometry}} (lsq);
+\draw[arrow] (lsq) -- node[right] {\small Chapter~\ref{ch:sec:hilbert-geometry}} (norm);
+\draw[arrow] (norm) -- node[right] {\small Chapter~\ref{ch:sec:the-posterior-manifold}} (lap);
+\draw[arrow] (lap) -- node[right] {\small Chapter~\ref{ch:sec:canonical-projection-and-differential-factorisation}--\ref{ch:sec:local-diffeomorphism}} (quot);
+\draw[arrow] (quot) -- node[right] {\small Chapter~\ref{ch:sec:pullback-riemannian-metric}} (uod);
 
 \end{tikzpicture}
 \end{center}
@@ -45,18 +45,18 @@ logical flow.
 
 \noindent\textbf{How to read this diagram.}
 Start at the top: a universally optimal encoder produces a matrix of
-multiplicities $n_{mc}$ (Chapter~3).  This matrix factorises into a
-weighted incidence structure (Chapter~4), whose only ambiguity is a
-global scaling---the gauge class (Chapter~5).  Taking logarithms
+multiplicities $n_{mc}$ (Chapter~\ref{ch:sec:background}).  This matrix factorises into a
+weighted incidence structure (Chapter~\ref{ch:sec:wis}), whose only ambiguity is a
+global scaling---the gauge class (Chapter~\ref{ch:sec:representation}).  Taking logarithms
 linearises the structure, producing the mismatch operator $\Phi$
-(Chapter~6), which leads to a least-squares problem whose solution
-involves the normal operator $\Phi^{\mathsf T}\Phi$ (Chapter~7).
+(Chapter~\ref{ch:sec:graphs}), which leads to a least-squares problem whose solution
+involves the normal operator $\Phi^{\mathsf T}\Phi$ (Chapter~\ref{ch:sec:hilbert-geometry}).
 The Schur complement~\cite{zhang2005schur} of this operator is the posterior Laplacian $L$
-(Chapter~8), which encodes the geometry of the quotient space
+(Chapter~\ref{ch:sec:the-posterior-manifold}), which encodes the geometry of the quotient space
 $V_I/\operatorname{Im}(C)$ (Chapters~9--10).  The distance from a
 distribution to the optimal set---the Universal Optimality Defect
 $\mathcal D(P)$---is the squared norm in this quotient geometry
-(Chapter~11).
+(Chapter~\ref{ch:sec:pullback-riemannian-metric}).
 
 \vspace{1em}
 
