@@ -86,7 +86,7 @@ E_{\mathrm{red}}(u)=u^{\mathsf T}A^{\mathsf T}\Pi A\,u
 -2u^{\mathsf T}A^{\mathsf T}\Pi\omega
 +\omega^{\mathsf T}\Pi\omega.
 \end{equation}
-The quadratic part $L=A^{\mathsf T}\Pi A$ is the \emph{posterior Laplacian}.  Writing $Q$ explicitly,
+The quadratic part $L=A^{\mathsf T}\Pi A$ is the \emph{posterior Laplacian}.  Expanding this expression explicitly,
 \[
 L = A^{\mathsf T}\Pi A = D_M - H D_C^{-1} H^{\mathsf T}
 = \operatorname{Schur}_{D_C}(\Phi^{\mathsf T}\Phi).
@@ -134,7 +134,7 @@ the reduced Hessian.  This intermediate lemma reveals that the only
 flat directions of $E_{\mathrm{red}}$ correspond to the gauge symmetry.
 \begin{lemma}[Nullspace of the reduced Hessian]\label{ch:lem:hessian-nullspace}
 The Hessian $\nabla^2 E_{\mathrm{red}} = 2L$ is positive semidefinite.
-Its nullspace satisfies $\ker L = \{u\in V_M : QA u = 0\},$ which consists precisely of the message potentials that can be compensated by a ciphertext potential without changing the energy.
+Its nullspace satisfies $\ker L = \{u\in V_M : \Pi A u = 0\},$ which consists precisely of the message potentials that can be compensated by a ciphertext potential without changing the energy.
 \end{lemma}
 \begin{proof}
 From the proof of Theorem~\ref{ch:thm:convexity},
@@ -327,8 +327,8 @@ $\min E_{\omega'}=0$: the modified multiplicities still admit an exact
 WIS factorisation, but its message weights are not proportional to the
 fixed prior.  The prior-dependent defect detects precisely this failure:
 $\delta(Y') = \|\Pi Y'\| \approx 0.3515 > 0.$
-All structures (incidence spaces, lifting operators, $Q$, quotient)
-remain well defined; only the gauge class is non-zero.  By
+All structures (incidence spaces, lifting operators, the quotient map,
+and the gauge quotient) remain well defined; only the gauge class is non-zero.  By
 Theorem~\ref{ch:thm:stability}, any perturbation of $\omega$ produces a
 proportionally bounded change in the reconstructed potentials.
 \section{Example 3: Progressive restoration}\label{ch:sec:example-3-progressive-restoration}
