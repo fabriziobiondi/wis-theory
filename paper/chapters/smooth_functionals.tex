@@ -1032,15 +1032,15 @@ representative values.
 \label{tab:empirical-lipschitz}
 \begin{tabular}{c|c|c|c|c|c}
 $n$ & $\varepsilon$ & $\mathcal D(P,U_n)$ & $L\sqrt{\mathcal D}$ & Actual gap & Ratio \\ \hline
-$5$ & $0.005$ & $1.14$ & $42\,214$ & $2.29$ & $18\,400\times$ \\
-$5$ & $0.100$ & $1.60$ & $98$ & $1.59$ & $62\times$ \\
-$10$ & $0.005$ & $2.47$ & $61\,403$ & $3.26$ & $18\,800\times$ \\
-$50$ & $0.005$ & $9.69$ & $108\,201$ & $5.24$ & $20\,700\times$ \\
-$100$ & $0.005$ & $11.08$ & $94\,626$ & $5.66$ & $16\,700\times$
+$5$ & $0.005$ & $46.39$ & $1\,348$ & $2.29$ & $588\times$ \\
+$5$ & $0.100$ & $5.35$ & $17.9$ & $1.58$ & $11\times$ \\
+$10$ & $0.005$ & $51.68$ & $1\,405$ & $3.26$ & $432\times$ \\
+$50$ & $0.005$ & $51.35$ & $1\,245$ & $5.24$ & $238\times$ \\
+$100$ & $0.005$ & $43.89$ & $942$ & $5.66$ & $166\times$
 \end{tabular}
 \end{table}
 
-The Lipschitz ratio ranges from $62\times$ to over $20\,000\times$.
+The Lipschitz ratio ranges from $11\times$ to about $590\times$.
 The bound is mathematically correct but quantitatively useless for most
 practical purposes: the Lipschitz constant $L_\infty$ depends on
 $1/(\min_i P_i)^2$, which explodes as any probability approaches zero.
@@ -1049,31 +1049,32 @@ linear (Lipschitz) approach: it captures only first-order information,
 and near the boundary of the simplex the gradient norm diverges.
 
 \paragraph{The quadratic bound is tighter but still loose for large $n$.}
-The quadratic estimate $|H_2(P)-\log_2 n|\le C\,\mathcal D(P,U_n)$
-with $C=1/n$ derived from the Hessian at the uniform distribution is
-substantially tighter.  The ratio to the exact value
+The quadratic estimate $|H_2(P)-\log_2 n|\le C_2^\star(P)\,\mathcal D(P,U_n)$
+with the pointwise Hessian constant $C_2^\star(P)=1/\sum_i P_i^2$
+(Remark~\ref{rem:improved-hessian}, $\alpha=2$) is
+substantially tighter than the Lipschitz estimate.  The ratio to the exact value
 $H_2(P)=\log_2 n-D_2(P\|U_n)$ \cite{vanerven2014renyi} is
 
 \[
 \begin{array}{c|c|c|c|c|c}
 n & \varepsilon & \mathcal D(P,U_n) & \text{WIS bound} & \text{Exact} & \text{Ratio} \\ \hline
-5 & 0.05 & 2.56 & 0.51 & 1.18 & 2.3\times \\
-5 & 0.005 & 1.14 & 0.23 & 1.57 & 6.9\times \\
-10 & 0.05 & 2.96 & 0.30 & 1.18 & 3.9\times \\
-10 & 0.005 & 2.47 & 0.25 & 2.21 & 8.8\times \\
-50 & 0.01 & 8.04 & 0.16 & 2.58 & 16.1\times \\
-50 & 0.005 & 9.69 & 0.19 & 3.35 & 17.3\times \\
-50 & 0.001 & 4.56 & 0.09 & 3.81 & 41.8\times
+5 & 0.05 & 12.80 & 19.69 & 1.70 & 11.6\times \\
+5 & 0.005 & 46.39 & 48.29 & 2.26 & 21.3\times \\
+10 & 0.05 & 10.77 & 33.14 & 1.70 & 19.5\times \\
+10 & 0.005 & 51.68 & 56.65 & 3.19 & 17.8\times \\
+50 & 0.01 & 31.53 & 118.99 & 3.73 & 31.9\times \\
+50 & 0.005 & 51.35 & 89.88 & 4.84 & 18.6\times \\
+50 & 0.001 & 95.92 & 106.05 & 5.50 & 19.3\times
 \end{array}
 \]
 
-The WIS quadratic bound is $2\!-\!42\times$ wider than the exact
-identity.  This ratio is smallest near the uniform distribution
-(large $\varepsilon$, small $\mathcal D$) and grows with the dimension
-$n$ and the skew.  The bound is therefore most informative precisely
+The WIS quadratic bound is about $12$--$32\times$ wider than the exact
+identity.  The ratio stays bounded over the tested range and does not
+diverge with the dimension or the skew, unlike the Lipschitz ratio.
+The bound is therefore most informative precisely
 where the exact R\'enyi divergence is also easiest to compute; for
-highly skewed distributions in high dimensions the bound is a weak
-estimate.
+highly skewed distributions in high dimensions the pointwise constant
+$C_2^\star(P)$ keeps the estimate within a fixed multiplicative factor.
 
 \paragraph{What these numbers imply.}
 The empirical measurements confirm three structural facts about the
