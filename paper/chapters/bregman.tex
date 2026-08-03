@@ -223,10 +223,10 @@ along geodesics of the pullback metric---is a stronger condition than
 Euclidean convexity in coordinates, but it is satisfied by several
 important functionals.
 
-\begin{lemma}[Geodesic Convexity of the KL Divergence]
+\begin{lemma}[Local Geodesic Convexity of the KL Divergence]
 \label{ch:lem:kl-convex}
-The Kullback--Leibler divergence $P\mapsto D_{\mathrm{KL}}(P\|Q)$ is
-geodesically convex on the posterior manifold for every fixed $Q$.
+For every fixed $Q$, the Kullback--Leibler divergence $P\mapsto D_{\mathrm{KL}}(P\|Q)$ is
+geodesically convex on every neighbourhood of $Q$ in the posterior manifold.
 \end{lemma}
 
 \begin{proof}
@@ -349,8 +349,9 @@ expressed as the average of two KL divergences:
 \qquad M=\frac{P+Q}{2}.
 \]
 
-Each KL divergence is geodesically convex (Lemma~\ref{ch:lem:kl-convex}),
-and the average preserves convexity.  Therefore JSD is geodesically
+Each KL divergence is locally geodesically convex in a neighbourhood
+of its reference (Lemma~\ref{ch:lem:kl-convex}), and the average preserves
+convexity.  Therefore JSD is locally geodesically
 convex in each argument separately, and for a fixed reference $Q$,
 
 \[
