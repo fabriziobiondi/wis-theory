@@ -33,7 +33,9 @@ denominator dividing the least common multiple of the seed
 probabilities.
 
 The universal optimality condition
-$|\mathrm{Cloak}(c,\cdot)| = |\mathcal K|\cdot\Pr[M=m\mid C=c]$
+$|\mathrm{Cloak}(c)| = 1/\Pr[M=m\mid C=c]$
+for every $m\in\mathrm{Cloak}(c)$ (the posterior is uniform on the
+cloak, by Proposition~\ref{ch:prop:factorisation-criterion})
 depends only on the averaged multiplicities, not on the individual
 encoders.  Therefore a randomised encoder is universally optimal
 if and only if the averaged WIS $n_{mc}$ admits a

@@ -11,17 +11,19 @@ what is generalised, and what is genuinely new.
 
 Shannon's definition of perfect secrecy requires that the ciphertext
 be independent of the message: $\Pr[M=m\mid C=c]=\Pr[M=m]$.
-In the language of weighted incidence structures, this is precisely
-the condition that the posterior distribution be uniform on the set of
-messages compatible with the observed ciphertext.  Equivalently, the
-Universal Optimality Defect $\mathcal D(P)$ vanishes for every
-posterior distribution $P$.
+In the language of weighted incidence structures, this says that the
+posterior equals the prior on every cloak.  With a uniform prior this
+is equivalent to the vanishing of the Universal Optimality Defect
+$\mathcal D(P)$ for every posterior distribution $P$; more generally,
+the defect vanishes precisely when the posterior is proportional to
+the prior, the condition of universal optimality (Section~\ref{ch:sec:wis}).
 
 \textbf{What we recover.}
 Perfect secrecy is the zero of our geometric scale: $\mathcal D\equiv0$.
 The AES S-box, our main running example, satisfies this condition
-exactly---every message-ciphertext pair is unique, and every posterior
-is a Dirac mass.
+exactly with a uniform prior: the incidence is complete, $n_{mc}=1$ for
+every pair, and by Bayes' rule the posterior equals the uniform prior
+on every cloak.
 
 \textbf{What we generalise.}
 Shannon's theory provides a binary classification (perfect secrecy

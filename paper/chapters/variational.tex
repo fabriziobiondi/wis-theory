@@ -210,7 +210,7 @@ Every interior regular constrained critical point of the maximization problem
 \max_{P\in\Delta_n^\circ}\mathcal D(P,U_n)\quad\text{subject to}\quad D_{\mathrm{KL}}(P\|U_n)=K>0
 \]
 has at most three distinct log-likelihood values. Consequently, the corresponding probability distribution has at most three distinct probability values.
-Moreover, if exactly three distinct values occur, they are arranged as \(a_{i_1}<a_{i_2}<a_{i_3}\) with multiplicities \(m_1,m_2,m_3\ge1\), and the stationarity equations reduce to a finite-dimensional system of five equations in five unknowns, together with the two constraint equations.
+Moreover, if exactly three distinct values occur, they are arranged as \(a_{i_1}<a_{i_2}<a_{i_3}\) with multiplicities \(m_1,m_2,m_3\ge1\). For fixed integer multiplicities, the stationarity equations together with the two constraint equations reduce to a finite-dimensional system of five equations in the five continuous unknowns \(a_1,a_2,a_3,\alpha,\beta\).
 \end{theorem}
 \begin{proof}
 By Lemma~\ref{ch:lem:29-1}, LICQ holds, so the Euler--Lagrange equations are necessary. The stationarity equations give \(\varphi(a_i)=0\) for every coordinate \(i\). By Lemma~\ref{ch:lem:29-5}, \(\varphi\) has at most three distinct real zeros. Hence the coordinates take at most three distinct values.
@@ -219,7 +219,7 @@ When exactly three distinct values occur, let them be \(a_1<a_2<a_3\) with multi
 \end{proof}
 \begin{corollary}[Finite-Dimensional Reduction]
 \label{ch:cor:29-2}
-The search for interior regular constrained critical points reduces from the infinite-dimensional space of probability distributions on \(n\) symbols to a finite-dimensional algebraic system of at most five equations in five unknowns, independently of \(n\).
+The search for interior regular constrained critical points reduces from the infinite-dimensional space of probability distributions on \(n\) symbols to a finite-dimensional algebraic system: for fixed integer multiplicities, at most five equations in the five continuous unknowns \(a_1,a_2,a_3,\alpha,\beta\), independently of \(n\).
 \end{corollary}
 \begin{proof}
 Theorem~\ref{ch:thm:29-3} explicitly identifies the unknowns and the governing equations. The reduction is independent of \(n\) because the structure of the stationarity function \(\varphi\) depends only on the parameters \(\bar a,\alpha,\beta\) and not on the dimension. 
