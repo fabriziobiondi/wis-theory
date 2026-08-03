@@ -760,39 +760,45 @@ The Lipschitz and quadratic bounds of
 Theorems~\ref{ch:thm:14-1}--\ref{ch:thm:14-2} therefore apply with
 constants depending on the compact set and on \(\alpha\).
 
-At the reference point \(P=Q\), the divergence vanishes and its Hessian
-is proportional to the UOD metric:
-
-\[
-\operatorname{Hess}_g D_\alpha(\cdot\|Q)_Q
-=
-\frac{\alpha}{2}
-\,
-g_Q.
-\]
-
-Hence, near \(P=Q\),
-
+At the reference point \(P=Q\), the divergence vanishes and its
+second-order expansion in the logarithmic coordinates is
 \[
 D_\alpha(P\|Q)
 =
-\frac{\alpha}{2}\,
-\mathcal D(P,Q)
+\frac{\alpha}{2}\,\chi^2_Q(P,Q)
 +
-o\bigl(\mathcal D(P,Q)\bigr).
+o\bigl(\chi^2_Q(P,Q)\bigr),
+\qquad
+\chi^2_Q(P,Q)=\sum_i \frac{(P_i-Q_i)^2}{Q_i}.
+\]
+
+Hence the leading term is proportional to the \emph{weighted}
+chi-square divergence, not to the UOD: the two quadratic forms agree
+only when the reference weights are balanced.  In particular, for the
+uniform reference \(Q=U_n\), the identity
+\(\chi^2_{U_n}(P,U_n)=\mathcal D(P,U_n)/n\) gives
+\[
+D_\alpha(P\|U_n)
+=
+\frac{\alpha}{2n}\,\mathcal D(P,U_n)
++
+o\bigl(\mathcal D(P,U_n)\bigr).
 \]
 
 This gives an explicit quadratic constant
-\(C_{\alpha,Q}=\alpha/2\) at the stationary point,
-independent of the dimension \(n\).
+\(C_{\alpha,U_n}=\alpha/(2n)\) at the uniform stationary point,
+consistent with the constant of
+Remark~\ref{rem:improved-hessian}.
 \end{theorem}
 
 \begin{proof}
 The gradient follows from differentiating the log-sum-exp expression.
-For the Hessian at \(P=Q\), write \(P=Q+\delta\) and expand the
-logarithm to second order.  The leading term is \((\alpha/2)\) times the
-squared Euclidean distance in logarithmic coordinates, which is the UOD
-by definition. \(\)
+For the second order at \(P=Q\), write \(P=Q+\delta\) with
+\(\sum_i\delta_i=0\) and expand
+\(\sum_i P_i^\alpha Q_i^{1-\alpha}\) to second order:
+\(\sum_i Q_i(1+\delta_i/Q_i)^\alpha = 1 + \frac{\alpha(\alpha-1)}{2}\sum_i \delta_i^2/Q_i + O(\delta^3)\).
+Taking the logarithm and multiplying by \(1/(\alpha-1)\) gives the
+claimed leading term \((\alpha/2)\chi^2_Q(P,Q)\). \(\)
 \end{proof}
 
 \section{Max Leakage (Guessing Probability)}\label{ch:sec:max-leakage-guessing-probability}
