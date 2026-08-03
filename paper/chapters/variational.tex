@@ -42,22 +42,30 @@ D_{\mathrm{KL}}(P\|U_n)
 =
 K.
 \]
-The objective functional is the UOD with respect to the uniform distribution,
+The objective functional is the UOD with respect to the uniform distribution.  In
+log-likelihood coordinates it equals the squared Euclidean norm of the centred
+coordinate vector,
 \[
 \mathcal D(P,U_n)
 =
-\frac1n\sum_i a_i^2
--
-\left(\frac1n\sum_i a_i\right)^2
+\sum_{i=1}^n (a_i-\bar a)^2
 =
-\operatorname{Var}_U(a).
+\sum_i a_i^2
+-
+\frac1n\left(\sum_i a_i\right)^2,
+\qquad
+\bar a=\frac1n\sum_i a_i.
 \]
+For comparison with the normalised quantities used elsewhere we write
+\(d(P,U_n)=\operatorname{Var}_U(a)=\frac1n\sum_i(a_i-\bar a)^2\), so that
+\(\mathcal D(P,U_n)=n\,d(P,U_n)\).  Both objective functions have the same
+stationary points, since they differ only by the constant factor \(n\).
 Thus, in log-likelihood coordinates, the optimization problem becomes
 \[
 \max_{a\in\mathbb R^n}
-\frac1n\sum_i a_i^2
+\sum_i a_i^2
 -
-\left(\frac1n\sum_i a_i\right)^2
+\frac1n\left(\sum_i a_i\right)^2
 \]
 subject to
 \[
@@ -97,7 +105,7 @@ Computing the gradients,
 \[
 \frac{\partial\mathcal D}{\partial a_i}
 =
-\frac{2}{n}(a_i-\bar a),
+2(a_i-\bar a),
 \]
 \[
 \frac{\partial g_1}{\partial a_i}
@@ -110,13 +118,15 @@ Computing the gradients,
 \]
 Thus the stationarity condition becomes
 \[
-\frac{2}{n}(a_i-\bar a)
+2(a_i-\bar a)
 =
 \frac{\lambda_1}{n}e^{a_i}
 +
 \frac{\lambda_2}{n}e^{a_i}(1+a_i),
 \]
-which simplifies to
+Absorbing the factor \(1/n\) into the Lagrange multipliers
+(which is allowed since the multipliers are arbitrary),
+this simplifies to
 \[
 2(a_i-\bar a) = e^{a_i}\bigl(\lambda_1 + \lambda_2(1+a_i)\bigr),\qquad i=1,\ldots,n.
 \]
