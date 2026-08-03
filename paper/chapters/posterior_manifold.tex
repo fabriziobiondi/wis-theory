@@ -61,10 +61,12 @@ For every \(p\in\Delta_n^\circ\),
 \[ T_p\Delta_n^\circ=
 \{v\in\mathbb R^{n}:\sum_i v_i=0\}. \]
 \end{theorem}
-\begin{proof} The tangent space of a regular level set equals the kernel of
-its differential. Since \[ T_P\mathcal P=
-\prod_c T_{P_c}\Delta_c^\circ. \], the claim
-follows. 
+\begin{proof} The simplex $\Delta_n^\circ$ is the regular level set
+\(s^{-1}(1)\) of the sum map \(s(v)=\sum_i v_i\).  The tangent space
+of a regular level set is the kernel of the differential, hence
+\[
+T_p\Delta_n^\circ=\ker(ds_p)=\{v\in\mathbb R^n:\textstyle\sum_i v_i=0\}.
+\]
 \end{proof}
 
 \begin{proposition}[Gauge Geometry of the Logarithmic Space]\label{ch:prop:2-1}

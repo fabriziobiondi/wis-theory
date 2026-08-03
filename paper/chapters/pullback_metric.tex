@@ -1,8 +1,8 @@
 \chapter[Pullback Metric]{Pullback Riemannian Metric}\label{ch:sec:pullback-riemannian-metric}
-Throughout this chapter let $F:\mathcal P \longrightarrow F(\mathcal P)$ denote the global diffeomorphism established in Chapter~\ref{ch:sec:local-diffeomorphism}.
+Throughout this chapter let $F:\mathcal P \longrightarrow F(\mathcal P)$ denote the logarithmic quotient map, which is a local diffeomorphism by Theorem~\ref{ch:thm:5-4} of Chapter~\ref{ch:sec:local-diffeomorphism}.
 The image \(F(\mathcal P)\) is an open subset of the finite-dimensional vector space
 \[
-\prod_{c\in\mathcal C}\operatorname{Im}(Q_c),
+\prod_{c\in\mathcal C} T_{P_c}\Delta_c^\circ \cong \mathbb R^{n-|\mathcal C|},
 \]
 which is naturally endowed with the Euclidean inner product inherited from the ambient spaces.
 The purpose of this chapter is to transport this Euclidean geometry back to the posterior manifold.
@@ -24,7 +24,7 @@ The Euclidean metric defines a smooth Riemannian metric on \(F(\mathcal P)\).
 The Euclidean inner product is constant in every affine coordinate system. Hence it varies smoothly and is positive definite on every tangent space. 
 \end{proof}
 \paragraph{Why the pullback metric?}
-The image $F(\mathcal P)$ is a subset of Euclidean space, so it inherits the Euclidean metric.  But what we need is a metric on the posterior manifold itself---a way to measure how much two distributions differ in terms of their cryptographic structure.  The pullback metric $g=F^*g_E$ is the unique Riemannian metric that makes $F$ a local isometry: the distance between $P$ and $Q$ on the manifold equals the Euclidean distance between their images $F(P)$ and $F(Q)$.  This identification is the bridge between geometry (distributions) and algebra (WIS factorisation).
+The image $F(\mathcal P)$ is a subset of Euclidean space, so it inherits the Euclidean metric.  But what we need is a metric on the posterior manifold itself---a way to measure how much two distributions differ in terms of their cryptographic structure.  The pullback metric $g=F^*g_E$ is the unique Riemannian metric that makes $F$ a local isometry: infinitesimal distances on the manifold are the Euclidean distances between the images of tangent vectors, and geodesic distance on the manifold is computed by integrating these infinitesimal lengths.  This identification is the bridge between geometry (distributions) and algebra (WIS factorisation).
 
 \section{Pullback Metric}\label{ch:sec:pullback-metric}
 \begin{definition}[Pullback Metric]
